@@ -1,0 +1,358 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+// porvider Data
+model Provider {
+  id           String        @id @default(auto()) @map("_id") @db.ObjectId
+  slug         String        @unique
+  providerName String        @default("")
+  carFixing    String[]
+  email        String        @unique
+  mobile       String        @unique
+  coverImage   String        @default("")
+  logo         String        @default("")
+  heroSlogon   String        @default("")
+  starCount    Int           @default(0)
+  commentCount Int           @default(0)
+  likeCount    Int           @default(0)
+  disLikeCount Int           @default(0)
+  viewerCount  Int           @default(0)
+  favCount     Int           @default(0)
+  shareCount   Int           @default(0)
+  department      String[]
+  extarService String[]
+  workingHours String        @default("")
+  description  String        @default("")
+  detail       String        @default("")
+  type         String        @default("")
+  city         String        @default("")
+  dist         String        @default("")
+  branchCount  Int           @default(0)
+  userid       String        @default("")
+  createdAt    DateTime      @default(now())
+  updatedAt    DateTime      @updatedAt
+}
+
+ 
+
+model ProviderService {
+  id             String   @id @default(auto()) @map("_id") @db.ObjectId
+  providerid     String   @default("")
+  serviceid      String   @default("")
+  service        String   @default("")
+  slug           String   @default("")
+  description    String   @default("")
+  logo           String   @default("")
+  tmp            String   @default("")
+  subPoints      String[]
+  likeCounter    Int      @default(0)
+  dislikeCounter Int      @default(0)
+  commentCounter Int      @default(0)
+  userid         String   @default("")
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+}
+
+model ProviderBranch {
+  id         String   @id @default(auto()) @map("_id") @db.ObjectId
+  providerid String   @default("")
+  branchName String   @default("")
+  image      String   @default("")
+  lat        Float    @default(0)
+  lan        Float    @default(0)
+  sat        String   @default("")
+  sun        String   @default("")
+  mon        String   @default("")
+  tue        String   @default("")
+  wed        String   @default("")
+  thu        String   @default("")
+  fri        String   @default("")
+  userid     String   @default("")
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+}
+
+model ProviderDepartment {
+  id             String   @id @default(auto()) @map("_id") @db.ObjectId
+  providerid     String   @default("")
+  departmentid   String   @default("")
+  department     String   @default("")
+  slug           String  @default("")
+  description    String   @default("")
+  logo           String   @default("")
+  subPoints      String[]
+  likeCounter    Int      @default(0)
+  dislikeCounter Int      @default(0)
+  commentCounter Int      @default(0)
+  userid         String   @default("")
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+}
+
+model ProviderCarFixing {
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
+  providerid  String   @default("")
+  carid       String   @default("")
+  name        String   @default("")
+  image       String   @default("")
+  userid      String   @default("")
+  createdDate DateTime @default(now())
+  updatedDate DateTime @updatedAt
+}
+
+// porvider images with use in provider page 
+
+model image {
+  id         String   @id @default(auto()) @map("_id") @db.ObjectId
+  providerid String   @default("")
+  image      String   @default("")
+  type       String   @default("")
+  userid     String   @default("")
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+}
+
+model systemImage {
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
+  image       String   @default("")
+  description String   @default("")
+  userid      String   @default("")
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+// contains the main service from the system 
+model service {
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
+  service     String   @default("")
+  slug        String   @unique
+  description String   @default("")
+  logo        String   @default("")
+  type        String   @default("")
+  subPoints   String[]
+  userid      String   @default("")
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model serviceAction {
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
+  providerid  String   @default("")
+  serviceid   String   @default("")
+  serviceName String   @default("")
+  actionid    String   @default("")
+  userid      String   @default("")
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model comment {
+  id         String   @id @default(auto()) @map("_id") @db.ObjectId
+  comment    String   @default("")
+  providerid String   @default("")
+  serviceid  String   @default("")
+  isShow     Boolean  @default(false)
+  isOpen     Boolean  @default(false)
+  userid     String   @default("")
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+}
+
+model replay {
+  id         String   @id @default(auto()) @map("_id") @db.ObjectId
+  replay     String   @default("")
+  commentid  String   @default("")
+  isProvider Boolean  @default(false)
+  userid     String   @default("")
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+}
+
+model Provideroffers {
+  id         String   @id @default(auto()) @map("_id") @db.ObjectId
+  providerid String   @default("")
+  offer      String   @default("")
+  offerValue String   @default("")
+  isActive   Boolean  @default(true)
+  isShow     Boolean  @default(true)
+  userid     String   @default("")
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+}
+
+// store provider free offers
+model ProviderfreeGift {
+  id         String   @id @default(auto()) @map("_id") @db.ObjectId
+  providerid String   @default("")
+  free       String   @default("")
+  isActive   Boolean  @default(true)
+  userid     String   @default("")
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+}
+
+// store all cars availbal in platform
+model Car {
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
+  carid       Int      @default(0)
+  name        String   @default("")
+  image       String   @default("")
+  metaTag     String   @default("")
+  history     String   @default("")
+  userid      String   @default("")
+  createdDate DateTime @default(now())
+  updatedDate DateTime @updatedAt
+}
+
+// store user cars to prefer suggetion for wotkshop or car that he like it
+model userCar {
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
+  userid      String   @default("")
+  carid       String   @default("")
+  isMasterCar Boolean  @default(false)
+  createdDate DateTime @default(now())
+  updatedDate DateTime @updatedAt
+}
+
+// store provider setting that he like in his page
+model setting {
+  id             String   @id @default(auto()) @map("_id") @db.ObjectId
+  providerid     String   @default("")
+  maxlength_chat Int      @default(0)
+  userid         String   @default("")
+  updatedDate    DateTime @updatedAt
+}
+
+// store provider setting that he like in his page
+model errors {
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
+  url         String   @default("")
+  refrence    String   @default("")
+  sourceCode  String   @default("")
+  error       String   @default("")
+  systemError String   @default("")
+  userid      String   @default("")
+  updatedDate DateTime @updatedAt
+}
+
+model country {
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
+  country     String   @default("")
+  flag        String   @default("")
+  metaTag     String   @default("")
+  userid      String   @default("")
+  createdDate DateTime @default(now())
+  updatedDate DateTime @updatedAt
+}
+
+model city {
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
+  countryId   String   @default("")
+  city        String   @default("")
+  metaTag     String   @default("")
+  userid      String   @default("")
+  createdDate DateTime @default(now())
+  updatedDate DateTime @updatedAt
+}
+
+model dist {
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
+  countryId   String   @default("")
+  cityid      String   @default("")
+  dist        String   @default("")
+  metaTag     String   @default("")
+  userid      String   @default("")
+  createdDate DateTime @default(now())
+  updatedDate DateTime @updatedAt
+}
+
+model userAction {
+  id         String   @id @default(auto()) @map("_id") @db.ObjectId
+  providerid String   @default("")
+  actionid   Int      @default(0)
+  comment    String   @default("")
+  userid     String   @default("")
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+}
+
+// store provider and user cradintional free offers
+model user {
+  id            String   @id @default(auto()) @map("_id") @db.ObjectId
+  name          String   @default("")
+  email         String   @unique
+  image         String   @default("")
+  password      String   @default("")
+  isVerified    Boolean  @default(false)
+  VerifiedToken String   @default("")
+  role          String   @default("user")
+  pageId        String   @default("")
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+}
+
+model profile {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  userId    String   @default("")
+  mobile    String   @unique
+  isBlocked Boolean  @default(false)
+  role      String   @default("")
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model inbox {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  from      String   @default("")
+  to        String   @default("")
+  subject   String   @default("")
+  msg       String   @default("")
+  type      String   @default("")
+  url       String   @default("")
+  isOpen    Boolean  @default(false)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model ProviderRating {
+  id         String   @id @default(auto()) @map("_id") @db.ObjectId
+  rate       Int      @default(0)
+  comment    String   @default("")
+  providerId String   @default("")
+  userId     String   @default("")
+  isPublic   Boolean  @default(true)
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+}
+
+
+model DepartmentComment {
+  id         String   @id @default(auto()) @map("_id") @db.ObjectId
+  comment    String   @default("")
+  providerid String   @default("")
+  departmentid  String   @default("")
+  isShow     Boolean  @default(false)
+  userid     String   @default("")
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+}
+
+model ExtraServiceComment {
+  id         String   @id @default(auto()) @map("_id") @db.ObjectId
+  comment    String   @default("")
+  providerid String   @default("")
+  serviceid  String   @default("")
+  isShow     Boolean  @default(false)
+  userid     String   @default("")
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+}

@@ -1,0 +1,32 @@
+{
+  "compilerOptions": {
+    "target": "es6",
+    "jsx": "react",
+    "baseUrl": ".",
+    "paths": {
+      "@/components/*": ["./components/*"],
+      "@/styles/*": ["./styles/*"],
+      "@/lib/*": ["more/lib/*"],
+      "@/provider/*": ["./provider/*"],
+      "@/constant/*": ["more/constant/*"],
+      "@/context/*": ["more/context/*"],
+      "@/db/*": ["more/db/*"],
+      "@/app/*": ["./app/*"],
+      "@/fonts/*": ["./fonts/*"]
+    }
+  },
+  "exclude": [
+    ".git",
+    ".app-cache",
+    ".npm",
+    ".npm-tmp",
+    "dist",
+    "dist*",
+    "node_modules",
+    "subfolder/dist",
+    "subfolder/node_modules",
+    "**/dist/*",
+    "**/node_modules/*",
+    "build"
+  ]
+}

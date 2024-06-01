@@ -1,0 +1,77 @@
+{
+  "provider": {
+    "id": "6650f35d19e2ff82502b3040",
+    "slug": "دكتور-راسم-بودوارة",
+    "providerName": "دكتور راسم بودوارة",
+    "email": "Jeanne12@example.com",
+    "mobile": "229.483.6572 x35478",
+    "coverImage": "https://avatars.githubusercontent.com/u/51389163",
+    "logo": "https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/526.jpg",
+    "heroSlogon": "الكبرى جيد نجمة اليقظة يرتجف لطيف جرس نتهم مكاتب تدوس.",
+    "starCount": 91,
+    "commentCount": 32,
+    "likeCount": 93,
+    "disLikeCount": 5,
+    "viewerCount": 0,
+    "favCount": 76,
+    "shareCount": 69,
+    "workingHours": {
+      "Sunday": { "workDay": true, "hour": ["08:00", "12:00", "13:00", "18:00"] },
+      "Monday": { "workDay": true, "hour": ["08:00", "12:00", "13:00", "18:00"] },
+      "Tuesday": { "workDay": true, "hour": ["08:00", "12:00", "13:00", "18:00"] },
+      "Wednesday": { "workDay": true, "hour": ["08:00", "12:00", "13:00", "18:00"] },
+      "Thursday": { "workDay": true, "hour": ["08:00", "12:00", "13:00", "18:00"] },
+      "Friday": { "workDay": false, "hour": ["08:00", "12:00", "13:00", "18:00"] },
+      "Saturday": { "workDay": true, "hour": ["08:00", "12:00", "13:00", "18:00"] }
+    },
+    "description": "أجوف شهرة الرأفة خطأ بالكاد يوضح اخر بعنف كشط. برودة تدوس يمثل يفتح يتعقب طالب بعنف والنسيج. أثاث حلها يلمس هذا جهد رماد يصدق أوافق. الموقف الموعد حضن برودة ماهر. الجبر شعر جرس استوديو ملل مستمر. حياة عنوان متوسط مرارًا ربط ايقاد الموعد اقف يضحك شجيرة.",
+    "detail": "منهم الشفق يفضل يكون أرتب صوت هي ديون ألحق. حساب البقية مصلح. سبورة سهم جسم لوم ناعم بالتأكيد مقاطعة إليك. مسرح إمضاء أميل الجبر شريك سويا رقبة أوزة عادة. ينام يأتي ديون تحية محبوب الأكثر اللطف يقارن الناس. كشط حسنة دعه. أغنية من ماذا ذراع محبوب ملل حبيب لون. جوية الجانبين بأغلبية. يستوعب سهل ذلك السرج خزان ثالث بقدر اسمنت. أعتقد له ماشية أمان رجولي عدالة يتمتع. قوي نستنتج حقيقي واع الحمامات زال. قبول شريك يتبنى قصير ذيل صده العمل. بيئة طعام تصل حلها نقود مادة. الفائز أفتح ثلاث هم اجلس الرافض رياح عتيق يحذب إيداع. علاج أحاول الفائز مقبول الموسم جمال اختراعات. عم ابرم اجلس ضعيف أخرى عنوان هذا منتج معبد. حياة الجاد مرآة رمي الموت شاهد. إنه باستمرار السماع رياح. سويا مستمع خلوق بالكاد أذن عمة ناعم حق قبل تحدث. وأود بشكل ملل خجول متشوق سمحت قليل متطابقة الكبرى. رقابة يعرفون عنوان.",
+    "type": "c",
+    "city": "القريات",
+    "dist": "واديالدواسر",
+    "branchCount": 9,
+    "userid": "khalidjadish",
+    "createdAt": new Date("2024-05-24T20:06:53.000Z"),
+    "updatedAt": new Date("2024-05-24T20:06:53.000Z")
+  },
+  "cars": [
+    { "name": "kia" },
+    { "name": "chrysler" },
+    { "name": "mitsubishi" },
+    { "name": "kia" },
+    { "name": "mazda" },
+    { "name": "cherry" },
+    { "name": "changan" },
+    { "name": "dodge" },
+    { "name": "buick" }
+  ],
+  "department": [
+    { "department": "برمجة" },
+    { "department": "شكمانات" },
+    { "department": "ميكانيكا" },
+    { "department": "برمجة" },
+    { "department": "تعديل" }
+  ],
+  "service": [
+    { "logo": "carrepairontime.svg" },
+    { "logo": "check_car_before_buy.svg" },
+    { "logo": "warranty.svg" },
+    { "logo": "support_on_road.svg" },
+    { "logo": "carrepairontime.svg" },
+    { "logo": "loyalty.svg" },
+    { "logo": "loyalty.svg" }
+  ],
+  "rate": {
+    "star1": 0,
+    "star2": 0,
+    "star3": 0,
+    "star4": 0,
+    "star5": 0,
+    "overAllrate5": 0,
+    "totalRate": 0,
+    "percentage": NaN
+  }
+}
+
+
+ 
