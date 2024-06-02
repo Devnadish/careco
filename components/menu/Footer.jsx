@@ -2,7 +2,14 @@
 import React from 'react'
 import GoHome from '../shared/GoHome'
 import DropMenu from '../shared/DropMenu'
-import { Car, Eye, HeartHandshake, Menu } from '@/lib/icons'
+import {
+  BotMessageSquare,
+  Car,
+  Eye,
+  HeartHandshake,
+  ListRestart,
+  Menu
+} from '@/lib/icons'
 import CarToSelect from '@/app/_pagecomp/home/CarToSelect'
 import NewMail from '@/app/_pagecomp/admin/mailsystem/NewMail'
 import { Separator } from '../ui/separator'
@@ -13,9 +20,20 @@ import ClearCarFilter from '../svg/ClearCarFilter'
 import FavCar from '../svg/FavCar'
 import { MyCar } from '../svg/MyCar'
 import { usePathname, useSearchParams } from 'next/navigation'
+import { useMediaQuery } from '@react-hook/media-query'
+import { InboxIcon } from '../svg/InboxIcon'
 // TODO: Read data from db
 
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious
+} from '@/components/ui/carousel'
+
 const Footer = ({ session, newMails }) => {
+  const isMobile = useMediaQuery('(max-width: 500px)')
   const pathname = usePathname()
   const searchParams = useSearchParams()
   const vechile = searchParams.get('vechile')
@@ -29,6 +47,10 @@ const Footer = ({ session, newMails }) => {
   }
   return (
     <footer className='fixed bottom-0 z-50 h-14 w-full bg-accent' id='footer'>
+      <div className='h-16 w-full bg-accent md:hidden'>
+        {/* <MobileHomeFooter /> */}
+        <SliderMenu />
+      </div>
       {isHomePage ? (
         <HomeFooter
           session={session}
@@ -57,6 +79,22 @@ const HomeFooter = ({ session, newMails, urlPrefix, vechile }) => {
   return (
     <div className='relative flex h-16 w-full items-center justify-between bg-accent'>
       <div className='start flex  h-9 w-[75%]  items-center  gap-4  px-5'>
+        {/* <NewMail
+          urlPrefix={urlPrefix}
+          session={session}
+          to={process.env.NEXT_PUBLIC_ADMIN_EMAIL}
+        />
+        <Separator orientation='vertical' className='h-9 bg-primary' />
+        <MainMenu /> */}
+
+        <Button variant='ghost'>
+          <InboxIcon className='size-8 text-red-500 ' />
+        </Button>
+
+        <Button variant='ghost'>
+          <BotMessageSquare className='size-8 text-blue-500 ' />
+        </Button>
+
         <Button variant='ghost'>
           <HeartHandshake className='size-8 text-red-500 ' />
         </Button>
@@ -98,16 +136,93 @@ const SelectedCar = ({ data, providersLength }) => {
   )
 }
 
-//  {
-//    /* <NewMail
-//         urlPrefix={urlPrefix}
-//         session={session}
-//         to={process.env.NEXT_PUBLIC_ADMIN_EMAIL}
-//       /> */
-//  }
-//  {
-//    /* <Separator orientation='vertical' className='h-9 bg-primary' /> */
-//  }
-// {
-//   /* <MainMenu /> */
-// }
+const MobileHomeFooter = ({ session, newMails, urlPrefix, vechile }) => {
+  return (
+    <div className='relative flex h-16 w-full items-center justify-between  '>
+      <div className='start flex  h-9 w-[75%]  items-center  gap-4  px-5'>
+        <Button variant='ghost'>
+          <InboxIcon className='size-8 text-red-500 ' />
+        </Button>
+
+        <Button variant='ghost'>
+          <BotMessageSquare className='size-8 text-blue-500 ' />
+        </Button>
+
+        <Button variant='ghost'>
+          <HeartHandshake className='size-8 text-red-500 ' />
+        </Button>
+
+        <Button variant='ghost'>
+          <FavCar className='size-8 text-red-500 ' />
+        </Button>
+        <Button variant='ghost'>
+          <MyCar className='size-8 text-red-500 ' />
+        </Button>
+        {/* <Separator orientation='vertical' className='h-9 bg-primary' /> */}
+      </div>
+
+      <div className='flex size-16   flex-col items-center justify-center  rounded-full bg-accent'>
+        <CarToSelect />
+        {/* <SelectedCar data={vechile} providersLength={15} /> */}
+      </div>
+    </div>
+  )
+}
+
+function SliderMenu({ menu }) {
+  const menuItems = [
+    {
+      icon: <MyCar className='size-8 text-red-500 ' />,
+      text: 'سيارتي'
+    },
+    {
+      icon: <FavCar className='size-8 text-red-500 ' />,
+      text: 'سياراتي المفضلة'
+    },
+    {
+      icon: <InboxIcon className='size-8 text-red-500 ' />,
+      text: 'المراسلات'
+    },
+    {
+      icon: <BotMessageSquare className='size-8 text-blue-500 ' />,
+      text: 'استشارة'
+    },
+    {
+      icon: <HeartHandshake className='size-8 text-red-500 ' />,
+      text: 'المفضلين'
+    }
+  ]
+
+  return (
+    <div className='  flex w-full   items-center justify-between'>
+      <div className='flex  h-full w-[75%]  items-center justify-center px-5'>
+        <Carousel
+          opts={{
+            align: 'start'
+          }}
+          orientation='horizontal'
+          className='mb-2 w-[300px] '
+          dir='LTR'
+        >
+          <CarouselContent className='flex w-[150px] items-center gap-8  '>
+            {menuItems.map(({ icon, text }, index) => (
+              <CarouselItem key={index} className='basis-3/12 pt-1'>
+                <Button
+                  variant='ghost'
+                  className='w-[40px] border border-primary/50 p-0'
+                >
+                  {icon}
+                </Button>
+              </CarouselItem>
+            ))}
+          </CarouselContent>
+          {/* <CarouselPrevious /> */}
+          {/* <CarouselNext /> */}
+        </Carousel>
+      </div>
+      <div className='flex size-16   flex-col items-center justify-center  rounded-full bg-accent'>
+        <CarToSelect />
+      </div>
+    </div>
+  )
+}

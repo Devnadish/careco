@@ -13,6 +13,7 @@ import {
   HeartHandshake,
   Lock,
   MessageCircleMore,
+  Share2,
   Star
 } from 'more/lib/icons'
 import { Like, Dislike } from '@/components/svg/LikeAndDislike'
@@ -93,13 +94,13 @@ export function UserMenuBody({ isVerified, userId, setOpen }) {
       icon: <Star size={20} strokeWidth={1} className='text-foreground' />,
       text: 'التقييم'
     },
-    {
-      href: `/reaction/${userId}/favorate`,
-      icon: (
-        <HeartHandshake size={20} strokeWidth={1} className='text-foreground' />
-      ),
-      text: 'المفضلة'
-    },
+    // {
+    //   href: `/reaction/${userId}/favorate`,
+    //   icon: (
+    //     <HeartHandshake size={20} strokeWidth={1} className='text-foreground' />
+    //   ),
+    //   text: 'المفضلة'
+    // },
     { href: `/reaction/${userId}/like`, icon: <Like />, text: 'إعجاب' },
     {
       href: `/reaction/${userId}/dislike`,
@@ -135,8 +136,8 @@ export function UserMenuBody({ isVerified, userId, setOpen }) {
     },
     {
       href: `/mailsystem`,
-      icon: <SendService className='size-5' />,
-      text: 'المراسلات'
+      icon: <Share2 className='size-5' />,
+      text: 'المشاركة'
     },
     {
       href: `/user/sendmaintinance/${userId}`,
