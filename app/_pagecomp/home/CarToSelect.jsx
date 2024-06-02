@@ -49,8 +49,7 @@ function CarToSelect({
         <PopoverTrigger asChild>
           {value ? (
             <Button
-              className='flex size-12 flex-col items-center justify-center  rounded-full  border bg-white  shadow-xl '
-              onClick={() => setValue('')}
+              className='flex size-10  flex-col items-center justify-center border-[.5px] border-primary  p-0 shadow-xl'
               variant='ghost'
             >
               <ClearCarFilter className='size-8 text-red-500 ' />{' '}
@@ -60,17 +59,17 @@ function CarToSelect({
               variant='ghost'
               role='combobox'
               aria-expanded={open}
-              className='flex size-12 flex-col items-center justify-center  rounded-full  border bg-primary   shadow-xl '
+              className='flex size-10  flex-col items-center justify-center border-[.5px] border-primary  p-0 shadow-xl'
             >
               {/* <Car className='size-8 text-foreground' strokeWidth={1} /> */}
-              <CarIcon className='size-8 text-foreground' strokeWidth={1} />
+              <CarIcon className='ml-1 flex size-9   items-center justify-center  text-foreground' />
             </Button>
           )}
         </PopoverTrigger>
       </div>
-      <PopoverContent className='w-[250px] p-0'>
+      <PopoverContent className='w-[250px] '>
         <Command disablePointerSelection>
-          <CommandInput placeholder={placeholder} />
+          <CommandInput placeholder={placeholder} className='mr-2' />
           <CommandList>
             <CommandEmpty>{noDataMessage}</CommandEmpty>
             <CommandGroup>
@@ -82,6 +81,7 @@ function CarToSelect({
                     setValue(currentValue === value ? '' : currentValue)
                     setOpen(false)
                   }}
+                  className='flex w-full items-center justify-between hover:bg-blue-500 hover:text-white'
                 >
                   <Check
                     className={cn(
@@ -90,7 +90,7 @@ function CarToSelect({
                     )}
                   />
                   <div className='flex w-full items-center justify-between'>
-                    <Text fontSize='xs' opacity={'opacity-35'}>
+                    <Text fontSize='xs' className={'text-foreground'}>
                       {framework.label}
                     </Text>
                     <Image

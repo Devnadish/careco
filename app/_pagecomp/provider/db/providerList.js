@@ -2,6 +2,7 @@
 import db from 'more/lib/prisma'
 import { revalidatePath } from 'next/cache'
 import { CollectRatine } from './rateDb'
+import { Slug } from '@/lib/nadish'
 
 export const getProviders = async (pageNo, query) => {
   const { vechile, type, sort, search } = query || {}
@@ -115,6 +116,13 @@ export const getProviderList = async (pageNo, query) => {
     query
   )
 
+  const DeptAndServices = await db.service.findMany({
+    select: { type: true, service: true, logo: true, slug: true }
+  })
+
+  const departments = DeptAndServices.filter(s => s.type === 'department')
+  const extraServices = DeptAndServices.filter(s => s.type === 'subservice')
+
   const getProviderDetails = async provider => {
     const cars = await db.ProviderCarFixing.findMany({
       where: { providerid: provider.id },
@@ -145,6 +153,8 @@ export const getProviderList = async (pageNo, query) => {
   return {
     providers: newProviders,
     pageCount: pageCount,
-    totalProvidersCount: totalProvidersCount
+    totalProvidersCount: totalProvidersCount,
+    departments: departments,
+    extraServices: extraServices
   }
 }

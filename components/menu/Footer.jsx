@@ -57,12 +57,6 @@ const HomeFooter = ({ session, newMails, urlPrefix, vechile }) => {
   return (
     <div className='relative flex h-16 w-full items-center justify-between bg-accent'>
       <div className='start flex  h-9 w-[75%]  items-center  gap-4  px-5'>
-        {/* <NewMail
-        urlPrefix={urlPrefix}
-        session={session}
-        to={process.env.NEXT_PUBLIC_ADMIN_EMAIL}
-      /> */}
-        {/* <Separator orientation='vertical' className='h-9 bg-primary' /> */}
         <Button variant='ghost'>
           <HeartHandshake className='size-8 text-red-500 ' />
         </Button>
@@ -71,18 +65,14 @@ const HomeFooter = ({ session, newMails, urlPrefix, vechile }) => {
           <FavCar className='size-8 text-red-500 ' />
         </Button>
         <Button variant='ghost'>
-          <MyCar className='size-12 text-red-500 ' />
+          <MyCar className='size-8 text-red-500 ' />
         </Button>
-        {/* <Separator orientat
-      
-      
-      ion='vertical' className='h-9 bg-primary' /> */}
-        {/* <MainMenu /> */}
+        {/* <Separator orientation='vertical' className='h-9 bg-primary' /> */}
       </div>
 
-      <div className='absolute -top-1/3 left-20 flex size-20  -translate-x-1/2 flex-col items-center justify-center  rounded-full bg-accent'>
+      <div className='flex size-16   flex-col items-center justify-center  rounded-full bg-accent'>
         <CarToSelect />
-        <SelectedCar data={vechile} providersLength={15} />
+        {/* <SelectedCar data={vechile} providersLength={15} /> */}
       </div>
     </div>
   )
@@ -107,3 +97,17 @@ const SelectedCar = ({ data, providersLength }) => {
     </>
   )
 }
+
+//  {
+//    /* <NewMail
+//         urlPrefix={urlPrefix}
+//         session={session}
+//         to={process.env.NEXT_PUBLIC_ADMIN_EMAIL}
+//       /> */
+//  }
+//  {
+//    /* <Separator orientation='vertical' className='h-9 bg-primary' /> */
+//  }
+// {
+//   /* <MainMenu /> */
+// }

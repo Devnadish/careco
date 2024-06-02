@@ -22,8 +22,9 @@ import {
 } from '@/components/svg/ProviderIconType'
 import { Separator } from '@/components/ui/separator'
 import Text from '@/components/shared/Text'
+import Image from 'next/image'
 
-export const Bar = () => {
+export const Bar = ({ departments, extraServices }) => {
   const pathName = usePathname()
   const searchParams = useSearchParams()
   const IsTypeParams = searchParams.has('type')
@@ -33,11 +34,11 @@ export const Bar = () => {
   }
 
   return (
-    <div className='fixed left-0 top-14 z-40 flex h-16    w-full items-center justify-between bg-primary/10    px-1  md:flex-row'>
+    <div className='fixed left-0 top-[60px] z-40 flex h-14    w-full items-center justify-between bg-blue-950 px-4 '>
       <div className='flex items-center gap-4'>
         <WrokShopType />
-        <DepartmentFilter />
-        <ExtraServiceFilter />
+        <DepartmentFilter departments={departments} />
+        <ExtraServiceFilter extraServices={extraServices} />
 
         {IsTypeParams && <ClearTypeFilter />}
       </div>
@@ -47,10 +48,13 @@ export const Bar = () => {
 }
 
 const DropDownMenu = ({ options, handleChange, trigerIcon: TrigerIcon }) => (
-  <DropdownMenu dir='rtl' modal={false}>
+  <DropdownMenu dir='rtl' modal={true}>
     <DropdownMenuTrigger asChild>
-      <Button className='flex    items-center   rounded  bg-white/10   p-0 hover:bg-secondary/80 lg:w-fit'>
-        <TrigerIcon className='size-8 text-primary ' />
+      <Button
+        className='flex    items-center    border  border-primary  bg-transparent shadow-lg    hover:bg-secondary/80 '
+        size='sm'
+      >
+        <TrigerIcon className='size-6 text-primary ' />
       </Button>
     </DropdownMenuTrigger>
 
@@ -105,13 +109,21 @@ const WrokShopType = () => {
   )
 }
 
-const DepartmentFilter = () => {
-  const options = [
-    { value: '1', label: <DepartmentIcon className='size-8 text-primary' /> },
-    { value: '2', label: <DepartmentIcon className='size-8 text-primary' /> },
-    { value: '3', label: <DepartmentIcon className='size-8 text-primary' /> },
-    { value: '4', label: <DepartmentIcon className='size-8 text-primary' /> }
-  ]
+const DepartmentFilter = ({ departments }) => {
+  const options = departments.map(({ service, value, slug, logo }) => ({
+    value: slug,
+    label: (
+      <Image
+        src={`/extraservicelogo/${logo}`}
+        alt={service}
+        width={24}
+        height={24}
+        className='size-6 object-contain'
+      />
+    ),
+    title: service
+  }))
+
   return (
     <DropDownMenu
       options={options}
@@ -121,13 +133,21 @@ const DepartmentFilter = () => {
   )
 }
 
-const ExtraServiceFilter = () => {
-  const options = [
-    { value: '1', label: <ExtraSeviceIcon className='size-8 text-primary' /> },
-    { value: '2', label: <ExtraSeviceIcon className='size-8 text-primary' /> },
-    { value: '3', label: <ExtraSeviceIcon className='size-8 text-primary' /> },
-    { value: '4', label: <ExtraSeviceIcon className='size-8 text-primary' /> }
-  ]
+const ExtraServiceFilter = ({ extraServices }) => {
+  const options = extraServices.map(({ service, value, slug, logo }) => ({
+    value: slug,
+    label: (
+      <Image
+        src={`/extraservicelogo/${logo}`}
+        alt={service}
+        width={24}
+        height={24}
+        className='size-6 object-contain'
+      />
+    ),
+    title: service
+  }))
+
   return (
     <DropDownMenu
       options={options}

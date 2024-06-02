@@ -128,16 +128,16 @@ export const RateAndExtraSevice = ({ moreService, rate }) => {
   //FIXME:will use NAME for toolTip
   return (
     <div className='relative flex w-full items-end justify-between gap-1 px-2'>
-      <div className='flex    flex-wrap items-center justify-center gap-1'>
+      <div className='flex    flex-wrap items-center justify-center gap-2'>
         {moreService.map(({ logo }, index) => {
           return (
             <Image
               key={index}
               src={`/extraservicelogo/${logo}`}
               alt={logo}
-              width={14}
-              height={14}
-              className='size-4 object-contain'
+              width={24}
+              height={24}
+              className='size-6 object-contain'
             />
           )
         })}

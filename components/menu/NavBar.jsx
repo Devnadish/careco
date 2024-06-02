@@ -26,10 +26,14 @@ const NavBar = ({ session, newMails }) => {
     urlPrefix = 'admin'
   }
 
-  if (!session) return null
+  // if (!session) return <LoginBtn />
   return (
     <nav className='fixed left-0 top-0 z-50 flex h-[60px] w-full items-center justify-between gap-2 bg-accent  px-3 shadow '>
-      <UserMenu session={session} newMails={newMails} />
+      {session ? (
+        <UserMenu session={session} newMails={newMails} />
+      ) : (
+        <LoginBtn />
+      )}
 
       <div className='flex  items-center gap-4'>
         <SearchProvider searchText={searchText} setSearchText={setSearchText} />
