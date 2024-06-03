@@ -99,7 +99,8 @@ module.exports = {
       },
       fontFamily: {
         tajwal: ['var(--font-Tajwal)'],
-        cairo: ['var(--font-Cairo)']
+        cairo: ['var(--font-Cairo)'],
+        noto: ['var(--font-Noto)']
       }
     }
   },

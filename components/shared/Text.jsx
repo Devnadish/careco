@@ -3,7 +3,7 @@ import { cn } from 'more/lib/utils'
 import { cva } from 'class-variance-authority'
 
 const textVariants = cva(
-  'flex items-center gap-1 text-wrap leading-3 text-foreground transition-colors font-cairo text-inherit text-right leading-5',
+  'flex items-center gap-1 text-wrap leading-3 text-foreground transition-colors font-noto text-inherit text-right leading-5',
   {
     variants: {
       fontSize: {
@@ -18,7 +18,8 @@ const textVariants = cva(
       },
       fontFamily: {
         cairo: 'font-cairo',
-        tajwal: 'font-tajwal'
+        tajwal: 'font-tajwal',
+        noto: 'font-noto'
       },
       opacity: {
         O100: 'opacity-100',

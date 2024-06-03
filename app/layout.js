@@ -1,6 +1,6 @@
 import ThemeProvider from 'more/provider/ThemeProvider'
 import './globals.css'
-import { Tajwal, Cairo } from 'more/lib/fonts'
+import { Tajwal, Cairo, Noto } from 'more/lib/fonts'
 import { Toaster } from '@/components/ui/sonner'
 import UrlProvider from 'more/context/serviceProvider'
 import { getServerSession } from 'next-auth'
@@ -23,7 +23,7 @@ export default async function RootLayout({ children }) {
   return (
     <html lang='en' dir='rtl' suppressHydrationWarning>
       <body
-        className={`${Tajwal.variable} ${Cairo.variable} container flex   h-full w-full    flex-col items-center justify-center  bg-background`}
+        className={`${Tajwal.variable} ${Cairo.variable} ${Noto.variable} container flex   h-full w-full    flex-col items-center justify-center  bg-background`}
       >
         <ThemeProvider
           attribute='class'

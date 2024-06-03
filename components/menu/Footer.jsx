@@ -196,17 +196,17 @@ function SliderMenu({ menu }) {
 
   return (
     <div className='  flex w-full   items-center justify-between '>
-      <div className='flex   w-[75%]  items-center justify-start '>
+      <div className='flex   h-full  w-[75%] items-center justify-center '>
         <Carousel
           opts={{
             align: 'start'
           }}
           orientation='horizontal'
-          className='mb-2 w-[250px] '
+          className='w-[75%] md:w-fit '
           dir='LTR'
         >
           <CarouselContent
-            className='flex  w-[100%] items-center  gap-2   '
+            className='flex  w-full items-center  gap-2   '
             id='CarouselContent'
           >
             {menuItems.map(({ icon, text }, index) => (
@@ -217,7 +217,7 @@ function SliderMenu({ menu }) {
                     className='flex h-12  min-w-12 flex-col items-center justify-center  rounded-none     p-0 px-2'
                   >
                     {icon}
-                    <span className=' text-[12px]'>{text}</span>
+                    <span className='font-noto text-[12px]'>{text}</span>
                   </Button>
                 </CarouselItem>
               </div>
