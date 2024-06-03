@@ -28,7 +28,10 @@ const NavBar = ({ session, newMails }) => {
 
   // if (!session) return <LoginBtn />
   return (
-    <nav className='fixed left-0 top-0 z-50 flex h-[60px] w-full items-center justify-between gap-2 bg-secondary  px-3 shadow-xl dark:bg-stone-800 '>
+    <nav
+      id='navbar'
+      className='h-[54px]60px] fixed left-0 top-0 z-50  flex w-full items-center justify-between gap-2  bg-secondary px-3  shadow-xl dark:bg-stone-800  '
+    >
       {session ? (
         <UserMenu session={session} newMails={newMails} />
       ) : (

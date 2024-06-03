@@ -19,13 +19,16 @@ module.exports = {
     container: {
       center: true,
       padding: {
-        DEFAULT: '1rem',
+        DEFAULT: '2rem',
         xs: '4px',
+        sm: '1rem',
         md: '1.5rem',
         lg: '2rem'
       },
       width: {
         DEFAULT: 'calc(100% - 150px)', // Full width minus sidebar width (320px)
+        xs: 'calc(100% - 320px)', // Adjust for medium screens if needed
+        sm: 'calc(100% - 320px)', // Adjust for medium screens if needed
         md: 'calc(100% - 320px)', // Adjust for medium screens if needed
         lg: 'calc(100% - 320px)', // Adjust for large screens if needed
         xl: 'calc(100% - 320px)' // Adjust for extra-large screens if needed

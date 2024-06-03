@@ -33,15 +33,15 @@ export const Bar = ({ departments, extraServices }) => {
   }
 
   return (
-    <div className='fixed left-0 top-[60px] z-40 flex h-14  w-full  items-center justify-between border-b-8 bg-secondary '>
-      <div className='flex h-full w-[80%] items-end gap-4  pr-4'>
+    <div className='sticky top-[55px] z-30  flex h-[70px] w-full  items-center justify-between rounded-b-2xl border-b border-foreground bg-secondary shadow-xl  '>
+      <div className='flex h-full w-[80%] items-center gap-4  pr-4'>
         <WrokShopType />
         <DepartmentFilter departments={departments} />
         <ExtraServiceFilter extraServices={extraServices} />
 
         {IsTypeParams && <ClearTypeFilter />}
       </div>
-      <div className='flex h-full w-[20%] items-end justify-start gap-4  md:justify-end md:pl-4 '>
+      <div className='flex h-full w-[20%] items-center justify-start gap-4  md:justify-end md:pl-4 '>
         <SortMenu />
       </div>
     </div>

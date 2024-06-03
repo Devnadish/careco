@@ -20,7 +20,7 @@ export default async function Home({ searchParams }) {
   } = await getProviderList(1, query)
 
   return (
-    <main className='  mt-[80px]   flex  w-full  flex-col items-center justify-center rounded-lg    '>
+    <main className=' relative  flex  w-full  flex-col items-start justify-center rounded-lg    '>
       {query.vechile && (
         <SearchData
           vechile={query.vechile}
@@ -35,8 +35,8 @@ export default async function Home({ searchParams }) {
         departments={departments}
         extraServices={extraServices}
       />
-
-      <div className='grid w-full   grid-cols-1  justify-items-center gap-4 p-4 md:grid-cols-2 lg:grid-cols-3'>
+      <div className='h-[70px]' />
+      <div className=' grid w-full grid-cols-1  place-items-center  gap-4  p-4 md:grid-cols-2 lg:grid-cols-3'>
         {providers.map(provider => (
           <ProviderCard key={provider.id} providerInfo={provider} />
         ))}

@@ -11,7 +11,10 @@ export const dynamic = 'force-dynamic'
 const LoadMore = ({ query, pageCount }) => {
   const [providers, setProviders] = useState([])
   const [pageIndex, setPageIndex] = useState(1)
-  const { ref, inView } = useInView()
+  const { ref, inView } = useInView({
+    // threshold: 0,
+    // rootMargin: '0px 0px 10% 0px' // Adjusted to work with 90vh
+  })
   const pathname = usePathname()
   const searchParams = useSearchParams()
 
@@ -54,3 +57,9 @@ const LoadMore = ({ query, pageCount }) => {
 }
 
 export default LoadMore
+
+export const SubSpinner1 = () => {
+  return (
+    <div className='fixed top-0 z-50 size-6 animate-spin rounded-full border-b-2 border-t-2 border-blue-600' />
+  )
+}
