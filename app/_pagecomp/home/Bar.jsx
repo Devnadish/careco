@@ -20,7 +20,6 @@ import {
   ProviderIconType,
   ProviderType
 } from '@/components/svg/ProviderIconType'
-import { Separator } from '@/components/ui/separator'
 import Text from '@/components/shared/Text'
 import Image from 'next/image'
 
@@ -34,27 +33,36 @@ export const Bar = ({ departments, extraServices }) => {
   }
 
   return (
-    <div className='fixed left-0 top-[60px] z-40 flex h-14    w-full items-center justify-between bg-blue-950 px-4 '>
-      <div className='flex items-center gap-4'>
+    <div className='fixed left-0 top-[60px] z-40 flex h-14  w-full  items-center justify-between border-b-8 bg-secondary '>
+      <div className='flex h-full w-[80%] items-end gap-4  pr-4'>
         <WrokShopType />
         <DepartmentFilter departments={departments} />
         <ExtraServiceFilter extraServices={extraServices} />
 
         {IsTypeParams && <ClearTypeFilter />}
       </div>
-      <SortMenu />
+      <div className='flex h-full w-[20%] items-end justify-start gap-4  md:justify-end md:pl-4 '>
+        <SortMenu />
+      </div>
     </div>
   )
 }
 
-const DropDownMenu = ({ options, handleChange, trigerIcon: TrigerIcon }) => (
+const DropDownMenu = ({
+  options,
+  handleChange,
+  trigerIcon: TrigerIcon,
+  title
+}) => (
   <DropdownMenu dir='rtl' modal={true}>
     <DropdownMenuTrigger asChild>
       <Button
-        className='flex    items-center    border  border-primary  bg-transparent shadow-lg    hover:bg-secondary/80 '
+        variant='ghost'
+        className='flex  size-12 w-max flex-col  items-center justify-center border border-white/20 p-0  px-2  shadow-lg '
         size='sm'
       >
         <TrigerIcon className='size-6 text-primary ' />
+        <Text className='text-[12px]'>{title}</Text>
       </Button>
     </DropdownMenuTrigger>
 
@@ -105,6 +113,7 @@ const WrokShopType = () => {
       options={options}
       handleChange={handleChange}
       trigerIcon={ProviderIconType}
+      title='التصنيف'
     />
   )
 }
@@ -129,6 +138,7 @@ const DepartmentFilter = ({ departments }) => {
       options={options}
       // handleChange={handleChange}
       trigerIcon={DepartmentIcon}
+      title='الاقسام'
     />
   )
 }
@@ -153,6 +163,7 @@ const ExtraServiceFilter = ({ extraServices }) => {
       options={options}
       // handleChange={handleChange}
       trigerIcon={ExtraSeviceIcon}
+      title='الخدمات'
     />
   )
 }
@@ -168,8 +179,12 @@ export function SortMenu() {
   return (
     <DropdownMenu dir='rtl' modal={false}>
       <DropdownMenuTrigger asChild>
-        <Button className='flex size-9 w-fit items-center  gap-2 rounded  bg-white/10 px-3 py-1 text-sm hover:bg-secondary/80 lg:w-fit   '>
-          <SortIcon className='text-primary' />
+        <Button
+          variant='ghost'
+          className='flex h-12  w-14 flex-col items-center  rounded   p-0'
+        >
+          <SortIcon className='size-6 text-primary' />
+          <Text>الترتيب</Text>
         </Button>
       </DropdownMenuTrigger>
 

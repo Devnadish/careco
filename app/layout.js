@@ -23,7 +23,7 @@ export default async function RootLayout({ children }) {
   return (
     <html lang='en' dir='rtl' suppressHydrationWarning>
       <body
-        className={`${Tajwal.variable} ${Cairo.variable} ${Noto.variable} container flex   h-full w-full    flex-col items-center justify-center  bg-background`}
+        className={`${Tajwal.variable} ${Cairo.variable} ${Noto.variable} container flex w-full    flex-col   items-center justify-center  bg-background text-foreground  `}
       >
         <ThemeProvider
           attribute='class'
@@ -34,12 +34,12 @@ export default async function RootLayout({ children }) {
           <UrlProvider>
             <AuthProvider session={session}>
               <NavBar session={session} newMails={newMails} />
-              <div
-                className=' mt-[70px] flex w-full flex-col items-center justify-center rounded bg-secondary/20 '
+              <main
+                className=' container mx-auto mt-[70px] flex w-full flex-col items-center justify-center  bg-background text-foreground  '
                 id='mainlayout'
               >
                 {children}
-              </div>
+              </main>
               <Footer session={session} newMails={newMails} />
             </AuthProvider>
           </UrlProvider>

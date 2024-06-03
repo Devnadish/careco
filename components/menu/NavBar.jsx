@@ -28,7 +28,7 @@ const NavBar = ({ session, newMails }) => {
 
   // if (!session) return <LoginBtn />
   return (
-    <nav className='fixed left-0 top-0 z-50 flex h-[60px] w-full items-center justify-between gap-2 bg-accent  px-3 shadow '>
+    <nav className='fixed left-0 top-0 z-50 flex h-[60px] w-full items-center justify-between gap-2 bg-secondary  px-3 shadow-xl dark:bg-stone-800 '>
       {session ? (
         <UserMenu session={session} newMails={newMails} />
       ) : (
@@ -38,7 +38,7 @@ const NavBar = ({ session, newMails }) => {
       <div className='flex  items-center gap-4'>
         <SearchProvider searchText={searchText} setSearchText={setSearchText} />
         {IsSearchParams && <ClearInputFilter setSearchText={setSearchText} />}
-        <Button>
+        <Button variant='outline' size='icon'>
           <Menu />
         </Button>
       </div>

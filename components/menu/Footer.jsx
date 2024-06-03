@@ -173,23 +173,23 @@ const MobileHomeFooter = ({ session, newMails, urlPrefix, vechile }) => {
 function SliderMenu({ menu }) {
   const menuItems = [
     {
-      icon: <MyCar className='size-6 text-red-500 ' />,
+      icon: <MyCar className='size-6 text-primary ' />,
       text: 'سيارتي'
     },
     {
-      icon: <FavCar className='size-6 text-red-500 ' />,
+      icon: <FavCar className='size-6 text-primary ' />,
       text: 'اهواها'
     },
     {
-      icon: <InboxIcon className='size-6 text-red-500 ' />,
+      icon: <InboxIcon className='size-6 text-primary ' />,
       text: 'المراسلات'
     },
     {
-      icon: <BotMessageSquare className='size-6 text-blue-500 ' />,
+      icon: <BotMessageSquare className='size-6 text-primary ' />,
       text: 'استشارة'
     },
     {
-      icon: <HeartHandshake className='size-6 text-red-500 ' />,
+      icon: <HeartHandshake className='size-6 text-destructive ' />,
       text: 'المفضلة'
     }
   ]
@@ -202,7 +202,7 @@ function SliderMenu({ menu }) {
             align: 'start'
           }}
           orientation='horizontal'
-          className='w-[75%] md:w-fit '
+          className='w-[75%] md:w-fit  '
           dir='LTR'
         >
           <CarouselContent
@@ -217,7 +217,9 @@ function SliderMenu({ menu }) {
                     className='flex h-12  min-w-12 flex-col items-center justify-center  rounded-none     p-0 px-2'
                   >
                     {icon}
-                    <span className='font-noto text-[12px]'>{text}</span>
+                    <span className='font-noto select-none text-[12px]'>
+                      {text}
+                    </span>
                   </Button>
                 </CarouselItem>
               </div>
@@ -227,7 +229,7 @@ function SliderMenu({ menu }) {
           {/* <CarouselNext /> */}
         </Carousel>
       </div>
-      <div className='flex size-16  w-[25%]  items-center justify-center bg-black '>
+      <div className='flex size-16  w-[25%]  items-center justify-center bg-primary '>
         <CarToSelect />
       </div>
     </div>

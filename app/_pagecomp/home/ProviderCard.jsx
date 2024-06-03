@@ -174,22 +174,22 @@ export const CardBar = ({
   return (
     <div className='flex h-9 w-full items-center justify-evenly  border-t'>
       <Text fontSize={'xs'} className={style1}>
-        <MessageCircleMore className='size-4 text-green-500' />
+        <MessageCircleMore className='size-6 text-green-500' />
         {commentCount}
       </Text>
       <Separator orientation='vertical' />
       <Text fontSize={'xs'} className={style1}>
-        <Share2 className='size-4 text-blue-800' />
+        <Share2 className='size-6 text-blue-800' />
         {shareCount}
       </Text>
       <Separator orientation='vertical' />
       <Text fontSize={'xs'} className={style1}>
-        <Eye className='size-4 text-purple-800 ' />
+        <Eye className='size-6 text-purple-800 ' />
         {viewerCount}
       </Text>
       <Separator orientation='vertical' />
       <Text fontSize={'xs'} className={style1}>
-        <HeartHandshake className='size-4 text-red-500' />
+        <HeartHandshake className='size-6 text-red-500' />
         {favCount}
       </Text>
     </div>
