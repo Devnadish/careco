@@ -3,7 +3,13 @@ import React from 'react'
 export default function FavCar(props) {
   return (
     <>
-      <svg width='1em' height='1em' {...props}>
+      <svg
+        width='1em'
+        height='1em'
+        viewBox='0 0 32 32'
+        version='1.em'
+        {...props}
+      >
         <g id='SVGRepo_bgCarrier' strokeWidth='5' />
 
         <g id='SVGRepo_iconCarrier'>

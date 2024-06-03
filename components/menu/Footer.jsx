@@ -52,13 +52,14 @@ const Footer = ({ session, newMails }) => {
         <SliderMenu />
       </div>
       {isHomePage ? (
-        <HomeFooter
-          session={session}
-          newMails={session}
-          urlPrefix={urlPrefix}
-          vechile={vechile}
-        />
+        <SliderMenu />
       ) : (
+        // <HomeFooter
+        //   session={session}
+        //   newMails={session}
+        //   urlPrefix={urlPrefix}
+        //   vechile={vechile}
+        // />
         <ProviderFooter />
       )}
     </footer>
@@ -172,55 +173,61 @@ const MobileHomeFooter = ({ session, newMails, urlPrefix, vechile }) => {
 function SliderMenu({ menu }) {
   const menuItems = [
     {
-      icon: <MyCar className='size-8 text-red-500 ' />,
+      icon: <MyCar className='size-6 text-red-500 ' />,
       text: 'سيارتي'
     },
     {
-      icon: <FavCar className='size-8 text-red-500 ' />,
-      text: 'سياراتي المفضلة'
+      icon: <FavCar className='size-6 text-red-500 ' />,
+      text: 'اهواها'
     },
     {
-      icon: <InboxIcon className='size-8 text-red-500 ' />,
+      icon: <InboxIcon className='size-6 text-red-500 ' />,
       text: 'المراسلات'
     },
     {
-      icon: <BotMessageSquare className='size-8 text-blue-500 ' />,
+      icon: <BotMessageSquare className='size-6 text-blue-500 ' />,
       text: 'استشارة'
     },
     {
-      icon: <HeartHandshake className='size-8 text-red-500 ' />,
-      text: 'المفضلين'
+      icon: <HeartHandshake className='size-6 text-red-500 ' />,
+      text: 'المفضلة'
     }
   ]
 
   return (
-    <div className='  flex w-full   items-center justify-between'>
-      <div className='flex  h-full w-[75%]  items-center justify-center px-5'>
+    <div className='  flex w-full   items-center justify-between '>
+      <div className='flex   w-[75%]  items-center justify-start '>
         <Carousel
           opts={{
             align: 'start'
           }}
           orientation='horizontal'
-          className='mb-2 w-[300px] '
+          className='mb-2 w-[250px] '
           dir='LTR'
         >
-          <CarouselContent className='flex w-[150px] items-center gap-8  '>
+          <CarouselContent
+            className='flex  w-[100%] items-center  gap-2   '
+            id='CarouselContent'
+          >
             {menuItems.map(({ icon, text }, index) => (
-              <CarouselItem key={index} className='basis-3/12 pt-1'>
-                <Button
-                  variant='ghost'
-                  className='w-[40px] border border-primary/50 p-0'
-                >
-                  {icon}
-                </Button>
-              </CarouselItem>
+              <div key={index}>
+                <CarouselItem className='flex w-fit basis-4/12 items-center justify-center  '>
+                  <Button
+                    variant='ghost'
+                    className='flex h-12  min-w-12 flex-col items-center justify-center  rounded-none     p-0 px-2'
+                  >
+                    {icon}
+                    <span className=' text-[12px]'>{text}</span>
+                  </Button>
+                </CarouselItem>
+              </div>
             ))}
           </CarouselContent>
           {/* <CarouselPrevious /> */}
           {/* <CarouselNext /> */}
         </Carousel>
       </div>
-      <div className='flex size-16   flex-col items-center justify-center  rounded-full bg-accent'>
+      <div className='flex size-16  w-[25%]  items-center justify-center bg-black '>
         <CarToSelect />
       </div>
     </div>

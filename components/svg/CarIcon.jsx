@@ -2,7 +2,13 @@ import React from 'react'
 
 function CarIcon(props) {
   return (
-    <svg width='1em' height='1em' {...props}>
+    <svg
+      width='24px'
+      height='24px'
+      viewBox='0 0 32 32'
+      version='1.em'
+      {...props}
+    >
       <path
         fill='currentColor'
         d='M28,13h1c0.6,0,1-0.4,1-1s-0.4-1-1-1h-2.8L25,8c-0.8-1.8-2.6-3-4.6-3h-8.7C9.6,5,7.8,6.2,7,8l-1.3,3H3c-0.6,0-1,0.4-1,1

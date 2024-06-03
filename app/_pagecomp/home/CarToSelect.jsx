@@ -45,24 +45,24 @@ function CarToSelect({
 
   return (
     <Popover open={open} onOpenChange={setOpen}>
-      <div className='flex'>
+      <div className='flex w-fit'>
         <PopoverTrigger asChild>
           {value ? (
             <Button
               className='flex size-10  flex-col items-center justify-center border-[.5px] border-primary  p-0 shadow-xl'
               variant='ghost'
             >
-              <ClearCarFilter className='size-8 text-red-500 ' />{' '}
+              <ClearCarFilter className='size-6 text-red-500 ' />{' '}
             </Button>
           ) : (
             <Button
               variant='ghost'
               role='combobox'
               aria-expanded={open}
-              className='flex size-10  flex-col items-center justify-center border-[.5px] border-primary  p-0 shadow-xl'
+              className='flex size-12  flex-col items-center justify-center rounded-full   p-0 shadow-xl'
             >
               {/* <Car className='size-8 text-foreground' strokeWidth={1} /> */}
-              <CarIcon className='ml-1 flex size-9   items-center justify-center  text-foreground' />
+              <CarIcon className='flex size-8   items-center justify-center  text-foreground' />
             </Button>
           )}
         </PopoverTrigger>
