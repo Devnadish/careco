@@ -8,8 +8,8 @@ import {
 
 function SideBox({ open, setOpen, children, footer, header }) {
   return (
-    <Sheet open={open} onOpenChange={setOpen} className=' flex w-full '>
-      <SheetContent className='flex h-full flex-col '>
+    <Sheet open={open} onOpenChange={setOpen} className=' flex h-full w-full '>
+      <SheetContent className='flex h-full w-full flex-col items-center justify-between'>
         <SheetHeader className='flex w-full items-center  '>
           {header}
         </SheetHeader>

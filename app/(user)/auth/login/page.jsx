@@ -6,10 +6,11 @@ import { LogIn, Mail, RectangleEllipsis } from 'more/lib/icons'
 import InputWithIcon from '@/components/shared/InputWithIcon'
 import Submit from '@/components/shared/Submit'
 import { signIn } from 'next-auth/react'
-import { useRouter } from 'next/navigation'
+import { useRouter, redirect } from 'next/navigation'
 import { Visitor } from '@/components/svg/Visitor'
 import { useSession } from 'next-auth/react'
 import { SubSpinner } from '@/components/shared/Spinner'
+import Swal from 'sweetalert2'
 import Image from 'next/image'
 import {
   Apple,
@@ -19,15 +20,16 @@ import {
   Twitter
 } from '@/components/svg/Socail'
 import { RegisterOutline } from '@/components/svg/Register'
+import { Notify } from '@/lib/nadish'
 
 export const LoginPage = () => {
-  const { status } = useSession()
+  const { data: session, status } = useSession()
   const router = useRouter()
 
   return (
     <div className='relative mt-5 flex h-screen w-full max-w-sm flex-col items-center justify-start gap-2 rounded-lg md:mt-0 md:justify-center '>
       {status === 'loading' && <SubSpinner />}
-      {status === 'authenticated' && <p>مرحبا</p>}
+      {status === 'authenticated' && redirect('/')}
       <div className='relative flex h-12 w-7 md:h-24 md:w-20'>
         <Image src='/careco.svg' alt='careco' fill />
       </div>
@@ -100,15 +102,18 @@ function RegularVisitor() {
 }
 
 function LoginForm() {
+  const { data: session, status } = useSession()
+
   const handleSignIn = async formData => {
     const email = formData.get('email')
     const password = formData.get('password')
+    Notify('جاري تسجيل الدخول', 'loading')
 
     try {
       const user = await signIn('credentials', {
         email,
-        password,
-        redirect: false
+        password
+        // redirect: false
       })
 
       if (!user.error) {
@@ -119,6 +124,7 @@ function LoginForm() {
       console.error('Error signing in:', error)
     }
   }
+
   return (
     <form action={handleSignIn} className='flex w-full flex-col gap-2  '>
       <InputWithIcon icon={<Mail strokeWidth={1} />} name='email' />
@@ -165,4 +171,8 @@ const RegisterPage = () => {
       </Text>
     </div>
   )
+}
+
+const LoginOK = ({ status, session }) => {
+  routr.redirect('/')
 }

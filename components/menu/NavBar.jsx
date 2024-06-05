@@ -28,7 +28,10 @@ const NavBar = ({ session, newMails }) => {
 
   if (pathName === '/auth/login') return null
   if (pathName === '/auth/register') return null
-  return (
+  if (pathName === '/auth/register') return null
+  if (pathName === '/auth/error') return null
+
+  http: return (
     <nav
       id='navbar'
       className='fixed left-0 top-0 z-50 flex  h-[54px] w-full items-center justify-between gap-2  bg-secondary px-3  shadow-xl dark:bg-stone-700  '

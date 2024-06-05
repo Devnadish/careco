@@ -10,14 +10,46 @@ import { Important } from '@/components/svg/Important'
 import { AvatarPlaceHolder } from '@/components/svg/AvatarPlaceHolder'
 
 const RegisterForm = () => {
+  const [selectedFile, setSelectedFile] = useState(null)
+  const [previewImage, setPreviewImage] = useState(null)
+  const handleUpload = async () => {
+    if (selectedFile) {
+      const formData = new FormData()
+      formData.append('file', selectedFile)
+      formData.append('upload_preset', 'carecoUserAvatar')
+      formData.append('cloud_name', 'dhyh7aufp')
+
+      const response = await fetch(
+        'https://api.cloudinary.com/v1_1/dhyh7aufp/image/upload',
+        {
+          method: 'POST',
+          body: formData
+        }
+      )
+        .then(response => response.json())
+        .then(data => {
+          console.log(data)
+          return data.public_id
+        })
+        .catch(error => {
+          console.error(error)
+        })
+      console.log(response)
+      return response
+    }
+  }
+
   const handleNewUser = async formData => {
+    const imageURL = await handleUpload()
+    console.log(imageURL)
+
     const data = {
       name: formData.get('name'),
       email: formData.get('email'),
       password: formData.get('password'),
-      image: '/carlogo/chevrolet-logo.svg'
-      // image: imageId
+      image: imageURL
     }
+    console.log(data)
     const NewUser = await newUser(data)
     if (NewUser.code === 400) {
       return Notify(NewUser.msg, 'error', 'خلل')
@@ -27,21 +59,26 @@ const RegisterForm = () => {
       return Notify(NewUser.msg, 'error', 'غير مسموح')
     }
 
-    if (NewUser.code === 200) {
-      setOpenRegister(true)
-      return Notify(NewUser.msg, 'info', 'مرحبا')
-    }
+    // if (NewUser.code === 200) {
+    //   setOpenRegister(true)
+    //   return Notify(NewUser.msg, 'info', 'مرحبا')
+    // }
   }
 
+  // NEXT_PUBLIC_CLOUDINARY_IMAGE_URL >>> this the .end url imae to show the image
   return (
     <div className='flex h-full max-w-sm flex-col items-start justify-start gap-2 rounded-lg border border-border p-4   '>
-      <UploadUserImage />
-      {/* <form
+      <form
         action={handleNewUser}
         className='flex w-full flex-col items-center justify-center gap-4 '
       >
-        
-
+        <UploadUserImage
+          handleUpload={handleUpload}
+          selectedFile={selectedFile}
+          setSelectedFile={setSelectedFile}
+          previewImage={previewImage}
+          setPreviewImage={setPreviewImage}
+        />
         <InputWithIcon
           placeholder='الاسم'
           name='name'
@@ -63,7 +100,7 @@ const RegisterForm = () => {
           w='w-full'
           color='bg-secondary'
         />
-      </form> */}
+      </form>
 
       <RegisterNote />
     </div>
@@ -93,63 +130,61 @@ function RegisterNote() {
     </div>
   )
 }
-const AvatarImage = () => {
-  return (
-    <div
-      className='relative flex size-20 items-center justify-center rounded-full  '
-      onClick={() => {
-        alert('sd')
-      }}
-    >
-      <AvatarPlaceHolder className='size-20 text-secondary' />
-      <div className='absolute bottom-0 left-2 z-50  flex size-6 items-center justify-center rounded-full bg-secondary   outline outline-background '>
-        <span className='text-[16px]'>+</span>
-      </div>
-    </div>
-  )
-}
 
-const UploadUserImage = ({ onUpload }) => {
-  const [selectedFile, setSelectedFile] = useState(null)
+const UploadUserImage = ({
+  onUpload,
+  handleUpload,
+  selectedFile,
+  setSelectedFile,
 
+  previewImage,
+  setPreviewImage
+}) => {
   const handleFileChange = event => {
     const file = event.target.files[0]
     setSelectedFile(file)
+    setPreviewImage(URL.createObjectURL(file))
   }
 
-  const handleUpload = () => {
-    if (selectedFile) {
-      const formData = new FormData()
-      formData.append('file', selectedFile)
-      formData.append('upload_preset', 'carecoUserAvatar')
-      formData.append('cloud_name', 'dhyh7aufp')
-
-      // const endpoint = process.env.NEXT_PUBLIC_CLOUDINARY_UPLOAD_URL
-      // NEXT_PUBLIC_CLOUDINARY_URL
-
-      //  fetch('https://api.cloudinary.com/v1_1/your-cloud-name/image/upload', {
-      fetch('https://api.cloudinary.com/v1_1/dhyh7aufp/image/upload', {
-        method: 'POST',
-        body: formData
-      })
-        .then(response => {
-          return response.json()
-        })
-        .then(data => {
-          const imageUrl = data.secure_url
-          console.log(imageUrl)
-          onUpload(imageUrl)
-        })
-        .catch(error => {
-          console.error(error)
-        })
-    }
+  const handleCircularDivClick = () => {
+    document.getElementById('fileInput').click()
   }
 
   return (
-    <div>
-      <input type='file' accept='image/*' onChange={handleFileChange} />
-      <button onClick={handleUpload}>Upload</button>
-    </div>
+    <>
+      <div
+        className='relative flex size-20 cursor-pointer items-center justify-center  rounded-full '
+        style={{
+          backgroundImage: `url(${previewImage})`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center'
+        }}
+        onClick={handleCircularDivClick}
+      >
+        {!previewImage && (
+          <>
+            <AvatarPlaceHolder className='size-20 text-secondary' />
+            <div className='absolute bottom-0 left-2 z-50  flex size-6 items-center justify-center rounded-full bg-secondary   outline outline-background '>
+              <span className='text-[16px]'>+</span>
+            </div>
+          </>
+        )}
+
+        <input
+          id='fileInput'
+          type='file'
+          accept='image/*'
+          className='hidden'
+          onChange={handleFileChange}
+        />
+      </div>
+      {/* <button
+        className='mt-2 rounded bg-blue-500 px-4 py-2 text-white'
+        onClick={handleUpload}
+        type='button'
+      >
+        Upload
+      </button> */}
+    </>
   )
 }

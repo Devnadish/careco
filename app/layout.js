@@ -27,8 +27,10 @@ export default async function RootLayout({ children }) {
       >
         <ThemeProvider
           attribute='class'
-          defaultTheme='system'
-          enableSystem
+          defaultTheme='dark'
+          // enableSystem
+          // defaultTheme='system'
+          // enableSystem
           // disableTransitionOnChange
         >
           <UrlProvider>

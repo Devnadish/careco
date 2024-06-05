@@ -2,6 +2,7 @@ import GitHubProvider from 'next-auth/providers/github'
 import CredentialsProvider from 'next-auth/providers/credentials'
 import db from 'more/lib/prisma'
 import bcrypt from 'bcrypt'
+import { Notify } from '@/lib/nadish'
 
 export const options = {
   // adapter: PrismaAdapter(db),
@@ -50,6 +51,8 @@ export const options = {
         if (user) {
           // User not found (email might be wrong)
           return user
+        } else {
+          Notify('خطا في البيانات', 'error')
         }
 
         if (email === user.email && password === user?.password) {
@@ -103,7 +106,7 @@ export const options = {
   debug: true,
   pages: {
     // signIn: '/auth/signin',
-    signOut: '/auth/singout',
+    signOut: '/auth/login',
     error: '/auth/error'
   }
 }

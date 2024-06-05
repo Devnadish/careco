@@ -1,11 +1,15 @@
 import React from 'react'
-import { signIn, signOut, useSession } from 'next-auth/react'
+import { signOut } from 'next-auth/react'
 import { LogoutIcon } from '@/components/svg/LogoutIcon'
 import { Button } from '@/components/ui/button'
 
-function UserLogout() {
+const UserLogout = () => {
+  const handleLogout = () => {
+    signOut({ callbackUrl: '/auth/login' })
+  }
+
   return (
-    <Button variant='outline' onClick={() => signOut()}>
+    <Button variant='outline' onClick={handleLogout}>
       <LogoutIcon className='size-8' />
     </Button>
   )

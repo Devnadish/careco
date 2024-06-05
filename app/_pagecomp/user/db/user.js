@@ -14,6 +14,7 @@ import bcrypt from 'bcrypt'
 const resend = new Resend(process.env.RESEND_API_KEY)
 
 export const newUser = async data => {
+  console.log(data)
   const userExists = await db.user.findFirst({ where: { email: data.email } })
 
   if (userExists) {

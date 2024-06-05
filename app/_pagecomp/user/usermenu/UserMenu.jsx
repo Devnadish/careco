@@ -20,18 +20,23 @@ import { Like, Dislike } from '@/components/svg/LikeAndDislike'
 import { SendService } from '@/components/svg/SendService'
 import { ItemLink } from '@/app/_pagecomp/user/usermenu/ItemLink'
 import { HistoryIcon } from '@/components/svg/History'
+export const dynamic = 'force-dynamic'
 
 function UserMenu({ session, newMails }) {
   const [open, setOpen] = useState(false)
   const userId = session?.user?.id
   const userName = session?.user?.name
-  const userAvatar = session?.user?.image
+  const userAvatar = `${process.env.NEXT_PUBLIC_CLOUDINARY_IMAGE_URL}${session?.user?.image}`
+
   const useremail = session?.user?.email
   const isVerified = session?.user?.isVerified
   const role = session?.user?.role
 
   return (
-    <div className='flex   items-center     '>
+    <div
+      className='key={Math.random().toString(36).substring(7)}   flex      items-center '
+      // key={Math.random().toString(36).substring(7)}
+    >
       <div
         className='relative   cursor-pointer     rounded-full  bg-transparent '
         onClick={() => setOpen(true)}
@@ -147,29 +152,32 @@ export function UserMenuBody({ isVerified, userId, setOpen }) {
   ]
 
   return (
-    <div className='' name='header' dir='rtl'>
-      {menuItems.map((item, index) => (
-        <React.Fragment key={index}>
-          <ItemLink
-            href={item.href}
-            text={item.text}
-            icon={item.icon}
-            setOpen={setOpen}
-          />
-          {/* {index !== menuItems.length - 1 && <Separator />} */}
-        </React.Fragment>
-      ))}
+    <div className='relative ' name='header' dir='rtl'>
       {!isVerified && (
-        <div className='absolute left-0 top-0 flex h-full w-full flex-col items-center justify-center rounded  bg-secondary opacity-60'>
-          <Lock size={80} className='text-red-500' />
-          <Text
-            fontFamily={'tajwal'}
-            fontSize={'large'}
-            className={'text-red-500'}
-          >
-            حساب غير نشط
-          </Text>
-        </div>
+        <>
+          {menuItems.map((item, index) => (
+            <React.Fragment key={index}>
+              <ItemLink
+                href={item.href}
+                text={item.text}
+                icon={item.icon}
+                setOpen={setOpen}
+              />
+              {/* {index !== menuItems.length - 1 && <Separator />} */}
+            </React.Fragment>
+          ))}
+
+          <div className='absolute left-0 top-0 flex h-full  w-full flex-col items-center justify-center rounded  bg-secondary opacity-60'>
+            <Lock size={80} className='text-red-500' />
+            <Text
+              fontFamily={'tajwal'}
+              fontSize={'large'}
+              className={'text-red-500'}
+            >
+              حساب غير نشط
+            </Text>
+          </div>
+        </>
       )}
     </div>
   )

@@ -47,6 +47,7 @@ const Footer = ({ session, newMails }) => {
   }
   if (pathname === '/auth/login') return null
   if (pathname === '/auth/register') return null
+  if (pathname === '/auth/error') return null
   return (
     <footer className='fixed bottom-0 z-50 h-14 w-full bg-accent' id='footer'>
       <div className='h-16 w-full bg-accent md:hidden'>
