@@ -29,6 +29,7 @@ function Submit({
   title = 'حفظ',
   isDisabled = false,
   notifyMsg,
+  titleMsg = 'جاري الحفظ..',
   ...props
 }) {
   const status = useFormStatus()
@@ -49,7 +50,7 @@ function Submit({
     >
       {status.pending ? (
         <div className={`flex items-center justify-center gap-2`}>
-          <span>جاري الحفظ..</span>
+          <span>{titleMsg}</span>
           <Spinner />
         </div>
       ) : (

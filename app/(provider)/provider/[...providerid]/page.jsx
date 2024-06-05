@@ -35,11 +35,11 @@ async function page({ params }) {
         {thisProvider && <ProviderMenu providerid={providerInfo.id} />}
       </div>
 
-      <RateSection
+      {/* <RateSection
         session={session}
         providerId={providerInfo.id}
         rateing={rate}
-      />
+      /> */}
       {/* <TestingUI /> */}
       <HeroSection
         heroSlogon={providerInfo.heroSlogon}

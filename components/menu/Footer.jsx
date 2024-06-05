@@ -45,6 +45,8 @@ const Footer = ({ session, newMails }) => {
   if (pathname === '/') {
     urlPrefix = 'admin'
   }
+  if (pathname === '/auth/login') return null
+  if (pathname === '/auth/register') return null
   return (
     <footer className='fixed bottom-0 z-50 h-14 w-full bg-accent' id='footer'>
       <div className='h-16 w-full bg-accent md:hidden'>
@@ -217,7 +219,7 @@ function SliderMenu({ menu }) {
                     className='flex h-12  min-w-12 flex-col items-center justify-center  rounded-none     p-0 px-2'
                   >
                     {icon}
-                    <span className='font-noto select-none text-[12px]'>
+                    <span className='select-none font-noto text-[12px]'>
                       {text}
                     </span>
                   </Button>

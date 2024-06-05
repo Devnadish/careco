@@ -137,6 +137,7 @@ export const RateAndExtraSevice = ({ moreService, rate }) => {
               alt={logo}
               width={24}
               height={24}
+              // placeholder='blur'
               className='size-6 object-contain'
             />
           )

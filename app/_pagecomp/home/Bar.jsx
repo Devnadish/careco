@@ -33,7 +33,7 @@ export const Bar = ({ departments, extraServices }) => {
   }
 
   return (
-    <div className='sticky top-[55px] z-30  flex h-[70px] w-full  items-center justify-between rounded-b-2xl border-b border-foreground bg-secondary shadow-xl  '>
+    <div className='sticky top-[50px] z-30  flex h-[70px] w-full  items-center justify-between rounded-b-2xl border-2 border-stone-700 bg-secondary shadow-xl  '>
       <div className='flex h-full w-[80%] items-center gap-4  pr-4'>
         <WrokShopType />
         <DepartmentFilter departments={departments} />

@@ -26,11 +26,12 @@ const NavBar = ({ session, newMails }) => {
     urlPrefix = 'admin'
   }
 
-  // if (!session) return <LoginBtn />
+  if (pathName === '/auth/login') return null
+  if (pathName === '/auth/register') return null
   return (
     <nav
       id='navbar'
-      className='fixed left-0 top-0 z-50 flex  h-[54px] w-full items-center justify-between gap-2  bg-secondary px-3  shadow-xl dark:bg-stone-800  '
+      className='fixed left-0 top-0 z-50 flex  h-[54px] w-full items-center justify-between gap-2  bg-secondary px-3  shadow-xl dark:bg-stone-700  '
     >
       {session ? (
         <UserMenu session={session} newMails={newMails} />

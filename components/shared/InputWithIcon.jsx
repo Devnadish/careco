@@ -3,7 +3,7 @@ import { Input } from '../ui/input'
 
 function InputWithIcon({ icon, ...props }) {
   return (
-    <div className='flex w-full items-center gap-1 overflow-hidden rounded-lg border p-0'>
+    <div className='flex w-full items-center gap-1 overflow-hidden rounded-lg border border-border p-0'>
       <div className='flex h-10 items-center justify-center rounded-r-lg bg-white/20 px-2'>
         {icon}
       </div>

@@ -1,4 +1,5 @@
 /** @type {import('next').NextConfig} */
+import withPlaiceholder from '@plaiceholder/next'
 const nextConfig = {
   // logging:{
   //   fetches:{fullUrl:true}
@@ -7,16 +8,16 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: 'res.cloudinary.com' // if your website has no www, drop it
+        hostname: 'res.cloudinary.com'
       },
       {
         protocol: 'https',
-        hostname: 'avatars.githubusercontent.com' // if your website has no www, drop it
+        hostname: 'avatars.githubusercontent.com'
       },
       {
         protocol: 'https',
         hostname: 'cloudflare-ipfs.com'
-      }, // if your website has no www, drop it},
+      },
       {
         protocol: 'http',
         hostname: 'localhost'
@@ -25,4 +26,4 @@ const nextConfig = {
   }
 }
 
-export default nextConfig
+export default withPlaiceholder(nextConfig)

@@ -7,6 +7,7 @@ import Link from 'next/link'
 import { Clock } from 'more/lib/icons'
 import Image from 'next/image'
 import { AspectRatio } from '@/components/ui/aspect-ratio'
+import Image64 from '@/components/shared/image/Image64'
 
 export const HeroSection = ({
   heroSlogon,
@@ -37,16 +38,11 @@ export const HeroSection = ({
 
 export function HeroImage({ logo, providerName }) {
   return (
-    <div className='relative flex w-full max-w-xs items-center justify-center  rounded-lg md:max-w-xs'>
-      <AspectRatio ratio={16 / 9} className='bg-muted'>
-        <Image
-          src={logo}
-          alt={providerName}
-          fill
-          className='rounded-lg object-cover'
-        />
-      </AspectRatio>
-    </div>
+    <Image64
+      url={logo}
+      alt={providerName}
+      containerClass='mt-5 min-w-[300px]  max-h-xs max-w-xs'
+    />
   )
 }
 
