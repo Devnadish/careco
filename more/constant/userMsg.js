@@ -7,7 +7,8 @@ export const code200msg =
 
 // Verivation Mail data
 
-export const sender = 'صديق السيارة  <onboarding@resend.dev>'
+export const sender = 'صديق السيارة  <test@devnadish.com>'
+// export const sender = 'صديق السيارة  <onboarding@resend.dev>'
 
 export const htmlMsg = (VerifiedToken, name) => `
         <h1>رقم تفعيل حسابك لمنصة صديق السيارة</h1>

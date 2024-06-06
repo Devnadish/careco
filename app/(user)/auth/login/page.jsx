@@ -9,9 +9,14 @@ import { signIn } from 'next-auth/react'
 import { useRouter, redirect } from 'next/navigation'
 import { Visitor } from '@/components/svg/Visitor'
 import { useSession } from 'next-auth/react'
-import { SubSpinner } from '@/components/shared/Spinner'
+import {
+  LogoSpinner,
+  LogoSpinnerInline,
+  SubSpinner
+} from '@/components/shared/Spinner'
 import Swal from 'sweetalert2'
 import Image from 'next/image'
+
 import {
   Apple,
   Github,
@@ -21,23 +26,26 @@ import {
 } from '@/components/svg/Socail'
 import { RegisterOutline } from '@/components/svg/Register'
 import { Notify } from '@/lib/nadish'
+import { Separator } from '@/components/ui/separator'
 
 export const LoginPage = () => {
   const { data: session, status } = useSession()
-  const router = useRouter()
 
   return (
-    <div className='relative mt-5 flex h-screen w-full max-w-sm flex-col items-center justify-start gap-2 rounded-lg md:mt-0 md:justify-center '>
-      {status === 'loading' && <SubSpinner />}
+    <div className='relative  -mt-10 flex h-screen w-full max-w-sm flex-col items-center justify-start gap-2 rounded-lg  '>
+      {status === 'loading' && <LogoSpinnerInline msg={'مصادقة الحماية'} />}
       {status === 'authenticated' && redirect('/')}
-      <div className='relative flex h-12 w-7 md:h-24 md:w-20'>
-        <Image src='/careco.svg' alt='careco' fill />
+      <div className='relative flex size-24  md:size-24'>
+        <Image src='/logov5.svg' alt='careco' fill />
       </div>
-      <ExternalLoginButtons status={status} />
-      <RegularVisitor />
-      <div className='flex w-full  max-w-sm flex-col items-center justify-center gap-2 rounded-lg border border-primary p-3 shadow-lg'>
+
+      <div className='flex h-[65%] w-full max-w-sm flex-col items-center justify-around gap-6 rounded-lg border border-border p-3 shadow-lg'>
+        <ExternalLoginButtons status={status} />
         <LoginForm />
-        <RegisterPage />
+        <div className='flex w-full flex-col gap-4'>
+          <Separator />
+          <RegisterPage />
+        </div>
       </div>
     </div>
   )
@@ -92,7 +100,7 @@ function RegularVisitor() {
   return (
     <Button
       variant='outline'
-      className='w-full gap-2 text-blue-500'
+      className='border border-blue-400 text-blue-400'
       onClick={() => router.push('/')}
     >
       <Visitor className='size-6' />
@@ -102,8 +110,6 @@ function RegularVisitor() {
 }
 
 function LoginForm() {
-  const { data: session, status } = useSession()
-
   const handleSignIn = async formData => {
     const email = formData.get('email')
     const password = formData.get('password')
@@ -128,21 +134,23 @@ function LoginForm() {
   return (
     <form action={handleSignIn} className='flex w-full flex-col gap-2  '>
       <InputWithIcon icon={<Mail strokeWidth={1} />} name='email' />
-      <InputWithIcon
-        icon={<RectangleEllipsis strokeWidth={1} />}
-        name='password'
-      />
-      <div className='flex w-full items-center justify-between'>
-        <Submit
-          icons={<LogIn size={20} strokeWidth={1} className='size-4' />}
-          title='دخول'
-          className={'w-1/2 bg-green-500'}
+      <div className='flex flex-col items-center justify-center gap-4'>
+        <InputWithIcon
+          icon={<RectangleEllipsis strokeWidth={1} />}
+          name='password'
         />
-        <Button variant='link' className='self-end pl-0' type='button'>
-          <Text fontSize={'xs'} className={'self-end'}>
-            نسيت كلمة المرور ؟
-          </Text>
-        </Button>
+        <div className='flex w-full items-center justify-between'>
+          <Submit
+            icons={<LogIn size={20} strokeWidth={1} className='size-4' />}
+            title='دخول'
+            className={'w-1/2 bg-green-500'}
+          />
+          <Button variant='link' className='self-end pl-0' type='button'>
+            <Text fontSize={'xs'} className={'self-end'}>
+              نسيت كلمة المرور ؟
+            </Text>
+          </Button>
+        </div>
       </div>
     </form>
   )
@@ -151,10 +159,10 @@ function LoginForm() {
 const RegisterPage = () => {
   const router = useRouter()
   return (
-    <div className='flex w-full  flex-col items-center justify-around  '>
+    <div className='flex w-full    items-center justify-between  '>
       <Button
-        variant='outline'
-        className='flex w-full flex-col items-center '
+        variant='link'
+        className='flex  flex-col items-start  '
         onClick={() => {
           router.push('/auth/register')
         }}
@@ -165,14 +173,11 @@ const RegisterPage = () => {
             تسجيل
           </Text>
         </div>
+        <Text fontSize={'xs'} className={'self-end text-green-500 '}>
+          عروض حصرية تنتظرك !
+        </Text>
       </Button>
-      <Text fontSize={'xs'} className={'self-end text-green-500 '}>
-        عروض حصرية تنتظرك !
-      </Text>
+      <RegularVisitor />
     </div>
   )
-}
-
-const LoginOK = ({ status, session }) => {
-  routr.redirect('/')
 }

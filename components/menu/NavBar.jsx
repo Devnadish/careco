@@ -34,7 +34,7 @@ const NavBar = ({ session, newMails }) => {
   http: return (
     <nav
       id='navbar'
-      className='fixed left-0 top-0 z-50 flex  h-[54px] w-full items-center justify-between gap-2  bg-secondary px-3  shadow-xl dark:bg-stone-700  '
+      className='fixed left-0 top-0 z-50 flex  h-[54px] w-full items-center justify-between gap-2  bg-background/55  px-3 shadow-xl  backdrop-blur-md  '
     >
       {session ? (
         <UserMenu session={session} newMails={newMails} />

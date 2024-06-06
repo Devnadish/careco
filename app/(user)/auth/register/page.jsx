@@ -2,16 +2,21 @@
 import React, { useState } from 'react'
 import Text from '@/components/shared/Text'
 import InputWithIcon from '@/components/shared/InputWithIcon'
-import { Check, Lock, Mail, User } from 'more/lib/icons'
+import { Check, Lock, Mail, MoveLeft, User } from 'more/lib/icons'
 import Submit from '@/components/shared/Submit'
 import { newUser } from '@/app/_pagecomp/user/db/user'
 import { Notify } from 'more/lib/nadish'
 import { Important } from '@/components/svg/Important'
 import { AvatarPlaceHolder } from '@/components/svg/AvatarPlaceHolder'
+import { GoBack } from '@/components/shared/GoHome'
+import { Button } from '@/components/ui/button'
+import { useRouter } from 'next/navigation'
+import Swal from 'sweetalert2'
 
 const RegisterForm = () => {
   const [selectedFile, setSelectedFile] = useState(null)
   const [previewImage, setPreviewImage] = useState(null)
+  const router = useRouter()
   const handleUpload = async () => {
     if (selectedFile) {
       const formData = new FormData()
@@ -49,7 +54,6 @@ const RegisterForm = () => {
       password: formData.get('password'),
       image: imageURL
     }
-    console.log(data)
     const NewUser = await newUser(data)
     if (NewUser.code === 400) {
       return Notify(NewUser.msg, 'error', 'خلل')
@@ -59,15 +63,25 @@ const RegisterForm = () => {
       return Notify(NewUser.msg, 'error', 'غير مسموح')
     }
 
-    // if (NewUser.code === 200) {
-    //   setOpenRegister(true)
-    //   return Notify(NewUser.msg, 'info', 'مرحبا')
-    // }
+    if (NewUser.code === 200) {
+      // setOpenRegister(true)
+      // return Notify(NewUser.msg, 'info', 'مرحبا')
+    }
   }
 
   // NEXT_PUBLIC_CLOUDINARY_IMAGE_URL >>> this the .end url imae to show the image
   return (
-    <div className='flex h-full max-w-sm flex-col items-start justify-start gap-2 rounded-lg border border-border p-4   '>
+    <div className='flex h-full w-full  max-w-sm flex-col items-start justify-start gap-2 rounded-lg border border-border p-4   '>
+      <Button
+        variant='outline'
+        onClick={() => router.push('/auth/login')}
+        className='flex  items-center justify-end gap-4 self-end bg-primary text-primary-foreground'
+      >
+        <Text fontSize={'small'} className={' text-primary-foreground'}>
+          رجوع
+        </Text>
+        <MoveLeft size={14} />
+      </Button>
       <form
         action={handleNewUser}
         className='flex w-full flex-col items-center justify-center gap-4 '
@@ -96,13 +110,11 @@ const RegisterForm = () => {
         />
         <Submit
           title='تسجيل'
-          icon={<Check className='text-primary' />}
-          w='w-full'
+          icon={<Check className='text-primary-foreground' />}
+          className='w-1/2 bg-primary'
           color='bg-secondary'
         />
       </form>
-
-      <RegisterNote />
     </div>
   )
 }

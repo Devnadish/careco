@@ -14,15 +14,14 @@ import bcrypt from 'bcrypt'
 const resend = new Resend(process.env.RESEND_API_KEY)
 
 export const newUser = async data => {
-  console.log(data)
   const userExists = await db.user.findFirst({ where: { email: data.email } })
 
-  if (userExists) {
-    return {
-      code: 401,
-      msg: code401msg
-    }
-  }
+  // if (userExists) {
+  //   return {
+  //     code: 401,
+  //     msg: code401msg
+  //   }
+  // }
 
   const verifiedToken = Math.floor(1000 + Math.random() * 9000).toString()
   const hashpassword = bcrypt.hashSync(data.password, 8)
@@ -32,25 +31,27 @@ export const newUser = async data => {
     password: hashpassword
   }
 
-  const newUser = await db.user.create({ data: newData })
-  if (newUser) {
-    return {
-      code: 200,
-      msg: code200msg
-    }
-  }
-
-  // const [newUser, mailSent] = await Promise.all([
-  //   db.user.create({ data: newData }),
-  //   sendEmail(newData)
-  // ])
-
-  // if (mailSent && newUser) {
+  // const newUser = await db.user.create({ data: newData })
+  // if (newUser) {
   //   return {
   //     code: 200,
   //     msg: code200msg
   //   }
   // }
+  const mailSent1 = await sendEmail(newData)
+
+  const [newUser, mailSent] = await Promise.all([
+    db.user.create({ data: newData }),
+    sendEmail(newData)
+  ])
+  console.log(mailSent)
+
+  if (mailSent && newUser) {
+    return {
+      code: 200,
+      msg: code200msg
+    }
+  }
 
   return {
     code: 400,
@@ -60,29 +61,21 @@ export const newUser = async data => {
 
 export const sendEmail = async activationCode => {
   // TODO: validate email with Zod
+  console.log(activationCode)
+
   try {
-    const { data } = await resend.emails.send({
+    const xdata = await resend.emails.send({
       from: sender,
       to: [activationCode.email],
       subject: 'تفعيل حسابك CarFriend',
       html: htmlMsg(activationCode.VerifiedToken, activationCode.name)
     })
-    return data
+    console.log(xdata)
+    return xdata.data
   } catch (error) {
     return error
   }
 }
-
-// html: `
-//       <h1>رقم تفعيل حسابك لمنصة صديق السيارة</h1>
-//       <p>مرحبا  ${activationCode.name},</p>
-//      <p>مرحبًا بك في كار فريند! لتفعيل حسابك والبدء باستخدام خدماتنا، يرجى إدخال رمز التفعيل التالي:</p>
-//       <div style="background-color: #009933; padding: 10px; border: 1px solid #ddd; display: inline-block; font-size: 24px; font-weight: bold; color: white">
-//         ${activationCode.VerifiedToken}
-//       </div>
-//       <p>If you cannot use the code for some reason, please contact us at [Support Email Address] for assistance.</p>
-//       <p>Thanks,</p>
-//       <p>The CarFriend Team</p>
 
 export const activationsUser = async data => {
   const userExists = await db.user.findFirst({ where: { email: data.email } })
