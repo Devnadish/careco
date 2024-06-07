@@ -29,30 +29,31 @@ export const newUser = async data => {
   }
 }
 
-export const activationCode = async email => {
-  const user = await db.user.findFirst({ where: { email } })
+export const sendConfirmationCode = async userEemail => {
+  const user = await db.user.findFirst({ where: { email: userEemail } })
+  if (user.VerifiedToken !== '') {
+    return null
+  }
+  const { email, name } = user
   const verifiedToken = Math.floor(1000 + Math.random() * 9000).toString()
-
-  const mailSent = await sendEmail(user.email, user.name, verifiedToken)
-}
-
-export const sendEmail = async (email, name, verifiedToken) => {
   try {
-    const xdata = await resend.emails.send({
+    const mailData = await resend.emails.send({
       from: sender,
       to: [email],
       subject: 'تفعيل حسابك CarFriend',
       html: htmlMsg(verifiedToken, name)
     })
-    console.log(xdata)
-    return xdata.data
   } catch (error) {
     return error
   }
+  const addToketTouser = await db.user.update({
+    where: { id: user.id },
+    data: { VerifiedToken: verifiedToken }
+  })
 }
 
-export const activationsUser = async data => {
-  const userExists = await db.user.findFirst({ where: { email: data.email } })
+export const activationsUser = async (mail, VerifiedToken) => {
+  const userExists = await db.user.findFirst({ where: { email: mail } })
   if (!userExists) {
     return {
       code: 401,
@@ -60,15 +61,15 @@ export const activationsUser = async data => {
     }
   }
 
-  if (userExists.VerifiedToken !== data.VerifiedToken) {
+  if (userExists.VerifiedToken !== VerifiedToken) {
     return {
       code: 402,
-      msg: 'الرمز غير صحيح'
+      msg: 'رمز التفعيل غير صحيح'
     }
   }
 
   const { isVerified } = await db.user.update({
-    where: { email: userExists.email, VerifiedToken: userExists.VerifiedToken },
+    where: { email: mail, VerifiedToken: VerifiedToken },
     data: { isVerified: true }
   })
 

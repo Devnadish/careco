@@ -45,7 +45,7 @@ export default async function RootLayout({ children }) {
               <Footer session={session} newMails={newMails} />
             </AuthProvider>
           </UrlProvider>
-          <Toaster richColors position='bottom-right' closeButton />
+          <Toaster richColors position='top-center' closeButton />
         </ThemeProvider>
       </body>
     </html>

@@ -1,7 +1,7 @@
 'use client'
 import React, { useState } from 'react'
 import InputWithIcon from '@/components/shared/InputWithIcon'
-import { Check, Lock, Mail, User } from 'more/lib/icons'
+import { Check, Lock, Mail, Pencil, User } from 'more/lib/icons'
 import Submit from '@/components/shared/Submit'
 import { newUser } from '@/app/_pagecomp/user/db/user'
 import { AvatarPlaceHolder } from '@/components/svg/AvatarPlaceHolder'
@@ -13,6 +13,7 @@ import {
   htmlmsg,
   successMessage
 } from '@/app/_pagecomp/user/rigestier/registrationLogic'
+import { Button } from '@/components/ui/button'
 
 const RegisterForm = () => {
   const [selectedFile, setSelectedFile] = useState(null)
@@ -74,10 +75,12 @@ const RegisterForm = () => {
   }
   return (
     <div className='flex h-full w-full  max-w-sm flex-col items-start justify-start gap-2 rounded-lg border border-border p-4   '>
-      <GoBack
-        url='/auth/login'
-        className='flex w-1/2 items-center gap-2 self-end'
-      />
+      <div className='flex w-full items-center justify-between '>
+        <Button variant='outline' className='w-1/3 '>
+          <Pencil className='/50 text-foreground' />
+        </Button>
+        <GoBack url='/auth/login' className='flex w-1/2 items-center gap-2' />
+      </div>
 
       <form
         action={handleNewUser}
@@ -137,9 +140,10 @@ const UploadUserImage = ({
     <div
       className='relative flex size-20 cursor-pointer items-center justify-center  rounded-full '
       style={{
-        backgroundImage: `url(${previewImage})`,
-        backgroundSize: 'cover',
-        backgroundPosition: 'center'
+        backgroundSize: 'contain',
+        backgroundRepeat: 'no-repeat',
+        backgroundPosition: 'center',
+        backgroundImage: `url(${previewImage})`
       }}
       onClick={handleCircularDivClick}
     >

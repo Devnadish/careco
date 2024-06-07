@@ -5,7 +5,6 @@ import { Pencil } from 'more/lib/icons'
 import ThemeSwitch from '@/components/shared/ThemeSwitch'
 import Link from 'next/link'
 import Inbox from '../../admin/mailsystem/Inbox'
-import ActivationForm from '@/app/_pagecomp/user/rigestier/ActivationForm'
 import { Avatar } from '@/components/shared/Avatar'
 import { ActivationAndToggle } from './ActivationAndToggle'
 

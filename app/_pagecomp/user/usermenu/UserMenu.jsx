@@ -13,6 +13,9 @@ import { UserMenuHeader } from './UserMenuHeader'
 import { UserMenuBody } from './UserMenuBody'
 import { Button } from '@/components/ui/button'
 import { ActivationAndToggle } from './ActivationAndToggle'
+import { Lock } from '@/lib/icons'
+import Text from '@/components/shared/Text'
+import { OTPDisgits } from '../rigestier/OTPDisgits'
 
 export const dynamic = 'force-dynamic'
 
@@ -23,9 +26,6 @@ function UserMenu({ session, newMails }) {
   const useremail = session?.user?.email
   const role = session?.user?.role
   const isVerified = session?.user?.isVerified
-
-  // <OTPDisgits />
-  // <ActivationForm />
 
   return (
     <div className='flex  items-center   '>
@@ -47,17 +47,6 @@ function UserMenu({ session, newMails }) {
         />
       )}
 
-      {/* {newMails?.length !== 0 ? null : (
-          <div className='absolute left-0 top-2 flex size-5 items-center justify-center rounded-full  bg-destructive  text-primary-foreground'>
-            <span className='text-[.6rem] text-destructive-foreground'>
-              {newMails?.length || 0}
-            </span>
-          </div>
-        )} */}
-      {/* </Button> */}
-
-      {/* {!isVerified && <ActivationForm />} */}
-
       <UserSideMenu
         open={open}
         setOpen={setOpen}
@@ -74,6 +63,7 @@ function UserSideMenu({ open, setOpen, session, newMails }) {
   return (
     <Sheet open={open} onOpenChange={setOpen}>
       <SheetContent className='flex h-full w-full flex-col items-center justify-between'>
+        {session.user.isVerified ? null : <AccountInactive session={session} />}
         <SheetHeader className={'w-full'} id='heaer'>
           <UserMenuHeader session={session} newMails={newMails} />
         </SheetHeader>
@@ -92,5 +82,23 @@ function UserSideMenu({ open, setOpen, session, newMails }) {
         </SheetFooter>
       </SheetContent>
     </Sheet>
+  )
+}
+
+const AccountInactive = ({ session }) => {
+  return (
+    <div className='absolute z-50 flex h-full w-full  flex-col bg-background/55  px-3 shadow-xl  backdrop-blur-sm '>
+      <div className='flex  h-full w-full flex-col items-center justify-center gap-4 '>
+        <Lock size={80} strockWidth={1} />
+        <Text
+          fontFamily={'cairo'}
+          fontSize={'large'}
+          className={'font-semibold text-red-500'}
+        >
+          الحساب غير نشط
+        </Text>
+        <OTPDisgits session={session} />
+      </div>
+    </div>
   )
 }

@@ -16,14 +16,6 @@ export function UseMenuFooter({ isVerified, setOpen }) {
       <Button variant='outline' onClick={handleLogout}>
         <LogoutIcon className='size-6' />
       </Button>
-
-      {/* <div
-        className='flex w-full items-center justify-end gap-8 '
-        onClick={() => setOpen(false)}
-      >
-        <UserLogout />
-        {!isVerified && <ActivationForm />}
-      </div> */}
     </div>
   )
 }
