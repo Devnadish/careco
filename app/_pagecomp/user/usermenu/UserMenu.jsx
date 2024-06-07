@@ -7,6 +7,7 @@ import {
   SheetHeader,
   SheetFooter
 } from '@/components/ui/sheet'
+import { signOut } from 'next-auth/react'
 
 import { UseMenuFooter } from './UseMenuFooter'
 import { UserMenuHeader } from './UserMenuHeader'
@@ -16,6 +17,7 @@ import { ActivationAndToggle } from './ActivationAndToggle'
 import { Lock } from '@/lib/icons'
 import Text from '@/components/shared/Text'
 import { OTPDisgits } from '../rigestier/OTPDisgits'
+import { LogoutIcon } from '@/components/svg/LogoutIcon'
 
 export const dynamic = 'force-dynamic'
 
@@ -86,8 +88,14 @@ function UserSideMenu({ open, setOpen, session, newMails }) {
 }
 
 const AccountInactive = ({ session }) => {
+  const handleLogout = () => {
+    signOut({ callbackUrl: '/auth/login' })
+  }
   return (
     <div className='absolute z-50 flex h-full w-full  flex-col bg-background/55  px-3 shadow-xl  backdrop-blur-sm '>
+      <Button variant='outline' onClick={handleLogout}>
+        <LogoutIcon className='size-6' />
+      </Button>
       <div className='flex  h-full w-full flex-col items-center justify-center gap-4 '>
         <Lock size={80} strockWidth={1} />
         <Text

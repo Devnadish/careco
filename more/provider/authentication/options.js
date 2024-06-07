@@ -64,14 +64,15 @@ export const options = {
     })
   ],
   callbacks: {
-    async jwt({ token, user, session }) {
+    async jwt({ token, user, trigger, session }) {
+      if (trigger === 'update') return { ...token, ...session.user }
+
       if (user) {
         return {
           ...token,
           id: user.id,
           role: user.role,
           pageId: user.pageId,
-
           isVerified: user.isVerified
         }
       }

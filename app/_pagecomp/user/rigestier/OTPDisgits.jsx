@@ -12,17 +12,27 @@ import { useState } from 'react'
 import { activationsUser } from '../db/user'
 import { LogoSpinnerInline } from '@/components/shared/Spinner'
 import { Notify } from '@/lib/nadish'
+import { useSession } from 'next-auth/react'
 
 export function OTPDisgits({ session }) {
   const [value, setValue] = useState(null)
   const [loading, setLoading] = useState(false)
+  const { data: newSession, update } = useSession()
+
   const handleConfirmation = async mail => {
     setLoading(true)
     const ApproveActivation = await activationsUser(mail, value)
+
+    // update session
+    if (ApproveActivation.code === 200) {
+      await update({
+        ...newSession,
+        user: { ...newSession?.user, isVerified: true }
+      })
+      window.location.reload(true)
+    }
     setLoading(false)
     Notify(ApproveActivation.msg, 'info', 'تنشيط الحساب', 5000)
-
-    console.log(ApproveActivation)
   }
   return (
     <>
