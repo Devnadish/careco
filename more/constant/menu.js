@@ -198,3 +198,63 @@ export function createUserMenuLinks(menuItems, userId) {
     href: `/user/${id}/${userId}`
   }))
 }
+
+export const menuItemsUser = userId => {
+  return [
+    {
+      href: `/reaction/${userId}/rate`,
+      icon: <Star size={20} strokeWidth={1} className='text-foreground' />,
+      text: 'التقييم'
+    },
+    {
+      href: `/reaction/${userId}/favorate`,
+      icon: (
+        <HeartHandshake size={20} strokeWidth={1} className='text-foreground' />
+      ),
+      text: 'المفضلة'
+    },
+    { href: `/reaction/${userId}/like`, icon: <Like />, text: 'إعجاب' },
+    {
+      href: `/reaction/${userId}/dislike`,
+      icon: <Dislike />,
+      text: 'الاعجاب السلبي'
+    },
+    {
+      href: `/reaction/${userId}/history`,
+      icon: <HistoryIcon />,
+      text: 'سجل المشاهدات'
+    },
+    {
+      href: `/user/conslntent/${userId}`,
+      icon: (
+        <BotMessageSquare
+          size={20}
+          strokeWidth={1}
+          className='text-foreground'
+        />
+      ),
+      text: 'استشارة'
+    },
+    {
+      href: `/user/comments/${userId}`,
+      icon: (
+        <MessageCircleMore
+          size={20}
+          strokeWidth={1}
+          className='text-foreground'
+        />
+      ),
+      text: 'التعليقات'
+    },
+    {
+      href: `/mailsystem`,
+      icon: <SendService className='size-5' />,
+      text: 'المراسلات'
+    },
+    {
+      href: `/user/sendmaintinance/${userId}`,
+      icon: <SendService className='size-5' />,
+      text: 'ارسال كرت صيانة'
+    }
+  ]
+}

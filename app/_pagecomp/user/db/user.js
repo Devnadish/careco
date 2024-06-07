@@ -1,11 +1,5 @@
 'use server'
-import {
-  code200msg,
-  code400msg,
-  code401msg,
-  htmlMsg,
-  sender
-} from 'more/constant/userMsg'
+import { htmlMsg, sender } from 'more/constant/userMsg'
 import db from 'more/lib/prisma'
 import { revalidatePath } from 'next/cache'
 import { Resend } from 'resend'
@@ -14,61 +8,41 @@ import bcrypt from 'bcrypt'
 const resend = new Resend(process.env.RESEND_API_KEY)
 
 export const newUser = async data => {
-  const userExists = await db.user.findFirst({ where: { email: data.email } })
-
-  // if (userExists) {
-  //   return {
-  //     code: 401,
-  //     msg: code401msg
-  //   }
-  // }
-
-  const verifiedToken = Math.floor(1000 + Math.random() * 9000).toString()
   const hashpassword = bcrypt.hashSync(data.password, 8)
   const newData = {
     ...data,
-    VerifiedToken: verifiedToken,
     password: hashpassword
   }
 
-  // const newUser = await db.user.create({ data: newData })
-  // if (newUser) {
-  //   return {
-  //     code: 200,
-  //     msg: code200msg
-  //   }
-  // }
-  const mailSent1 = await sendEmail(newData)
-
-  const [newUser, mailSent] = await Promise.all([
-    db.user.create({ data: newData }),
-    sendEmail(newData)
-  ])
-  console.log(mailSent)
-
-  if (mailSent && newUser) {
-    return {
-      code: 200,
-      msg: code200msg
+  try {
+    const newUser = await db.user.create({ data: newData })
+    return newUser
+      ? { code: 200, msg: 'Account created. Please activate.' }
+      : null
+  } catch (error) {
+    if (error.code === 'P2002') {
+      return { code: 400, msg: 'Email already in use' }
+    } else {
+      console.error(error) // Log other errors for debugging
+      return { code: 500, msg: 'Registration failed' }
     }
-  }
-
-  return {
-    code: 400,
-    msg: code400msg
   }
 }
 
-export const sendEmail = async activationCode => {
-  // TODO: validate email with Zod
-  console.log(activationCode)
+export const activationCode = async email => {
+  const user = await db.user.findFirst({ where: { email } })
+  const verifiedToken = Math.floor(1000 + Math.random() * 9000).toString()
 
+  const mailSent = await sendEmail(user.email, user.name, verifiedToken)
+}
+
+export const sendEmail = async (email, name, verifiedToken) => {
   try {
     const xdata = await resend.emails.send({
       from: sender,
-      to: [activationCode.email],
+      to: [email],
       subject: 'تفعيل حسابك CarFriend',
-      html: htmlMsg(activationCode.VerifiedToken, activationCode.name)
+      html: htmlMsg(verifiedToken, name)
     })
     console.log(xdata)
     return xdata.data
@@ -104,4 +78,8 @@ export const activationsUser = async data => {
       msg: 'تم تنشيظ الحساب بنجاح استمتع معانا  يسعدنا اقتراحاتك لتطوير المنصة'
     }
   }
+}
+
+function isUniqueConstraintError(error) {
+  return error.code === 'P2002' // Replace with your specific error code check
 }

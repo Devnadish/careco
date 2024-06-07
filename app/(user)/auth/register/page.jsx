@@ -1,17 +1,18 @@
 'use client'
 import React, { useState } from 'react'
-import Text from '@/components/shared/Text'
 import InputWithIcon from '@/components/shared/InputWithIcon'
-import { Check, Lock, Mail, MoveLeft, User } from 'more/lib/icons'
+import { Check, Lock, Mail, User } from 'more/lib/icons'
 import Submit from '@/components/shared/Submit'
 import { newUser } from '@/app/_pagecomp/user/db/user'
-import { Notify } from 'more/lib/nadish'
-import { Important } from '@/components/svg/Important'
 import { AvatarPlaceHolder } from '@/components/svg/AvatarPlaceHolder'
 import { GoBack } from '@/components/shared/GoHome'
-import { Button } from '@/components/ui/button'
 import { useRouter } from 'next/navigation'
 import Swal from 'sweetalert2'
+import {
+  errorMessages,
+  htmlmsg,
+  successMessage
+} from '@/app/_pagecomp/user/rigestier/registrationLogic'
 
 const RegisterForm = () => {
   const [selectedFile, setSelectedFile] = useState(null)
@@ -46,8 +47,6 @@ const RegisterForm = () => {
 
   const handleNewUser = async formData => {
     const imageURL = await handleUpload()
-    console.log(imageURL)
-
     const data = {
       name: formData.get('name'),
       email: formData.get('email'),
@@ -55,33 +54,31 @@ const RegisterForm = () => {
       image: imageURL
     }
     const NewUser = await newUser(data)
-    if (NewUser.code === 400) {
-      return Notify(NewUser.msg, 'error', 'خلل')
-    }
-
-    if (NewUser.code === 401) {
-      return Notify(NewUser.msg, 'error', 'غير مسموح')
-    }
 
     if (NewUser.code === 200) {
-      // setOpenRegister(true)
-      // return Notify(NewUser.msg, 'info', 'مرحبا')
+      Swal.fire({
+        icon: 'success',
+        title: successMessage(data.name),
+        html: htmlmsg(data.email, data.name)
+      }).then(() => router.push('/auth/login'))
+    } else if (NewUser.code in errorMessages) {
+      Swal.fire({
+        icon: 'error',
+        title: 'خطأ',
+        text: errorMessages[NewUser.code],
+        showCancelButton: false,
+        confirmButtonColor: '#3085d6',
+        confirmButtonText: 'موافق'
+      })
     }
   }
-
-  // NEXT_PUBLIC_CLOUDINARY_IMAGE_URL >>> this the .end url imae to show the image
   return (
     <div className='flex h-full w-full  max-w-sm flex-col items-start justify-start gap-2 rounded-lg border border-border p-4   '>
-      <Button
-        variant='outline'
-        onClick={() => router.push('/auth/login')}
-        className='flex  items-center justify-end gap-4 self-end bg-primary text-primary-foreground'
-      >
-        <Text fontSize={'small'} className={' text-primary-foreground'}>
-          رجوع
-        </Text>
-        <MoveLeft size={14} />
-      </Button>
+      <GoBack
+        url='/auth/login'
+        className='flex w-1/2 items-center gap-2 self-end'
+      />
+
       <form
         action={handleNewUser}
         className='flex w-full flex-col items-center justify-center gap-4 '
@@ -120,35 +117,9 @@ const RegisterForm = () => {
 }
 
 export default RegisterForm
-// <OTPDisgits />
-// <ActivationForm />
-
-function RegisterNote() {
-  return (
-    <div className='flex w-full flex-col gap-4 rounded-md border  border-border  p-3 text-primary-foreground shadow-md'>
-      <div className='flex items-start justify-start gap-2'>
-        <Important className='size-6 text-yellow-400' />
-        <Text fontFamily={'tajwal'} fontSize={'xs'}>
-          بعد التسجيل سيتم ارسال كود علي الايميل سجله في المكان المخصص
-        </Text>
-      </div>
-      <div className='flex items-start justify-start gap-2'>
-        <Important className='size-6 text-yellow-400' />
-        <Text fontFamily={'tajwal'} fontSize={'xs'}>
-          بعد التسجيل اذهب للملف الشخصي واستكمال البيانات المتبقية للاسفادة
-          القصوى من المنصة
-        </Text>
-      </div>
-    </div>
-  )
-}
 
 const UploadUserImage = ({
-  onUpload,
-  handleUpload,
-  selectedFile,
   setSelectedFile,
-
   previewImage,
   setPreviewImage
 }) => {
@@ -163,40 +134,31 @@ const UploadUserImage = ({
   }
 
   return (
-    <>
-      <div
-        className='relative flex size-20 cursor-pointer items-center justify-center  rounded-full '
-        style={{
-          backgroundImage: `url(${previewImage})`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center'
-        }}
-        onClick={handleCircularDivClick}
-      >
-        {!previewImage && (
-          <>
-            <AvatarPlaceHolder className='size-20 text-secondary' />
-            <div className='absolute bottom-0 left-2 z-50  flex size-6 items-center justify-center rounded-full bg-secondary   outline outline-background '>
-              <span className='text-[16px]'>+</span>
-            </div>
-          </>
-        )}
+    <div
+      className='relative flex size-20 cursor-pointer items-center justify-center  rounded-full '
+      style={{
+        backgroundImage: `url(${previewImage})`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center'
+      }}
+      onClick={handleCircularDivClick}
+    >
+      {!previewImage && (
+        <>
+          <AvatarPlaceHolder className='size-20 text-secondary' />
+          <div className='absolute bottom-0 left-2 z-50  flex size-6 items-center justify-center rounded-full bg-secondary   outline outline-background '>
+            <span className='text-[16px]'>+</span>
+          </div>
+        </>
+      )}
 
-        <input
-          id='fileInput'
-          type='file'
-          accept='image/*'
-          className='hidden'
-          onChange={handleFileChange}
-        />
-      </div>
-      {/* <button
-        className='mt-2 rounded bg-blue-500 px-4 py-2 text-white'
-        onClick={handleUpload}
-        type='button'
-      >
-        Upload
-      </button> */}
-    </>
+      <input
+        id='fileInput'
+        type='file'
+        accept='image/*'
+        className='hidden'
+        onChange={handleFileChange}
+      />
+    </div>
   )
 }

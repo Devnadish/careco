@@ -3,6 +3,7 @@ import { Home } from 'more/lib/icons'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { Button } from '../ui/button'
+import Text from './Text'
 
 const GoHome = () => {
   return (
@@ -13,18 +14,18 @@ const GoHome = () => {
 }
 export default GoHome
 
-export function GoBack() {
+export function GoBack({ backUrl, ...props }) {
   const router = useRouter()
+
+  const handleBack = () => {
+    backUrl ? router.push(backUrl) : router.back()
+  }
+
   return (
-    <div className='flex justify-end'>
-      <Button
-        onClick={() => router.back()}
-        className='h-9 w-12 '
-        variant='outline'
-      >
-        <EpBack />
-      </Button>
-    </div>
+    <Button onClick={() => handleBack()} variant='outline' {...props}>
+      <Text fontFamily='tajwal'>رجوع</Text>
+      <EpBack />
+    </Button>
   )
 }
 

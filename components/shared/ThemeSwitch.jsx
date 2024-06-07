@@ -27,11 +27,17 @@ export default function ThemeSwitch() {
 
   if (resolvedTheme === 'dark') {
     return (
-      <SunMoon size={24} strokeWidth={1} onClick={() => setTheme('light')} />
+      <div className='flex size-10 items-center justify-center  rounded-md border border-border'>
+        <SunMoon size={24} strokeWidth={1} onClick={() => setTheme('light')} />
+      </div>
     )
   }
 
   if (resolvedTheme === 'light') {
-    return <Moon size={24} strokeWidth={1} onClick={() => setTheme('dark')} />
+    return (
+      <div className='flex size-10 items-center justify-center  rounded-md border border-border'>
+        <Moon size={24} strokeWidth={1} onClick={() => setTheme('dark')} />
+      </div>
+    )
   }
 }
