@@ -10,9 +10,7 @@ export function UseMenuFooter({ isVerified, setOpen }) {
     signOut({ callbackUrl: '/auth/login' })
   }
   return (
-    <div className='flex w-full items-center justify-between  '>
-      <ThemeSwitch />
-
+    <div className='flex w-full items-center justify-end  '>
       <Button variant='outline' onClick={handleLogout}>
         <LogoutIcon className='size-6' />
       </Button>

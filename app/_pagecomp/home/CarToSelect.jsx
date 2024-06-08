@@ -59,7 +59,7 @@ function CarToSelect({
               // variant='outline'
               role='combobox'
               aria-expanded={open}
-              className='flex size-12  flex-col items-center justify-center rounded-full   p-0 shadow-xl hover:bg-secondary '
+              className='flex size-8  flex-col items-center justify-center rounded-full   p-0 shadow-xl hover:bg-secondary '
             >
               <CarIcon className='flex size-8   items-center justify-center  text-primary-foreground hover:text-primary  ' />
             </Button>

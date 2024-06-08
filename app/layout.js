@@ -7,8 +7,9 @@ import { getServerSession } from 'next-auth'
 import AuthProvider from 'more/provider/authentication/AuthProvider'
 import { options } from 'more/provider/authentication/options'
 import { checkMails } from '@/app/_pagecomp/admin/mailsystem/db/inbox'
-import NavBar from '@/components/menu/NavBar'
+import NavBar from '@/components/menu/navbar/NavBar'
 import Footer from '@/components/menu/Footer'
+
 // import Footer from '@/components/menu/Footer'
 export const dynamic = 'force-dynamic'
 export const metadata = {

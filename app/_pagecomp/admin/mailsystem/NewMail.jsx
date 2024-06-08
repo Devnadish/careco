@@ -22,8 +22,8 @@ function NewMail({ urlPrefix, session, to }) {
     return (
       <Dialog open={open} onOpenChange={setOpen}>
         <DialogTrigger asChild>
-          <Button className='hover:bg-white hover:text-primary'>
-            <EMail className='size-8 text-white  hover:text-primary' />
+          <Button variant='ghost' size='icon'>
+            <EMail className='size-6 text-white  hover:text-primary' />
           </Button>
         </DialogTrigger>
         <DialogContent className='sm:max-w-[425px]'>

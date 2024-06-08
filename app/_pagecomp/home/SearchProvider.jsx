@@ -12,9 +12,8 @@ import { Input } from '@/components/ui/input'
 import Text from '@/components/shared/Text'
 import { Separator } from '@/components/ui/separator'
 
-function SearchProvider({ searchText, setSearchText }) {
-  // FIXME: WHEN THE USER CLICK ON THE SEARCH LOCATION  IT SHOLD CLICKED TWICS AND IF NOT DATA SHOW SHOW MSG NOT FOUND DO SHOW SPINNER
-  const [open, setOpen] = useState(false)
+function SearchProvider({ searchText, setSearchText, open, setOpen, session }) {
+  // const [open, setOpen] = useState(false)
 
   const [option, setOption] = useState('nadish0')
   const pathName = usePathname()
@@ -26,7 +25,7 @@ function SearchProvider({ searchText, setSearchText }) {
     router.push(updatedUrl)
   }
 
-  const handleSearch = () => {
+  const handleSearch = ({ open, setOpen }) => {
     const queryString = urlQuery('search', searchText + option)
     const updatedUrl = `${pathName}${queryString ? `?${queryString}` : ''}`
 
@@ -34,42 +33,22 @@ function SearchProvider({ searchText, setSearchText }) {
     router.push(updatedUrl)
   }
   return (
-    <>
-      <Button
-        variant='ghost'
-        onClick={() => {
-          RemoveOldSearch()
-          setOpen(true)
-        }}
-        size='sm'
-        className='min-w-48 rounded  border border-accent shadow-lg '
+    <DialogBox open={open} setOpen={setOpen}>
+      <form
+        action={handleSearch}
+        className='mx-auto flex w-[90%] flex-col items-center justify-center gap-4 '
       >
-        <div className='flex h-8 w-full items-center justify-end gap-3 '>
-          <Text fontSize='xs' opacity={'O70'}>
-            {searchText && searchText}
-          </Text>
-          <Separator orientation='vertical' className='bg-border' />
-          <Search size={24} className='opacity-70' strokeWidth={1} />
-        </div>
-      </Button>
+        <FormSearch searchText={searchText} setSearchText={setSearchText} />
+        <WhereTOSearch option={option} setOption={setOption} />
 
-      <DialogBox open={open} setOpen={setOpen}>
-        <form
-          action={handleSearch}
-          className='mx-auto flex w-[90%] flex-col items-center justify-center gap-4 '
-        >
-          <FormSearch searchText={searchText} setSearchText={setSearchText} />
-          <WhereTOSearch option={option} setOption={setOption} />
-
-          <Submit
-            title='بحث'
-            icon={<Search />}
-            color={'bg-secondary'}
-            isDisabled={!searchText}
-          />
-        </form>
-      </DialogBox>
-    </>
+        <Submit
+          title='بحث'
+          icon={<Search />}
+          color={'bg-secondary'}
+          isDisabled={!searchText}
+        />
+      </form>
+    </DialogBox>
   )
 }
 
@@ -86,6 +65,7 @@ const FormSearch = ({ searchText, setSearchText }) => {
       placeholder='ابحث عن.. '
       onChange={handlechange}
     />
+    // {IsSearchParams && <ClearInputFilter setSearchText={setSearchText} />}
   )
 }
 
@@ -127,3 +107,5 @@ export function WhereTOSearch({ option, setOption }) {
     </RadioGroup>
   )
 }
+
+// FIXME: WHEN THE USER CLICK ON THE SEARCH LOCATION  IT SHOLD CLICKED TWICS AND IF NOT DATA SHOW SHOW MSG NOT FOUND DO SHOW SPINNER

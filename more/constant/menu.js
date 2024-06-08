@@ -25,31 +25,54 @@ import { urlQuery } from 'more/lib/nadish'
 export const menu = [
   {
     id: 1,
+    title: 'فزعة',
+    icon: <Gift size={15} strokeWidth={1} className='text-foreground' />,
+    href: '/',
+    description: 'عنوان فزعة'
+  },
+  {
+    id: 4,
+    title: 'غرف السيارات',
+    icon: (
+      <MessagesSquare size={15} strokeWidth={1} className='text-foreground' />
+    ),
+    href: '/',
+    description: 'عنوان السيارات'
+  },
+  {
+    id: 4,
+    title: 'شاور اهل الخبرة',
+    icon: (
+      <MessagesSquare size={15} strokeWidth={1} className='text-foreground' />
+    ),
+    href: '/',
+    description: 'عنوان السيارات'
+  },
+  {
+    id: 2,
     title: 'مجاني',
     icon: <Gift size={15} strokeWidth={1} className='text-foreground' />,
-    href: '/'
+    href: '/',
+    description: 'عنوان مجاني'
   },
 
   {
     id: 3,
     title: 'خصومات',
     icon: <Percent size={15} strokeWidth={1} className='text-foreground' />,
-    href: '/'
+    href: '/',
+    description: 'عنوان خصومات'
   },
+
   {
-    id: 4,
-    title: 'غرف',
+    id: 5,
+    title: 'الداعمين',
     icon: (
       <MessagesSquare size={15} strokeWidth={1} className='text-foreground' />
     ),
-    href: '/'
+    href: '/',
+    description: 'عنوان الداعمين'
   }
-  // {
-  //   id: 5,
-  //   title: 'راسلنا',
-  //   icon: <EMail className='size-8 text-primary' />,
-  //   href: '/mailsystem/sendmsg'
-  // }
 ]
 
 export const providerMenu = [

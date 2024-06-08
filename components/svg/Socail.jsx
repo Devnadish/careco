@@ -63,15 +63,22 @@ export function XTwitter(props) {
   return (
     <svg
       xmlns='http://www.w3.org/2000/svg'
-      width='0.88em'
+      width='1em'
       height='1em'
-      viewBox='0 0 448 512'
+      viewBox='0 0 24 24'
       {...props}
     >
-      <path
-        fill='currentColor'
-        d='M64 32C28.7 32 0 60.7 0 96v320c0 35.3 28.7 64 64 64h320c35.3 0 64-28.7 64-64V96c0-35.3-28.7-64-64-64zm297.1 84L257.3 234.6L379.4 396h-95.6L209 298.1L123.3 396H75.8l111-126.9L69.7 116h98l67.7 89.5l78.2-89.5zm-37.8 251.6L153.4 142.9h-28.3l171.8 224.7h26.3z'
-      ></path>
+      <g
+        fill='none'
+        stroke='currentColor'
+        strokeLinecap='round'
+        strokeLinejoin='round'
+        strokeWidth={1.5}
+        color='currentColor'
+      >
+        <path d='m7 17l4.194-4.193M17 7l-4.193 4.194m0 0L9.777 7H7l4.194 5.807m1.612-1.614L17 17h-2.778l-3.028-4.193'></path>
+        <path d='M22 12c0 5.523-4.477 10-10 10S2 17.523 2 12S6.477 2 12 2s10 4.477 10 10'></path>
+      </g>
     </svg>
   )
 }

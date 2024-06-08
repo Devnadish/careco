@@ -14,7 +14,6 @@ import CarToSelect from '@/app/_pagecomp/home/CarToSelect'
 import NewMail from '@/app/_pagecomp/admin/mailsystem/NewMail'
 import { Separator } from '../ui/separator'
 import Text from '../shared/Text'
-import MainMenu from './MainMenu'
 import { Button } from '../ui/button'
 import ClearCarFilter from '../svg/ClearCarFilter'
 import FavCar from '../svg/FavCar'
@@ -112,33 +111,14 @@ const HomeFooter = ({ session, newMails, urlPrefix, vechile }) => {
         {/* <Separator orientation='vertical' className='h-9 bg-primary' /> */}
       </div>
 
-      <div className='flex size-16   flex-col items-center justify-center  rounded-full bg-accent'>
+      <div className='flex size-16   flex-col items-center justify-center rounded-full  bg-secondary'>
         <CarToSelect />
-        {/* <SelectedCar data={vechile} providersLength={15} /> */}
       </div>
     </div>
   )
 }
 
 export default Footer
-
-const SelectedCar = ({ data, providersLength }) => {
-  return (
-    <>
-      {data && (
-        <div className='flex h-6 items-center justify-between  gap-1 rounded-xl border border-primary px-4 text-sm '>
-          <Text
-            className='text-mdm font-semibold  capitalize '
-            fontFamily={'tajwal'}
-          >
-            <Car className='size-5 text-primary  md:size-6' strokeWidth={1} />
-            {data}
-          </Text>
-        </div>
-      )}
-    </>
-  )
-}
 
 const MobileHomeFooter = ({ session, newMails, urlPrefix, vechile }) => {
   return (
@@ -198,8 +178,8 @@ function SliderMenu({ menu }) {
   ]
 
   return (
-    <div className='  flex w-full   items-center justify-between '>
-      <div className='flex   h-full  w-[75%] items-center justify-center '>
+    <div className='  flex w-full   items-center justify-between bg-background/55  px-3 shadow-xl  backdrop-blur-md'>
+      <div className='flex   h-full  w-[90%] items-center justify-center '>
         <Carousel
           opts={{
             align: 'start'
@@ -232,7 +212,7 @@ function SliderMenu({ menu }) {
           {/* <CarouselNext /> */}
         </Carousel>
       </div>
-      <div className='flex size-16  w-[25%]  items-center justify-center bg-primary '>
+      <div className='flex size-16  w-[10%]  items-center justify-center bg-secondary '>
         <CarToSelect />
       </div>
     </div>

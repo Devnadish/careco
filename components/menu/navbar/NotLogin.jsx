@@ -1,11 +1,9 @@
 'use client'
-import React, { useState } from 'react'
-import { KeyRound } from 'more/lib/icons'
+import { KeyRound } from '@/lib/icons'
 import Link from 'next/link'
+import React from 'react'
 
-function LoginBtn() {
-  const [open, setOpen] = useState(false)
-
+const NotLogin = () => {
   return (
     <Link
       href='/auth/login'
@@ -15,5 +13,4 @@ function LoginBtn() {
     </Link>
   )
 }
-
-export default LoginBtn
+export default NotLogin

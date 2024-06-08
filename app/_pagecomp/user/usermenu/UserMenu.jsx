@@ -21,7 +21,7 @@ import { LogoutIcon } from '@/components/svg/LogoutIcon'
 
 export const dynamic = 'force-dynamic'
 
-function UserMenu({ session, newMails }) {
+function UserMenu({ session, newMails, openUserMenu, setOpenUserMenu }) {
   const [open, setOpen] = useState(false)
   const userAvatar = `${process.env.NEXT_PUBLIC_CLOUDINARY_IMAGE_URL}${session?.user?.image}`
 
@@ -32,14 +32,12 @@ function UserMenu({ session, newMails }) {
   return (
     <div className='flex  items-center   '>
       {isVerified ? (
-        <Button onClick={() => setOpen(true)}>
-          <Avatar
-            src={userAvatar}
-            alt={useremail}
-            fallBack={useremail}
-            role={role}
-          />
-        </Button>
+        <UserSideMenu
+          open={openUserMenu}
+          setOpen={setOpenUserMenu}
+          session={session}
+          newMails={newMails}
+        />
       ) : (
         <ActivationAndToggle
           isVerified={isVerified}
@@ -48,13 +46,6 @@ function UserMenu({ session, newMails }) {
           image={userAvatar}
         />
       )}
-
-      <UserSideMenu
-        open={open}
-        setOpen={setOpen}
-        session={session}
-        newMails={newMails}
-      />
     </div>
   )
 }

@@ -2,7 +2,7 @@
 import React, { useState } from 'react'
 import { redirect } from 'next/navigation'
 import { useSession } from 'next-auth/react'
-import { LogoSpinnerInline } from '@/components/shared/Spinner'
+import { LogoSpinnerInline } from '@/components/shared/LogoSpinnerInline'
 import Image from 'next/image'
 
 import { Github } from '@/components/svg/Socail'
