@@ -9,7 +9,7 @@ import {
   HeartHandshake,
   ListRestart,
   Menu
-} from '@/lib/icons'
+} from '@/more/lib/icons'
 import CarToSelect from '@/app/_pagecomp/home/CarToSelect'
 import NewMail from '@/app/_pagecomp/admin/mailsystem/NewMail'
 import { Separator } from '../ui/separator'
@@ -48,7 +48,10 @@ const Footer = ({ session, newMails }) => {
   if (pathname === '/auth/register') return null
   if (pathname === '/auth/error') return null
   return (
-    <footer className='fixed bottom-0 z-50 h-14 w-full bg-accent' id='footer'>
+    <footer
+      className='fixed bottom-0 z-50 h-14 w-full bg-background '
+      id='footer'
+    >
       <div className='h-16 w-full bg-accent md:hidden'>
         {/* <MobileHomeFooter /> */}
         <SliderMenu />

@@ -1,6 +1,6 @@
 'use client'
 
-import UrlContext from 'more/context/providerServiceContext'
+import UrlContext from '@/more/context/providerServiceContext'
 import { useContext, useEffect } from 'react'
 
 function Counters({ records, pages }) {

@@ -2,11 +2,11 @@
 import React from 'react'
 import Text from '@/components/shared/Text'
 import { Button } from '@/components/ui/button'
-import { LogIn, Mail, RectangleEllipsis } from 'more/lib/icons'
+import { LogIn, Mail, RectangleEllipsis } from '@/more/lib/icons'
 import InputWithIcon from '@/components/shared/InputWithIcon'
 import Submit from '@/components/shared/Submit'
 import { signIn } from 'next-auth/react'
-import { Notify } from '@/lib/nadish'
+import { Notify } from '@/more/lib/nadish'
 
 export function LoginForm() {
   const handleSignIn = async formData => {

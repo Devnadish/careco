@@ -2,7 +2,7 @@
 import React, { useState } from 'react'
 import { Button } from '@/components/ui/button'
 import { Dislike, Like } from '@/components/svg/LikeAndDislike'
-import { HeartHandshake, MessageCircleMore, Share2 } from 'more/lib/icons'
+import { HeartHandshake, MessageCircleMore, Share2 } from '@/more/lib/icons'
 import {
   addDislikeAction,
   addFavoriteAction,

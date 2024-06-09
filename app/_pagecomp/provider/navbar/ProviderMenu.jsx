@@ -1,4 +1,4 @@
-import { providerMenu } from 'more/constant/menu'
+import { providerMenu } from '@/more/constant/menu'
 import Link from 'next/link'
 import Text from '@/components/shared/Text'
 

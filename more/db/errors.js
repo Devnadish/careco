@@ -1,5 +1,5 @@
 'use server'
-import db from 'more/lib/prisma'
+import db from '@/more/lib/prisma'
 import { revalidatePath } from 'next/cache'
 
 export const addError = async (pathName, refrence, msg, error, userid) => {

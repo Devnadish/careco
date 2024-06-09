@@ -1,6 +1,6 @@
 'use server'
-import { htmlMsg, sender } from 'more/constant/userMsg'
-import db from 'more/lib/prisma'
+import { htmlMsg, sender } from '@/more/constant/userMsg'
+import db from '@/more/lib/prisma'
 import { revalidatePath } from 'next/cache'
 import { Resend } from 'resend'
 import bcrypt from 'bcrypt'

@@ -1,7 +1,7 @@
 import React from 'react'
 import { ItemLink } from '@/app/_pagecomp/user/usermenu/ItemLink'
 import { SelectCity } from './SelectCity'
-import { menuItemsUser } from 'more/constant/menu'
+import { menuItemsUser } from '@/more/constant/menu'
 import { ScrollArea } from '@/components/ui/scroll-area'
 
 export function UserMenuBody({ isVerified, userid, setOpen }) {

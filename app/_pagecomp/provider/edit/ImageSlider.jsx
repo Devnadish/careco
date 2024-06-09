@@ -1,7 +1,7 @@
 import Text from '@/components/shared/Text'
 import { Label } from '@/components/ui/label'
 import React from 'react'
-import { Image } from 'more/lib/icons'
+import { Image } from '@/more/lib/icons'
 import { Input } from '@/components/ui/input'
 
 export const ImageSlider = () => {

@@ -1,7 +1,7 @@
 import Image from 'next/image'
 
-import { cn } from '@/lib/utils'
-import { getImage } from '@/lib/imgPlaceholder'
+import { cn } from '@/more/lib/utils'
+import { getImage } from '@/more/lib/imgPlaceholder'
 // import { getImage } from '@/lib/getImage'
 
 export default async function Image64({ url, alt, containerClass }) {

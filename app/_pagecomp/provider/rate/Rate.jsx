@@ -6,7 +6,7 @@ import { Textarea } from '@/components/ui/textarea'
 // FIXME: ../ update to alis path
 
 import { newRate } from '../db/rateDb'
-import { Notify } from '@/lib/nadish'
+import { Notify } from '@/more/lib/nadish'
 
 export function Rate(props) {
   const handlerateing = async formData => {

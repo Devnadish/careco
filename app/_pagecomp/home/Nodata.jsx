@@ -1,7 +1,7 @@
 'use client'
 import Text from '@/components/shared/Text'
 import { Button } from '@/components/ui/button'
-import { TriangleAlert } from 'more/lib/icons'
+import { TriangleAlert } from '@/more/lib/icons'
 
 export const Nodata = ({ carName }) => {
   return (

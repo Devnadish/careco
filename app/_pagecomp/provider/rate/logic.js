@@ -1,4 +1,4 @@
-import { Notify } from 'more/lib/nadish'
+import { Notify } from '@/more/lib/nadish'
 
 export const handleLike = async (providerId, session, setLikeisLoading) => {
   if (session === null) {

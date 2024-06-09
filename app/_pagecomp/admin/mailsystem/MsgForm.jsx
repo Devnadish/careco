@@ -6,9 +6,9 @@ import { Textarea } from '@/components/ui/textarea'
 import Submit from '@/components/shared/Submit'
 import { Input } from '@/components/ui/input'
 import { sendMail } from '@/app/_pagecomp/admin/mailsystem/db/inbox'
-import { Notify } from 'more/lib/nadish'
+import { Notify } from '@/more/lib/nadish'
 import { EMail } from '@/components/svg/Mail'
-import { Mail } from 'more/lib/icons'
+import { Mail } from '@/more/lib/icons'
 import { handleMail } from './logic/mailsystem'
 
 const MsgForm = ({ to, urlPrefix, session }) => {

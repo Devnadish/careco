@@ -1,11 +1,11 @@
-import ThemeProvider from 'more/provider/ThemeProvider'
+import ThemeProvider from '@/more/provider/ThemeProvider'
 import './globals.css'
-import { Tajwal, Cairo, Noto } from 'more/lib/fonts'
+import { Tajwal, Cairo, Noto } from '@/more/lib/fonts'
 import { Toaster } from '@/components/ui/sonner'
-import UrlProvider from 'more/context/serviceProvider'
+import UrlProvider from '@/more/context/serviceProvider'
 import { getServerSession } from 'next-auth'
-import AuthProvider from 'more/provider/authentication/AuthProvider'
-import { options } from 'more/provider/authentication/options'
+import AuthProvider from '@/more/provider/authentication/AuthProvider'
+import { options } from '@/more/provider/authentication/options'
 import { checkMails } from '@/app/_pagecomp/admin/mailsystem/db/inbox'
 import NavBar from '@/components/menu/navbar/NavBar'
 import Footer from '@/components/menu/Footer'
@@ -24,7 +24,7 @@ export default async function RootLayout({ children }) {
   return (
     <html lang='en' dir='rtl' suppressHydrationWarning>
       <body
-        className={`${Tajwal.variable} ${Cairo.variable} ${Noto.variable}  container flex   w-full  flex-col   items-center justify-center  bg-background text-foreground  `}
+        className={`${Tajwal.variable} ${Cairo.variable} ${Noto.variable}  container flex   w-full  flex-col   items-center justify-center  bg-muted/90 text-foreground  `}
       >
         <ThemeProvider
           attribute='class'

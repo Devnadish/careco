@@ -6,11 +6,13 @@
     "paths": {
       "@/components/*": ["./components/*"],
       "@/styles/*": ["./styles/*"],
-      "@/lib/*": ["more/lib/*"],
+      "@/more/*": ["./more/*"],
+
+      // "@/lib/*": ["more/lib/*"],
       "@/provider/*": ["./provider/*"],
-      "@/constant/*": ["more/constant/*"],
-      "@/context/*": ["more/context/*"],
-      "@/db/*": ["more/db/*"],
+      // "@/constant/*": ["more/constant/*"],
+      // "@/context/*": ["more/context/*"],
+      // "@/db/*": ["more/db/*"],
       "@/app/*": ["./app/*"],
       "@/fonts/*": ["./fonts/*"]
     }

@@ -1,5 +1,5 @@
 import React from 'react'
-import { cn } from 'more/lib/utils'
+import { cn } from '@/more/lib/utils'
 import { cva } from 'class-variance-authority'
 
 const textVariants = cva(

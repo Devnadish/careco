@@ -2,8 +2,8 @@
 import Image from 'next/image'
 import { useCallback, useEffect, useState } from 'react'
 import { useDropzone } from 'react-dropzone'
-import { Upload } from 'more/lib/icons'
-import { getSignature, saveToDatabase } from 'more/db/imageDb'
+import { Upload } from '@/more/lib/icons'
+import { getSignature, saveToDatabase } from '@/more/db/imageDb'
 import { Button } from '@/components/ui/button'
 import Submit from '../Submit'
 

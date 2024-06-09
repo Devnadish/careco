@@ -4,8 +4,8 @@ import { useFormStatus } from 'react-dom'
 import { Button } from '@/components/ui/button'
 import { Send } from 'lucide-react'
 import Spinner from './Spinner'
-import { Notify } from 'more/lib/nadish'
-import { cn } from 'more/lib/utils'
+import { Notify } from '@/more/lib/nadish'
+import { cn } from '@/more/lib/utils'
 import { cva } from 'class-variance-authority'
 
 const ButtonVariants = cva(
@@ -70,7 +70,7 @@ export default Submit
 // import { Button } from '@/components/ui/button'
 // import { Send } from 'lucide-react'
 // import Spinner from './Spinner'
-// import { Notify } from '@/lib/nadish'
+// import { Notify } from '@/more/lib/nadish'
 // import { useEffect } from 'react'
 
 // import { cn } from 'lib/utils'

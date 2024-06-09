@@ -4,7 +4,7 @@ import { SectionTitle } from '@/components/shared/SectionTitle'
 import Text from '@/components/shared/Text'
 import Image from 'next/image'
 import Link from 'next/link'
-import { MoveLeft } from 'more/lib/icons'
+import { MoveLeft } from '@/more/lib/icons'
 
 export const Department = ({ department, providerId, providerSlug }) => {
   return (

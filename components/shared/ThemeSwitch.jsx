@@ -1,7 +1,7 @@
 'use client'
 
 // import { FiSun, FiMoon } from "react-icons/fi"
-import { Moon, SunMoon } from 'more/lib/icons'
+import { Moon, SunMoon } from '@/more/lib/icons'
 import { useState, useEffect } from 'react'
 import { useTheme } from 'next-themes'
 import Image from 'next/image'

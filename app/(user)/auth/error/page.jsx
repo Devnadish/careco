@@ -2,7 +2,7 @@
 import Text from '@/components/shared/Text'
 import { Visitor } from '@/components/svg/Visitor'
 import { Button } from '@/components/ui/button'
-import { KeyRound, TriangleAlert } from '@/lib/icons'
+import { KeyRound, TriangleAlert } from '@/more/lib/icons'
 import { useRouter } from 'next/navigation'
 import React from 'react'
 

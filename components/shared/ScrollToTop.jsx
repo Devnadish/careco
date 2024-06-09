@@ -1,5 +1,5 @@
 'use client'
-import { ChevronUp } from 'more/lib/icons'
+import { ChevronUp } from '@/more/lib/icons'
 import { useState, useEffect } from 'react'
 
 const ScrollToTop = () => {

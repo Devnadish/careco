@@ -1,5 +1,5 @@
 import { Important } from '@/components/svg/Important'
-import { Dot } from 'more/lib/icons'
+import { Dot } from '@/more/lib/icons'
 
 export const header = '  باستخدام المنصة فإنك توافق على الشروط والأحكام.'
 export const footer = 'شكرًا لك  '

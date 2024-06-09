@@ -1,9 +1,9 @@
 'use server'
-import db from 'more/lib/prisma'
+import db from '@/more/lib/prisma'
 import { revalidatePath } from 'next/cache'
 import { addViewer } from './providerVeiwer'
 import { CollectRatine } from '@/app/_pagecomp/provider/db/rateDb'
-import { CheckUserAction } from 'more/db/utlDb'
+import { CheckUserAction } from '@/more/db/utlDb'
 
 export const providerData = async (providerSlug, userid) => {
   // get id from the slug

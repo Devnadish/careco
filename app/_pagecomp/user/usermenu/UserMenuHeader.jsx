@@ -1,7 +1,7 @@
 'use client'
 import React from 'react'
 import Text from '@/components/shared/Text'
-import { Pencil } from 'more/lib/icons'
+import { Pencil } from '@/more/lib/icons'
 import ThemeSwitch from '@/components/shared/ThemeSwitch'
 import Link from 'next/link'
 import Inbox from '../../admin/mailsystem/Inbox'

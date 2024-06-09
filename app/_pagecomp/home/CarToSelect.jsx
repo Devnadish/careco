@@ -1,7 +1,7 @@
 'use client'
 import React, { useEffect, useState } from 'react'
 import { Check } from 'lucide-react'
-import { cn } from 'more/lib/utils'
+import { cn } from '@/more/lib/utils'
 import {
   Command,
   CommandEmpty,
@@ -17,12 +17,12 @@ import {
 } from '@/components/ui/popover'
 import { Button } from '@/components/ui/button'
 import Image from 'next/image'
-import { urlQuery } from 'more/lib/nadish'
+import { urlQuery } from '@/more/lib/nadish'
 import { usePathname, useRouter } from 'next/navigation'
 import Text from '@/components/shared/Text'
 
-import { carLogos } from 'more/constant/carLogo'
-import { Car } from '@/lib/icons'
+import { carLogos } from '@/more/constant/carLogo'
+import { Car } from '@/more/lib/icons'
 import ClearCarFilter from '@/components/svg/ClearCarFilter'
 import FavCar from '@/components/svg/FavCar'
 import CarIcon from '@/components/svg/CarIcon'

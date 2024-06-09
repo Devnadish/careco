@@ -1,7 +1,7 @@
 import React from 'react'
 import Text from '@/components/shared/Text'
 import Link from 'next/link'
-import { Dot } from 'more/lib/icons'
+import { Dot } from '@/more/lib/icons'
 
 export const ItemLink = ({ href, text, icon, setOpen }) => {
   return (

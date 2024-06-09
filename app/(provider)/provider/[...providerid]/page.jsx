@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import { getServerSession } from 'next-auth'
-import { options } from 'more/provider/authentication/options'
+import { options } from '@/more/provider/authentication/options'
 import ScrollToTop from '@/components/shared/ScrollToTop'
 import Text from '@/components/shared/Text'
 import ImageSlider from '@/app/_pagecomp/provider/gallary/ImageSlider'

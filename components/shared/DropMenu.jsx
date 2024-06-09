@@ -1,7 +1,7 @@
 'use client'
 import React, { useEffect, useState } from 'react'
 import { Check } from 'lucide-react'
-import { cn } from 'more/lib/utils'
+import { cn } from '@/more/lib/utils'
 import {
   Command,
   CommandEmpty,
@@ -17,7 +17,7 @@ import {
 } from '@/components/ui/popover'
 import { Button } from '../ui/button'
 import Image from 'next/image'
-import { urlQuery } from 'more/lib/nadish'
+import { urlQuery } from '@/more/lib/nadish'
 import { usePathname, useRouter } from 'next/navigation'
 import { Separator } from '../ui/separator'
 import Text from './Text'

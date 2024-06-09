@@ -1,5 +1,5 @@
 'use client'
-import { menu } from '@/constant/menu'
+import { menu } from '@/more/constant/menu'
 import Link from 'next/link'
 import Text from '../../shared/Text'
 import {

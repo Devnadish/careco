@@ -4,10 +4,9 @@ import { usePathname } from 'next/navigation'
 
 const UserMenuBtn = lazy(() => import('@/components/menu/navbar/UserMenuBtn'))
 const NotLogin = lazy(() => import('@/components/menu/navbar/NotLogin'))
-const SearchBtn = lazy(() => import('@/components/menu/navbar/SearchBtn'))
 
 const MainMenuBtn = lazy(() => import('@/components/menu/navbar/MainMenuBtn'))
-const SearchProvider = lazy(() => import('@/app/_pagecomp/home/SearchProvider'))
+// const SearchProvider = lazy(() => import('@/app/_pagecomp/home/SearchProvider'))
 const UserMenu = lazy(() => import('@/app/_pagecomp/user/usermenu/UserMenu'))
 const MainMenu = lazy(() => import('@/components/menu/navbar/MainMenu'))
 const LogoSpinnerInline = lazy(
@@ -29,12 +28,17 @@ const NavBar = ({ session, newMails }) => {
     urlPrefix = 'admin'
   }
 
+  if (pathName === '/auth/login') return null
+  if (pathName === '/auth/register') return null
+  if (pathName === '/auth/register') return null
+  if (pathName === '/auth/error') return null
+
   const shouldRenderLogin = !session
 
   return (
     <nav
       id='navbar'
-      className='fixed left-0 top-0 z-50 flex h-[54px] w-full items-center justify-between gap-2 bg-background/55 px-3 shadow-xl backdrop-blur-md'
+      className='fixed left-0 top-0 z-50 flex h-[54px] w-full items-center justify-between gap-2 bg-background/55  px-3 shadow-xl backdrop-blur-md'
     >
       {shouldRenderLogin && (
         <Suspense fallback={<LogoSpinnerInline />}>
@@ -52,17 +56,13 @@ const NavBar = ({ session, newMails }) => {
           />
         </Suspense>
       )}
-      <div className='flex items-center gap-2'>
-        <Suspense fallback={<LogoSpinnerInline />}>
-          <SearchBtn session={session} setOpenSearch={setOpenSearch} />
-        </Suspense>
-
+      <div className='flex items-center gap-4'>
         <Suspense fallback={<LogoSpinnerInline />}>
           <MainMenuBtn open={open} setOpen={setOpen} session={session} />
         </Suspense>
       </div>
 
-      {openSearch && (
+      {/* {openSearch && (
         <Suspense fallback={<LogoSpinnerInline />}>
           <SearchProvider
             open={openSearch}
@@ -70,7 +70,7 @@ const NavBar = ({ session, newMails }) => {
             session={session}
           />
         </Suspense>
-      )}
+      )} */}
 
       {openUserMenu && (
         <Suspense fallback={<LogoSpinnerInline />}>

@@ -1,5 +1,5 @@
 'use client'
-import { Eye, HeartHandshake, Share2, SortIcon, X } from 'more/lib/icons'
+import { Eye, HeartHandshake, Share2, SortIcon, X } from '@/more/lib/icons'
 import { Button } from '@/components/ui/button'
 import {
   DropdownMenu,
@@ -7,11 +7,11 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger
 } from '@/components/ui/dropdown-menu'
-import { MessageCircleMore } from 'more/lib/icons'
+import { MessageCircleMore } from '@/more/lib/icons'
 import WorkshopSVG from '@/components/svg/WorkshopSVG'
 import WorkShopCenterSvg from '@/components/svg/WorkShopCenterSvg'
 import MechancalMan from '@/components/svg/MechancalMan'
-import { removeQuery, urlQuery } from 'more/lib/nadish'
+import { removeQuery, urlQuery } from '@/more/lib/nadish'
 import { usePathname, useRouter, useSearchParams } from 'next/navigation'
 import { StarFilled } from '@/components/svg/StarFilled'
 import DepartmentIcon from '@/components/svg/DepartmentIcon'

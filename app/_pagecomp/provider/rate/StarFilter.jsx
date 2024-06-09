@@ -3,7 +3,7 @@ import { StarFilled } from '@/components/svg/StarFilled'
 import { Label } from '@/components/ui/label'
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group'
 import { useState } from 'react'
-import { urlQuery } from 'more/lib/nadish'
+import { urlQuery } from '@/more/lib/nadish'
 import { usePathname, useRouter } from 'next/navigation'
 
 export function StarFilter() {

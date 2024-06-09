@@ -5,7 +5,7 @@ import { NotActive } from '@/components/svg/NotActive'
 import { Button } from '@/components/ui/button'
 import { Avatar } from '@/components/shared/Avatar'
 import { sendConfirmationCode } from '../db/user'
-import { LogoSpinnerInline } from '@/components/shared/LogoSpinnerInline'
+import LogoSpinnerInline from '@/components/shared/LogoSpinnerInline'
 
 export const ActivationAndToggle = ({
   isVerified,

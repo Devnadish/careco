@@ -1,7 +1,7 @@
 'use client'
 import React, { useState } from 'react'
 import InputWithIcon from '@/components/shared/InputWithIcon'
-import { Check, Lock, Mail, Pencil, User } from 'more/lib/icons'
+import { Check, Lock, Mail, Pencil, User } from '@/more/lib/icons'
 import Submit from '@/components/shared/Submit'
 import { newUser } from '@/app/_pagecomp/user/db/user'
 import { AvatarPlaceHolder } from '@/components/svg/AvatarPlaceHolder'

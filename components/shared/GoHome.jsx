@@ -1,5 +1,5 @@
 'use client'
-import { Home } from 'more/lib/icons'
+import { Home } from '@/more/lib/icons'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { Button } from '../ui/button'

@@ -1,7 +1,7 @@
 'use client'
 import React from 'react'
 import Text from '@/components/shared/Text'
-import { legalComment, header, footer } from 'more/constant/legalComments'
+import { legalComment, header, footer } from '@/more/constant/legalComments'
 export const LegalCondition = () => {
   return (
     <div className='p-3'>

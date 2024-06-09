@@ -1,10 +1,10 @@
 import Text from '@/components/shared/Text'
 import Image from 'next/image'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
-import { Dot } from 'more/lib/icons'
+import { Dot } from '@/more/lib/icons'
 
 import { getServerSession } from 'next-auth'
-import { options } from 'more/provider/authentication/options'
+import { options } from '@/more/provider/authentication/options'
 import CommentRules from '@/app/_pagecomp/provider/comment/CommentRules'
 import AddComment from '@/app/_pagecomp/provider/comment/AddComment'
 import ShowComments from '@/app/_pagecomp/provider/comment/ShowComments'

@@ -19,8 +19,8 @@ import {
   MessagesSquare,
   Percent,
   Star
-} from 'more/lib/icons'
-import { urlQuery } from 'more/lib/nadish'
+} from '@/more/lib/icons'
+import { urlQuery } from '@/more/lib/nadish'
 
 export const menu = [
   {

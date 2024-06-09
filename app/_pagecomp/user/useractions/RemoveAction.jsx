@@ -1,7 +1,7 @@
 'use client'
 import React from 'react'
 import { Button } from '@/app/../components/ui/button'
-import { MessageCircleMore, Trash } from 'more/lib/icons'
+import { MessageCircleMore, Trash } from '@/more/lib/icons'
 import Text from '@/app/../components/shared/Text'
 import { removeAction, showComment } from './db/removeReaction'
 import Swal from 'sweetalert2'

@@ -1,11 +1,12 @@
 'use server'
-import db from 'more/lib/prisma'
+import db from '@/more/lib/prisma'
 import { revalidatePath } from 'next/cache'
 import { CollectRatine } from './rateDb'
-import { Slug } from '@/lib/nadish'
+import { Slug } from '@/more/lib/nadish'
+import { CldImage } from 'node_modules/next-cloudinary/dist/index'
 
 export const getProviders = async (pageNo, query) => {
-  const { vechile, type, sort, search } = query || {}
+  const { vechile, type, sort, search, sorttype } = query || {}
 
   const searchStr = search || ''
   const searchKey = searchStr[searchStr.length - 1]
@@ -76,22 +77,22 @@ export const getProviders = async (pageNo, query) => {
   let sortBy
   switch (sort) {
     case 'star':
-      sortBy = { starCount: 'desc' }
+      sortBy = { starCount: sorttype }
       break
     case 'comment':
-      sortBy = { commentCount: 'desc' }
+      sortBy = { commentCount: sorttype }
       break
     case 'viewer':
-      sortBy = { viewerCount: 'desc' }
+      sortBy = { viewerCount: sorttype }
       break
     case 'fav':
-      sortBy = { favCount: 'desc' }
+      sortBy = { favCount: sorttype }
       break
     case 'share':
-      sortBy = { shareCount: 'desc' }
+      sortBy = { shareCount: sorttype }
       break
     default:
-      sortBy = { starCount: 'desc' }
+      sortBy = { starCount: sorttype }
       break
   }
 

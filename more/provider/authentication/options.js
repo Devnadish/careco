@@ -1,8 +1,8 @@
 import GitHubProvider from 'next-auth/providers/github'
 import CredentialsProvider from 'next-auth/providers/credentials'
-import db from 'more/lib/prisma'
+import db from '@/more/lib/prisma'
 import bcrypt from 'bcrypt'
-import { Notify } from '@/lib/nadish'
+import { Notify } from '@/more/lib/nadish'
 
 export const options = {
   // adapter: PrismaAdapter(db),

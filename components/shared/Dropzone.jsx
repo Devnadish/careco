@@ -2,8 +2,8 @@
 import Image from 'next/image'
 import { useCallback, useEffect, useState } from 'react'
 import { useDropzone } from 'react-dropzone'
-import { Upload, X } from 'more/lib/icons'
-import { uploadImage, uploadImageFile } from 'more/db/imageDb'
+import { Upload, X } from '@/more/lib/icons'
+import { uploadImage, uploadImageFile } from '@/more/db/imageDb'
 
 const Dropzone = ({ className }) => {
   const [files, setFiles] = useState([])

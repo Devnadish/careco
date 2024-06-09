@@ -1,5 +1,5 @@
 'use server'
-import db from 'more/lib/prisma'
+import db from '@/more/lib/prisma'
 
 export const getCarIdRetunCarInfo = async id => {
   const carInfo = await db.car.findFirst({
