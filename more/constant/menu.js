@@ -31,7 +31,7 @@ export const menu = [
     description: 'عنوان فزعة'
   },
   {
-    id: 4,
+    id: 2,
     title: 'غرف السيارات',
     icon: (
       <MessagesSquare size={15} strokeWidth={1} className='text-foreground' />
@@ -40,7 +40,7 @@ export const menu = [
     description: 'عنوان السيارات'
   },
   {
-    id: 4,
+    id: 3,
     title: 'شاور اهل الخبرة',
     icon: (
       <MessagesSquare size={15} strokeWidth={1} className='text-foreground' />
@@ -49,7 +49,7 @@ export const menu = [
     description: 'عنوان السيارات'
   },
   {
-    id: 2,
+    id: 4,
     title: 'مجاني',
     icon: <Gift size={15} strokeWidth={1} className='text-foreground' />,
     href: '/',
@@ -57,7 +57,7 @@ export const menu = [
   },
 
   {
-    id: 3,
+    id: 5,
     title: 'خصومات',
     icon: <Percent size={15} strokeWidth={1} className='text-foreground' />,
     href: '/',
@@ -65,7 +65,7 @@ export const menu = [
   },
 
   {
-    id: 5,
+    id: 6,
     title: 'الداعمين',
     icon: (
       <MessagesSquare size={15} strokeWidth={1} className='text-foreground' />
@@ -162,65 +162,65 @@ export const filterMenu = [
   }
 ]
 
-export const userMenuItems = [
-  {
-    id: 1,
-    title: 'التقييم',
-    icon: <StarFilled size={20} strokeWidth={1} className='text-foreground' />
-  },
-  {
-    id: 2,
-    title: 'المفضلة',
-    icon: (
-      <HeartHandshake size={20} strokeWidth={1} className='text-foreground' />
-    )
-  },
-  {
-    id: 3,
-    title: 'إعجاب',
-    icon: <Like />
-  },
-  {
-    id: 4,
-    title: 'الاعجاب السلبي',
-    icon: <Dislike className='size-8 text-primary' />
-  },
-  {
-    id: 5,
-    title: 'سجل المشاهدات',
-    icon: <HistoryIcon className='size-8 text-primary' />
-  },
-  {
-    id: 6,
-    title: 'استشارة',
-    icon: (
-      <BotMessageSquare size={20} strokeWidth={1} className='text-foreground' />
-    )
-  },
-  {
-    id: 7,
-    title: 'التعليقات',
-    icon: <EMail className='size-8 text-primary' />
-  },
-  {
-    id: 8,
-    title: 'ارسال كرت صيانة',
-    icon: <SendService className='size-5' />
-  },
-  {
-    id: 9,
-    title: 'راسلنا',
-    icon: <EMail className='size-8 text-primary' />
-  }
-]
+// export const userMenuItems = [
+//   {
+//     id: 1,
+//     title: 'التقييم',
+//     icon: <StarFilled size={20} strokeWidth={1} className='text-foreground' />
+//   },
+//   {
+//     id: 2,
+//     title: 'المفضلة',
+//     icon: (
+//       <HeartHandshake size={20} strokeWidth={1} className='text-foreground' />
+//     )
+//   },
+//   {
+//     id: 3,
+//     title: 'إعجاب',
+//     icon: <Like />
+//   },
+//   {
+//     id: 4,
+//     title: 'الاعجاب السلبي',
+//     icon: <Dislike className='size-8 text-primary' />
+//   },
+//   {
+//     id: 5,
+//     title: 'سجل المشاهدات',
+//     icon: <HistoryIcon className='size-8 text-primary' />
+//   },
+//   {
+//     id: 6,
+//     title: 'استشارة',
+//     icon: (
+//       <BotMessageSquare size={20} strokeWidth={1} className='text-foreground' />
+//     )
+//   },
+//   {
+//     id: 7,
+//     title: 'التعليقات',
+//     icon: <EMail className='size-8 text-primary' />
+//   },
+//   {
+//     id: 8,
+//     title: 'ارسال كرت صيانة',
+//     icon: <SendService className='size-5' />
+//   },
+//   {
+//     id: 9,
+//     title: 'راسلنا',
+//     icon: <EMail className='size-8 text-primary' />
+//   }
+// ]
 
-export function createUserMenuLinks(menuItems, userId) {
-  return userMenuItems.map(({ id, title }) => ({
-    id,
-    title,
-    href: `/user/${id}/${userId}`
-  }))
-}
+// export function createUserMenuLinks(menuItems, userId) {
+//   return userMenuItems.map(({ id, title }) => ({
+//     id,
+//     title,
+//     href: `/user/${id}/${userId}`
+//   }))
+// }
 
 export const menuItemsUser = userId => {
   return [
@@ -248,7 +248,7 @@ export const menuItemsUser = userId => {
       text: 'سجل المشاهدات'
     },
     {
-      href: `/user/conslntent/${userId}`,
+      href: `/mdx/consultation`,
       icon: (
         <BotMessageSquare
           size={20}
@@ -256,10 +256,10 @@ export const menuItemsUser = userId => {
           className='text-foreground'
         />
       ),
-      text: 'استشارة'
+      text: 'مراجعة الاستشارات'
     },
     {
-      href: `/user/comments/${userId}`,
+      href: `/mdx/info`,
       icon: (
         <MessageCircleMore
           size={20}
@@ -267,7 +267,7 @@ export const menuItemsUser = userId => {
           className='text-foreground'
         />
       ),
-      text: 'التعليقات'
+      text: 'مراجعة التعليقات'
     },
     {
       href: `/mailsystem`,

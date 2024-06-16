@@ -7,9 +7,9 @@ import './empla.css'
 import DialogBox from '@/components/shared/DialogBox'
 import { SectionTitle } from '@/components/shared/SectionTitle'
 
-const ImageSlider = props => {
+const ImageSlider = sliderImage => {
   const OPTIONS = {}
-  const { images } = props
+  const images = sliderImage.sliderImage
   const [emblaRef, emblaApi] = useEmblaCarousel(OPTIONS, [ClassNames()])
   const { selectedIndex, scrollSnaps, onDotButtonClick } =
     useDotButton(emblaApi)
@@ -23,6 +23,7 @@ const ImageSlider = props => {
   const [showImage, setShowImage] = useState(false)
   const [imgUrl, setImgUrl] = useState('')
   const handleShowImage = url => {
+    alert('url: ', url)
     setImgUrl(url)
     setShowImage(true)
   }
@@ -44,21 +45,24 @@ const ImageSlider = props => {
       >
         <div className='embla__viewport' ref={emblaRef}>
           <div className='embla__container'>
-            {images.map((image, index) => (
-              <div
-                className='embla__slide embla__class-names max-w-sm'
-                key={index}
-                onClick={() => handleShowImage(image.image)}
-              >
-                <Image
-                  src={image.image} // Handle missing logo
-                  alt={image.image}
-                  width={1300}
-                  height={100}
-                  className='embla__slide__img rounded-lg'
-                />
-              </div>
-            ))}
+            {images.map((image, index) => {
+              // console.log('image: ', image)
+              return (
+                <div
+                  className='embla__slide embla__class-names max-w-sm'
+                  key={index}
+                  onClick={() => handleShowImage(image)}
+                >
+                  <Image
+                    src={image.image} // Handle missing logo
+                    alt={'image.image'}
+                    width={1300}
+                    height={100}
+                    className='embla__slide__img rounded-lg'
+                  />
+                </div>
+              )
+            })}
           </div>
         </div>
 
@@ -225,6 +229,7 @@ export const DotButton = props => {
 }
 
 const ShowImage = ({ url }) => {
+  console.log(url)
   return (
     <>
       <Image

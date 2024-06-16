@@ -2,16 +2,24 @@
 import React, { useState } from 'react'
 import { Button } from '@/components/ui/button'
 import { Dislike, Like } from '@/components/svg/LikeAndDislike'
-import { HeartHandshake, MessageCircleMore, Share2 } from '@/more/lib/icons'
+import {
+  Clock,
+  HeartHandshake,
+  MessageCircleMore,
+  Share2
+} from '@/more/lib/icons'
 import {
   addDislikeAction,
   addFavoriteAction,
   addLikeAction
 } from './db/addReaction'
 import Swal from 'sweetalert2'
-import { SubSpinner } from '@/components/shared/Spinner'
+import { SubSpinner } from '@/components/shared/spinner/Spinner'
 import { sendReactionMail } from '@/app/_pagecomp/admin/mailsystem/db/inbox'
 import Text from '@/components/shared/Text'
+import NewMailBtn from '../../admin/mailsystem/NewMailBtn'
+import Link from 'next/link'
+import { Separator } from '@/components/ui/separator'
 
 function UserActions({
   session,
@@ -118,9 +126,11 @@ function UserActions({
     setFavItLoading(false)
   }
   return (
-    <div className='fixed right-3 top-[120px] z-50 flex w-full items-center justify-start'>
-      <div className='flex w-fit flex-col items-center justify-center gap-4 rounded-3xl  border border-primary bg-primary/30 p-2  shadow-lg '>
-        {/* <div className='fixed left-2 top-[65px] z-50 flex flex-col items-center justify-end gap-4 px-1 '></div> */}
+    <div className='flex   w-full flex-col items-end justify-start gap-2     '>
+      <div className='flex w-1/3 items-center justify-center rounded-lg bg-primary/25'>
+        <NewMailBtn session={session} providerEmail={providerEmail} />
+      </div>
+      <div className='flex  w-full  items-center justify-around gap-4   border-l border-t   border-primary p-2'>
         <UserAction
           label='Like'
           count={likeCount}
@@ -129,6 +139,7 @@ function UserActions({
           isActive={userActions.isLike}
           onClick={handleLikeAction}
         />
+        <Separator orientation='vertical' />
         <UserAction
           label='Fav'
           count={favCount}
@@ -137,6 +148,7 @@ function UserActions({
           isActive={userActions.isFav}
           onClick={handleFavoriteAction}
         />
+        <Separator orientation='vertical' />
 
         <UserAction
           label='Dislike'
@@ -146,7 +158,9 @@ function UserActions({
           isActive={userActions.isDisLike}
           onClick={handleDislikeAction}
         />
+        <Separator orientation='vertical' />
         <Comments commentCount={commentCount} />
+        <Separator orientation='vertical' />
         <Shared shareCount={shareCount} />
       </div>
     </div>

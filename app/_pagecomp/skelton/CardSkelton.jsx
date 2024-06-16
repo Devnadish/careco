@@ -2,7 +2,7 @@ import { Skeleton } from '@/components/ui/skeleton'
 
 function CardSkelton() {
   return (
-    <div className='flex flex-col space-y-3 rounded-lg border border-border p-6'>
+    <div className='flex flex-col space-y-3 rounded-lg border border-red-500 p-6'>
       <div className='flex items-center justify-between gap-2'>
         <div className='flex items-center gap-2'>
           <Skeleton className='size-12 rounded-full' />

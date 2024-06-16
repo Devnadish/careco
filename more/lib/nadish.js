@@ -11,6 +11,11 @@ export function Slug(text) {
     .replace(/^-+/, '')
     .replace(/-+$/, '')
 }
+
+export const UnSlug = text => {
+  return text.replace(/-/g, ' ')
+}
+
 import { toast } from 'sonner'
 export const Notify = (msg, type, lable = 'نجاح', duration = 5000) => {
   toast[type](lable, {
@@ -92,5 +97,21 @@ export const removeQuery = Qname => {
   params.delete(Qname)
   const queryString = params.toString()
 
+  return queryString
+}
+
+export const multiUrlQuery = queryParams => {
+  const params = new URLSearchParams(window.location.search)
+
+  Object.keys(queryParams).forEach(key => {
+    const value = queryParams[key]
+    if (value) {
+      params.set(key, value)
+    } else {
+      params.delete(key)
+    }
+  })
+
+  const queryString = params.toString()
   return queryString
 }

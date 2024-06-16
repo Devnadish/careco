@@ -2,7 +2,9 @@ import React from 'react'
 
 import { SectionTitle } from '@/components/shared/SectionTitle'
 import { Dislike, Like } from '@/components/svg/LikeAndDislike'
-import ProviderCard from '@/app/_pagecomp/home/ProviderCard'
+import ProviderCard, {
+  ProviderReactionCard
+} from '@/app/_pagecomp/home/ProviderCard'
 import { StarFilled } from '@/components/svg/StarFilled'
 import { HistoryIcon } from '@/components/svg/History'
 import { HeartHandshake, Trash } from '@/more/lib/icons'
@@ -10,6 +12,7 @@ import Text from '@/components/shared/Text'
 import RemoveActionButton from '@/app/_pagecomp/user/useractions/RemoveAction'
 import { getUserActions } from '@/app/_pagecomp/user/db/reaction'
 import { SadFace } from '@/components/svg/SadFace'
+import GoHome from '@/components/shared/GoHome'
 export const dynamic = 'force-dynamic'
 
 // show menu for like and dislike and all reaction
@@ -46,21 +49,32 @@ export async function page({ params }) {
   const requestIcon = requestIconMap[requestCode]
 
   const providersList = await getUserActions(userId, requestCode)
+
   if (providersList.msg === 'noData') {
-    return <NoDataToView msg={requestMessage} icon={requestIcon} />
+    return (
+      <>
+        <div className='fixed bottom-20 left-3  z-50 rounded-full border border-primary bg-primary/50 p-2'>
+          <GoHome />
+        </div>
+        <NoDataToView msg={requestMessage} icon={requestIcon} />
+      </>
+    )
   }
 
-  const { providers: favoriteProviders } = providersList?.providers || {}
+  const { providers } = providersList || {}
 
   return (
-    <div className='absolute top-20 flex w-full flex-wrap items-center justify-center'>
+    <section className=' mb-20 flex  w-full flex-wrap items-center justify-center'>
       <div className='mb-4 flex w-full max-w-5xl items-center justify-start'>
         {requestIcon}
         <SectionTitle title={`قائمة ${requestMessage}`} />
       </div>
+      <div className='fixed bottom-20 left-3  z-50 rounded-full border border-primary bg-primary/50 p-2'>
+        <GoHome />
+      </div>
 
       <div className='flex w-full flex-wrap items-center justify-center gap-4'>
-        {favoriteProviders.map(provider => {
+        {providers.map(provider => {
           return (
             <div key={provider.id}>
               <RemoveActionButton
@@ -68,12 +82,12 @@ export async function page({ params }) {
                 actionId={requestCode}
                 userid={userId}
               />
-              <ProviderCard providerInfo={provider} />
+              <ProviderReactionCard provider={provider} />
             </div>
           )
         })}
       </div>
-    </div>
+    </section>
   )
 }
 

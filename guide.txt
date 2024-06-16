@@ -1,0 +1,77 @@
+
+// const posts = await prisma.post.findMany({
+//   where: {
+//     categories: {
+//       some: {
+//         name: {
+//           contains: "Servers",
+//         },
+//       },
+//     },
+//   },
+// });
+// ow to query inside array with mongodb and prisma
+// To query inside an array with MongoDB and Prisma, you can use the Prisma Client to perform various operations. Here are some examples based on the provided knowledge sources:
+// Querying Many-to-Many Relations
+// To query many-to-many relations in MongoDB, you can use the following approach:
+// Example 1: Finding posts with specific matching category IDs
+
+// const newId1 = new ObjectId();
+// const newId2 = new ObjectId();
+
+// const posts = await prisma.post.findMany({
+//   where: {
+//     categoryIDs: {
+//       hasSome: [newId1.toHexString(), newId2.toHexString()],
+//     },
+//   },
+// });
+// Example 2: Finding posts where the category name contains the string 'Servers'
+
+// const posts = await prisma.post.findMany({
+//   where: {
+//     categories: {
+//       some: {
+//         name: {
+//           contains: 'Servers',
+//         },
+//       },
+//     },
+//   },
+// });
+// Source
+// Filtering on Object Key Value Inside Array
+// Although filtering on object key values within an array is only supported by the MySQL database connector, you can still filter on the presence of entire JSON objects in MongoDB.
+// Example 1: Returning all users where at least one pet is a moose
+
+// const getUsers = await prisma.user.findMany({
+//   where: {
+//     extendedPetsData: {
+//       path: '$[*].petType',
+//       array_contains: 'Moose',
+//     },
+//   },
+// });
+// Example 2: Returning all users where at least one pet has an expired insurance
+
+// const getUsers = await prisma.user.findMany({
+//   where: {
+//     extendedPetsData: {
+//       path: '$[*].insurances[*].status',
+//       array_contains: 'expired',
+//     },
+//   },
+// });
+// Source
+// Efficiently Querying a List of Documents
+// To efficiently query a list of documents in MongoDB, you can use the following approach:
+
+// export function getCreationsFromShareTokens(shareTokens: string[]) {
+//   return prisma.creation.findMany({
+//     where: {
+//       OR: shareTokens.map(token => ({ shareToken: token })),
+//     },
+//     select: { images: true, style: true, prompt: true },
+//     orderBy: { id: 'desc' },
+//   });
+// }

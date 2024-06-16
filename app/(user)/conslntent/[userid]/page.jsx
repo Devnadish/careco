@@ -1,7 +1,14 @@
+import UnderConsraction from '@/components/UnderConsraction'
 import React from 'react'
 
 function page({ params }) {
-  return <div>Conseltant {params.userid}</div>
+  return (
+    <div>
+      <UnderConsraction pageName={'صفحة  الاستشارات'}>
+        {params.userid}
+      </UnderConsraction>
+    </div>
+  )
 }
 
 export default page

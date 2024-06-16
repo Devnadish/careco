@@ -3,77 +3,113 @@ import db from '@/more/lib/prisma'
 import { revalidatePath } from 'next/cache'
 import { CollectRatine } from './rateDb'
 import { Slug } from '@/more/lib/nadish'
-import { CldImage } from 'node_modules/next-cloudinary/dist/index'
 
-export const getProviders = async (pageNo, query) => {
-  const { vechile, type, sort, search, sorttype } = query || {}
+export const getProviderList = async (pageNo, query) => {
+  const { vechile, type, sort, search, sorttype, service, department } =
+    query || {}
 
+  // await fixSlug()  // Function to update slug
   const searchStr = search || ''
   const searchKey = searchStr[searchStr.length - 1]
   const searchString = searchStr.slice(0, -7)
 
-  let searchWhere
-  if (search) {
-    switch (searchKey) {
-      case '0':
-        // searchWhere = { providerName: searchString }
-        searchWhere = {
-          providerName: {
-            contains: searchString
-          }
-        }
+  let carCondition = carFilter(vechile)
+  let departmentcondition = departmentFilter(department)
+  let servicecondition = serviceFilter(service)
+  let typeCondition = typeFilter(type)
+  let searchWhere = searchFilter(searchKey, searchString)
 
-        break
-      case '1':
-        searchWhere = {
-          description: {
-            contains: searchString
-          }
-        }
-        // searchWhere = { description: searchString }
-        break
-      case '2':
-        searchWhere = {
-          detail: {
-            contains: searchString
-          }
-        }
-        // searchWhere = { detail: searchString }
-        break
+  const whereCondition = {
+    ...carCondition,
+    ...typeCondition,
+    ...searchWhere,
+    ...departmentcondition,
+    ...servicecondition
+  }
+  const sortBy = Sorting(sort, sorttype)
 
-      default:
-        searchWhere = {}
-        break
+  const limit = parseInt(process.env.PROVODER_PAGE_LIMIT)
+  const skip = (pageNo - 1) * limit
+  const providers = await db.provider.findMany({
+    take: limit,
+    skip,
+    where: whereCondition,
+    orderBy: sortBy,
+    include: {
+      cars: true,
+      department: true,
+      service: true
     }
+  })
+
+  revalidatePath('/')
+  const ProvidersCount = await db.provider.findMany({
+    where: whereCondition,
+    include: {
+      cars: true,
+      department: true,
+      service: true
+    }
+  })
+
+  const totalProvidersCount = ProvidersCount.length
+
+  const pageCount = Math.ceil(totalProvidersCount / limit)
+  revalidatePath('/')
+  return {
+    providers,
+    pageCount,
+    totalProvidersCount
   }
+}
 
-  // TODO: fix this find solution for car rateing shold be in provider db
+const departmentFilter = department => {
+  let departmentcondition = {}
 
-  let carId
-  if (vechile) {
-    carId = await db.car.findFirst({
-      where: { name: vechile },
-      select: { id: true }
-    })
-  }
-
-  let carCondition = {}
-
-  if (carId) {
-    carCondition = {
-      carFixing: {
-        hasEvery: [carId.id]
+  if (department) {
+    departmentcondition = {
+      department: {
+        some: {
+          slug: department
+        }
       }
     }
   }
 
-  let typeCondition = {}
-  if (type) {
-    typeCondition = { type: type }
+  return departmentcondition
+}
+
+const serviceFilter = department => {
+  let departmentcondition = {}
+
+  if (department) {
+    departmentcondition = {
+      service: {
+        some: {
+          slug: department
+        }
+      }
+    }
   }
 
-  const whereCondition = { ...carCondition, ...typeCondition, ...searchWhere }
+  return departmentcondition
+}
+const carFilter = car => {
+  let carCondition = {}
 
+  if (car) {
+    carCondition = {
+      cars: {
+        some: {
+          name: car
+        }
+      }
+    }
+  }
+
+  return carCondition
+}
+const Sorting = (sort, sorttype) => {
   let sortBy
   switch (sort) {
     case 'star':
@@ -95,67 +131,69 @@ export const getProviders = async (pageNo, query) => {
       sortBy = { starCount: sorttype }
       break
   }
-
-  const limit = parseInt(process.env.PROVODER_PAGE_LIMIT)
-  const skip = (pageNo - 1) * limit
-  const providers = await db.provider.findMany({
-    take: limit,
-    skip,
-    where: whereCondition,
-    orderBy: sortBy
-  })
-
-  const totalProvidersCount = await db.provider.count({ where: carCondition })
-  const pageCount = Math.ceil(totalProvidersCount / limit)
-  revalidatePath('/')
-  return { providers, pageCount, totalProvidersCount }
+  return sortBy
 }
 
-export const getProviderList = async (pageNo, query) => {
-  const { providers, pageCount, totalProvidersCount } = await getProviders(
-    pageNo,
-    query
-  )
+const searchFilter = (searchKey, search) => {
+  let searchWhere
+  if (search) {
+    switch (searchKey) {
+      case '0':
+        searchWhere = {
+          providerName: {
+            contains: searchString
+          }
+        }
 
-  const DeptAndServices = await db.service.findMany({
-    select: { type: true, service: true, logo: true, slug: true }
-  })
+        break
+      case '1':
+        searchWhere = {
+          description: {
+            contains: searchString
+          }
+        }
+        break
+      case '2':
+        searchWhere = {
+          detail: {
+            contains: searchString
+          }
+        }
+        break
 
-  const departments = DeptAndServices.filter(s => s.type === 'department')
-  const extraServices = DeptAndServices.filter(s => s.type === 'subservice')
-
-  const getProviderDetails = async provider => {
-    const cars = await db.ProviderCarFixing.findMany({
-      where: { providerid: provider.id },
-      select: { name: true }
-    })
-    const department = await db.ProviderDepartment.findMany({
-      where: { providerid: provider.id },
-      select: { department: true }
-    })
-    const service = await db.ProviderService.findMany({
-      where: { providerid: provider.id },
-      select: { logo: true }
-    })
-
-    try {
-      const rate = await CollectRatine(provider.id)
-      return { provider, cars, department, service, rate }
-    } catch (error) {
-      // TODO: Handle error insteed of console log  show Error In  Front Component with Disgist NO
-      console.log(error)
-      return
+      default:
+        searchWhere = {}
+        break
     }
   }
 
-  const newProviders = await Promise.all(providers.map(getProviderDetails))
-  revalidatePath('/')
+  return searchWhere
+}
 
-  return {
-    providers: newProviders,
-    pageCount: pageCount,
-    totalProvidersCount: totalProvidersCount,
-    departments: departments,
-    extraServices: extraServices
+const typeFilter = type => {
+  const typeCondition = type ? { type } : {}
+  return typeCondition
+}
+
+const fixSlug = async () => {
+  const departments = await db.PRdepartment.findMany({})
+  const services = await db.PRservice.findMany({})
+
+  for (const department of departments) {
+    const newSlug = Slug(department.name)
+    console.log('🚀 ~ fixSlug ~ newSlug:', newSlug)
+    await db.PRdepartment.update({
+      where: { id: department.id },
+      data: { slug: newSlug }
+    })
+  }
+
+  for (const department of services) {
+    const newSlug = Slug(department.name)
+    console.log('🚀 ~ fixSlug ~ newSlug-services:', newSlug)
+    await db.PRservice.update({
+      where: { id: department.id },
+      data: { slug: newSlug }
+    })
   }
 }

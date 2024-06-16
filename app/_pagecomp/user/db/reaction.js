@@ -17,13 +17,20 @@ export const getUserActions = async (userid, actionid) => {
   const ids = providerIds.map(provider => provider.providerid)
 
   const requiestedProviders = await db.provider.findMany({
-    where: { id: { in: ids } }
+    where: { id: { in: ids } },
+    include: {
+      cars: true,
+      department: true,
+      service: true,
+      images: true
+    }
   })
-
-  const finalProviders = await ProviderList(requiestedProviders)
+  console.log(requiestedProviders)
+  // const finalProviders = await ProviderList(requiestedProviders)
 
   return {
-    providers: finalProviders
+    // providers: finalProviders
+    providers: requiestedProviders
     // pageCount: pageCount,
     // totalProvidersCount: totalProvidersCount
   }

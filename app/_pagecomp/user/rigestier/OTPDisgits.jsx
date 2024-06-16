@@ -10,7 +10,7 @@ import {
 } from '@/components/ui/input-otp'
 import { useState } from 'react'
 import { activationsUser } from '../db/user'
-import LogoSpinnerInline from '@/components/shared/LogoSpinnerInline'
+import LogoSpinnerInline from '@/components/shared/spinner/LogoSpinnerInline'
 import { Notify } from '@/more/lib/nadish'
 import { useSession } from 'next-auth/react'
 

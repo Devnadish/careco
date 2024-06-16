@@ -5,16 +5,13 @@ import { getProviderList } from '@/app/_pagecomp/provider/db/providerList'
 import { usePathname, useSearchParams } from 'next/navigation'
 import ProviderCard from './ProviderCard'
 import { Nodata } from './Nodata'
-import { SubSpinner } from '@/components/shared/Spinner'
+import { SubSpinner } from '@/components/shared/spinner/Spinner'
 export const dynamic = 'force-dynamic'
 
 const LoadMore = ({ query, pageCount }) => {
   const [providers, setProviders] = useState([])
   const [pageIndex, setPageIndex] = useState(1)
-  const { ref, inView } = useInView({
-    // threshold: 0,
-    // rootMargin: '0px 0px 10% 0px' // Adjusted to work with 90vh
-  })
+  const { ref, inView } = useInView()
   const pathname = usePathname()
   const searchParams = useSearchParams()
 
@@ -45,7 +42,7 @@ const LoadMore = ({ query, pageCount }) => {
     <>
       <div className='grid w-full   grid-cols-1  justify-items-center gap-4 p-4 md:grid-cols-2 lg:grid-cols-3'>
         {providers.map(provider => (
-          <ProviderCard key={provider.id} providerInfo={provider} />
+          <ProviderCard key={provider.id} provider={provider} />
         ))}
       </div>
       <div className=' flex items-center justify-center' ref={ref}>
@@ -58,7 +55,7 @@ const LoadMore = ({ query, pageCount }) => {
 
 export default LoadMore
 
-export const SubSpinner1 = () => {
+const SubSpinner1 = () => {
   return (
     <div className='fixed top-0 z-50 size-6 animate-spin rounded-full border-b-2 border-t-2 border-blue-600' />
   )

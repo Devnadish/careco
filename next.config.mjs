@@ -1,5 +1,18 @@
 /** @type {import('next').NextConfig} */
+import nextMDX from '@next/mdx'
 import withPlaiceholder from '@plaiceholder/next'
+
+import remarkFrontmatter from 'remark-frontmatter'
+import rehypeHighlight from 'rehype-highlight'
+
+const withMDX = nextMDX({
+  extension: /\.(md|mdx)$/,
+  options: {
+    remarkPlugins: [remarkFrontmatter],
+    rehypePlugins: [rehypeHighlight]
+  }
+})
+
 const nextConfig = {
   // logging:{
   //   fetches:{fullUrl:true}
@@ -26,4 +39,8 @@ const nextConfig = {
   }
 }
 
-export default withPlaiceholder(nextConfig)
+export default withMDX({
+  ...nextConfig,
+  pageExtensions: ['js', 'jsx', 'ts', 'tsx', 'md', 'mdx']
+})
+// export default withPlaiceholder(nextConfig)

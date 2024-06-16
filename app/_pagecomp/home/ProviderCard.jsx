@@ -11,55 +11,61 @@ import { Like } from '@/components/svg/LikeAndDislike'
 import { Separator } from '@/components/ui/separator'
 import Image from 'next/image'
 import Link from 'next/link'
+import { StarFilled } from '@/components/svg/StarFilled'
 
-function ProviderCard({ providerInfo }) {
-  const { provider, cars, department, service, rate } = providerInfo
+function ProviderCard({ provider }) {
+  console.log(provider)
+
   return (
     <Link
       href={{
-        pathname: `/provider/${provider.slug}`
+        pathname: `/provider/${provider?.slug}`
       }}
       className=' flex h-full w-[300px]  rounded-md border border-border  shadow-lg hover:border-primary'
     >
       <Card className='flex w-full flex-grow flex-col items-center justify-between  rounded-md'>
-        <CardHeader className='relative mb-4 flex w-full  flex-col items-center bg-primary/10 pb-4 '>
+        <CardHeader className='relative mb-4 flex w-full  flex-col items-center border-b border-border pb-4 '>
           <Location
-            city={provider.city}
-            dist={provider.dist}
-            typeIcon={providerTypeIcon(provider.type)}
-            typeName={providerType(provider.type)}
+            city={provider?.city}
+            dist={provider?.dist}
+            typeIcon={providerTypeIcon(provider?.type)}
+            typeName={providerType(provider?.type)}
           />
           <div className='flex w-full items-baseline gap-1 '>
             <Avatar
-              src={provider.logo}
-              alt={provider.providerName}
+              src={provider?.logo}
+              alt={provider?.providerName}
               fallBack={'kn'}
             />
             <p className='font-cairo text-muted-foreground '>
-              {provider.providerName}
+              {provider?.providerName}
             </p>
           </div>
-          <RateAndExtraSevice moreService={service} rate={rate?.percentage} />
+          <RateAndExtraSevice
+            moreService={provider?.service}
+            // FIXME:RECalculate rate
+            // rate={rate?.percentage}
+            rate={provider?.starCount}
+          />
         </CardHeader>
 
-        <CardContent className='flex  h-full flex-col items-start justify-between gap-4'>
-          <ProviderDepartments departments={department} />
-
-          <CarFix carTypes={cars} />
+        <CardContent className='flex  h-full flex-col items-start justify-between gap-2'>
+          <ProviderDepartments departments={provider?.department} />
+          <CarFix carTypes={provider?.cars} />
           <Text fontSize='xs' opacity='O70' className='leading-relaxed'>
-            {provider.heroSlogon}
+            {provider?.heroSlogon}
           </Text>
         </CardContent>
 
         <CardFooter className='flex w-full justify-between p-0'>
           <CardBar
-            likeCount={provider.likeCount}
-            disLikeCount={provider.disLikeCount}
-            starCount={provider.starCount}
-            commentCount={provider.commentCount}
-            favCount={provider.favCount}
-            viewerCount={provider.viewerCount}
-            shareCount={provider.shareCount}
+            likeCount={provider?.likeCount}
+            disLikeCount={provider?.disLikeCount}
+            starCount={provider?.starCount}
+            commentCount={provider?.commentCount}
+            favCount={provider?.favCount}
+            viewerCount={provider?.viewerCount}
+            shareCount={provider?.shareCount}
           />
         </CardFooter>
       </Card>
@@ -68,6 +74,64 @@ function ProviderCard({ providerInfo }) {
 }
 
 export default ProviderCard
+
+export function ProviderReactionCard({ provider }) {
+  return (
+    <Link
+      href={{
+        pathname: `/provider/${provider?.slug}`
+      }}
+      className=' flex h-full w-[300px]  rounded-md border border-border  shadow-lg hover:border-primary'
+    >
+      <Card className='flex w-full flex-grow flex-col items-center justify-between  rounded-md'>
+        <CardHeader className='relative mb-4 flex w-full  flex-col items-center '>
+          <Location
+            city={provider?.city}
+            dist={provider?.dist}
+            typeIcon={providerTypeIcon(provider?.type)}
+            typeName={providerType(provider?.type)}
+          />
+          <div className='flex w-full items-baseline gap-1 '>
+            <Avatar
+              src={provider?.logo}
+              alt={provider?.providerName}
+              fallBack={'kn'}
+            />
+            <p className='font-cairo text-muted-foreground '>
+              {provider?.providerName}
+            </p>
+          </div>
+          <div className='relative  flex size-20 flex-col items-center justify-center '>
+            <StarFilled className='size-20 text-yellow-300' />
+            <p className='absolute top-1/2 -translate-y-1/2 text-center text-xl font-bold text-black'>
+              {provider?.starCount}%
+            </p>
+          </div>
+        </CardHeader>
+
+        {/* <CardContent className='flex  h-full flex-col items-start justify-between gap-2'>
+          <ProviderDepartments departments={provider?.department} />
+          <CarFix carTypes={provider?.cars} />
+          <Text fontSize='xs' opacity='O70' className='leading-relaxed'>
+            {provider?.heroSlogon}
+          </Text>
+        </CardContent> */}
+
+        <CardFooter className='flex w-full justify-between p-0'>
+          <CardBar
+            likeCount={provider?.likeCount}
+            disLikeCount={provider?.disLikeCount}
+            starCount={provider?.starCount}
+            commentCount={provider?.commentCount}
+            favCount={provider?.favCount}
+            viewerCount={provider?.viewerCount}
+            shareCount={provider?.shareCount}
+          />
+        </CardFooter>
+      </Card>
+    </Link>
+  )
+}
 
 function Location({ city, dist, typeName, typeIcon }) {
   return (
@@ -89,26 +153,29 @@ function Location({ city, dist, typeName, typeIcon }) {
 
 export const ProviderDepartments = ({ departments }) => {
   return (
-    <div className='flex w-full max-w-[300px] flex-wrap items-center justify-evenly gap-2 '>
-      {departments.map(({ department }, index) => (
+    <div className='flex w-full max-w-[300px] flex-wrap items-center justify-evenly gap-2 rounded-lg border border-border p-1'>
+      {departments?.map(({ name }, index) => (
         <Badge
           variant='outline'
           className='flex flex-grow items-center justify-center border-border'
           key={index}
         >
-          <Text className='text-primary'>{department}</Text>
+          <Text className=' text-xs'>{name}</Text>
         </Badge>
       ))}
-      <Separator />
+      {/* <Separator /> */}
     </div>
   )
 }
 
 export const CarFix = ({ carTypes }) => {
   return (
-    <ScrollArea className='h-[100px] w-full rounded p-1 pl-3' dir='rtl'>
+    <ScrollArea
+      className='h-[100px] w-full rounded-lg border border-border p-1 pl-3 '
+      dir='rtl'
+    >
       <div className='flex w-full flex-wrap items-center justify-center gap-1 '>
-        {carTypes.map(({ name }, index) => (
+        {carTypes?.map(({ name }, index) => (
           <Badge
             key={index}
             variant='outline'
@@ -129,12 +196,12 @@ export const RateAndExtraSevice = ({ moreService, rate }) => {
   return (
     <div className='relative flex w-full items-end justify-between gap-1 px-2'>
       <div className='flex    flex-wrap items-center justify-center gap-2'>
-        {moreService.map(({ logo }, index) => {
+        {moreService?.map(({ image, name }, index) => {
           return (
             <Image
               key={index}
-              src={`/extraservicelogo/${logo}`}
-              alt={logo}
+              src={`/extraservicelogo/${image}`}
+              alt={name}
               width={24}
               height={24}
               // placeholder='blur'
@@ -173,7 +240,7 @@ export const CardBar = ({
   const style1 =
     'flex h-8 w-12  items-center justify-center rounded  p-1 text-muted-foreground '
   return (
-    <div className='flex h-9 w-full items-center justify-evenly  border-t'>
+    <div className='flex h-9 w-full items-center justify-evenly  border-t border-border'>
       <Text fontSize={'xs'} className={style1}>
         <MessageCircleMore className='size-6 text-green-500' />
         {commentCount}

@@ -10,43 +10,20 @@ export const providerData = async (providerSlug, userid) => {
   const providerid = await db.provider.findFirst({
     where: { slug: decodeURIComponent(providerSlug) }
   })
+
   const id = providerid.id
-  const providerInfo = await db.provider.findFirst({ where: { id: id } })
-  const whereCondition = { providerid: id }
-
-  const cars = await db.ProviderCarFixing.findMany({
-    where: whereCondition,
-    select: {
-      name: true,
-      image: true
-    }
-  })
-
-  const department = await db.ProviderDepartment.findMany({
-    where: whereCondition,
-    select: {
-      id: true,
+  const providerInfo = await db.provider.findFirst({
+    where: { id: id },
+    include: {
+      cars: true,
       department: true,
-      departmentid: true,
-      slug: true,
-      description: true,
-      logo: true
-    }
-  })
-  const service = await db.ProviderService.findMany({
-    where: whereCondition,
-    select: {
-      id: true,
       service: true,
-      slug: true,
-      description: true,
-      logo: true
+      images: true
     }
   })
 
   const rate = await CollectRatine(id)
   const userActions = await CheckUserAction(id, userid)
-  const Imeges = await db.image.findMany({ where: { providerid: id } })
 
   // Increase viewr By One
   const addProviderViewer = await addViewer(id, userid)
@@ -54,10 +31,6 @@ export const providerData = async (providerSlug, userid) => {
   revalidatePath('/')
   return {
     providerInfo,
-    cars,
-    Imeges,
-    department,
-    service,
     rate,
     userActions
   }

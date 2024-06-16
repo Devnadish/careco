@@ -1,77 +1,210 @@
 {
-  "provider": {
-    "id": "6650f35d19e2ff82502b3040",
-    "slug": "دكتور-راسم-بودوارة",
-    "providerName": "دكتور راسم بودوارة",
-    "email": "Jeanne12@example.com",
-    "mobile": "229.483.6572 x35478",
-    "coverImage": "https://avatars.githubusercontent.com/u/51389163",
-    "logo": "https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/526.jpg",
-    "heroSlogon": "الكبرى جيد نجمة اليقظة يرتجف لطيف جرس نتهم مكاتب تدوس.",
-    "starCount": 91,
-    "commentCount": 32,
-    "likeCount": 93,
-    "disLikeCount": 5,
-    "viewerCount": 0,
-    "favCount": 76,
-    "shareCount": 69,
-    "workingHours": {
-      "Sunday": { "workDay": true, "hour": ["08:00", "12:00", "13:00", "18:00"] },
-      "Monday": { "workDay": true, "hour": ["08:00", "12:00", "13:00", "18:00"] },
-      "Tuesday": { "workDay": true, "hour": ["08:00", "12:00", "13:00", "18:00"] },
-      "Wednesday": { "workDay": true, "hour": ["08:00", "12:00", "13:00", "18:00"] },
-      "Thursday": { "workDay": true, "hour": ["08:00", "12:00", "13:00", "18:00"] },
-      "Friday": { "workDay": false, "hour": ["08:00", "12:00", "13:00", "18:00"] },
-      "Saturday": { "workDay": true, "hour": ["08:00", "12:00", "13:00", "18:00"] }
-    },
-    "description": "أجوف شهرة الرأفة خطأ بالكاد يوضح اخر بعنف كشط. برودة تدوس يمثل يفتح يتعقب طالب بعنف والنسيج. أثاث حلها يلمس هذا جهد رماد يصدق أوافق. الموقف الموعد حضن برودة ماهر. الجبر شعر جرس استوديو ملل مستمر. حياة عنوان متوسط مرارًا ربط ايقاد الموعد اقف يضحك شجيرة.",
-    "detail": "منهم الشفق يفضل يكون أرتب صوت هي ديون ألحق. حساب البقية مصلح. سبورة سهم جسم لوم ناعم بالتأكيد مقاطعة إليك. مسرح إمضاء أميل الجبر شريك سويا رقبة أوزة عادة. ينام يأتي ديون تحية محبوب الأكثر اللطف يقارن الناس. كشط حسنة دعه. أغنية من ماذا ذراع محبوب ملل حبيب لون. جوية الجانبين بأغلبية. يستوعب سهل ذلك السرج خزان ثالث بقدر اسمنت. أعتقد له ماشية أمان رجولي عدالة يتمتع. قوي نستنتج حقيقي واع الحمامات زال. قبول شريك يتبنى قصير ذيل صده العمل. بيئة طعام تصل حلها نقود مادة. الفائز أفتح ثلاث هم اجلس الرافض رياح عتيق يحذب إيداع. علاج أحاول الفائز مقبول الموسم جمال اختراعات. عم ابرم اجلس ضعيف أخرى عنوان هذا منتج معبد. حياة الجاد مرآة رمي الموت شاهد. إنه باستمرار السماع رياح. سويا مستمع خلوق بالكاد أذن عمة ناعم حق قبل تحدث. وأود بشكل ملل خجول متشوق سمحت قليل متطابقة الكبرى. رقابة يعرفون عنوان.",
-    "type": "c",
-    "city": "القريات",
-    "dist": "واديالدواسر",
-    "branchCount": 9,
-    "userid": "khalidjadish",
-    "createdAt": new Date("2024-05-24T20:06:53.000Z"),
-    "updatedAt": new Date("2024-05-24T20:06:53.000Z")
+{
+  "id": "666c48edc819bbb8687fc586",
+  "slug": "فواز-جراد",
+  "providerName": "فواز جراد",
+  "email": "Linwood.Hoeger@gmail.com",
+  "mobile": "710-867-5750 x981",
+  "coverImage": "https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/425.jpg",
+  "logo": "https://avatars.githubusercontent.com/u/29120257",
+  "heroSlogon": "رسمي عدد اليقظة يكون الملابس يمين.",
+  "starCount": 273,
+  "commentCount": 33,
+  "likeCount": 79,
+  "disLikeCount": 57,
+  "viewerCount": 1,
+  "favCount": 36,
+  "shareCount": 69,
+  "workingHours": {
+    "Sunday": { "workDay": true, "hour": ["08:00", "12:00", "13:00", "18:00"] },
+    "Monday": { "workDay": true, "hour": ["08:00", "12:00", "13:00", "18:00"] },
+    "Tuesday": { "workDay": true, "hour": ["08:00", "12:00", "13:00", "18:00"] },
+    "Wednesday": { "workDay": true, "hour": ["08:00", "12:00", "13:00", "18:00"] },
+    "Thursday": { "workDay": true, "hour": ["08:00", "12:00", "13:00", "18:00"] },
+    "Friday": { "workDay": false, "hour": ["08:00", "12:00", "13:00", "18:00"] },
+    "Saturday": { "workDay": true, "hour": ["08:00", "12:00", "13:00", "18:00"] }
   },
-  "cars": [
-    { "name": "kia" },
-    { "name": "chrysler" },
-    { "name": "mitsubishi" },
-    { "name": "kia" },
-    { "name": "mazda" },
-    { "name": "cherry" },
-    { "name": "changan" },
-    { "name": "dodge" },
-    { "name": "buick" }
-  ],
-  "department": [
-    { "department": "برمجة" },
-    { "department": "شكمانات" },
-    { "department": "ميكانيكا" },
-    { "department": "برمجة" },
-    { "department": "تعديل" }
-  ],
-  "service": [
-    { "logo": "carrepairontime.svg" },
-    { "logo": "check_car_before_buy.svg" },
-    { "logo": "warranty.svg" },
-    { "logo": "support_on_road.svg" },
-    { "logo": "carrepairontime.svg" },
-    { "logo": "loyalty.svg" },
-    { "logo": "loyalty.svg" }
-  ],
-  "rate": {
-    "star1": 0,
-    "star2": 0,
-    "star3": 0,
-    "star4": 0,
-    "star5": 0,
-    "overAllrate5": 0,
-    "totalRate": 0,
-    "percentage": NaN
-  }
+  "description": "اقرر فضائي حب لا أخضر الأمل فريق الوصاية. متطور العنوان أخضر منحن. والتكامل بداهة ذهبي صحيح بيئة آمل باقية. يدق ظل تصدع طاولة اضحك أريد اجلس. مخمن ليتم يمارس خزانة ضيق الموجة. كاحل رسمي المدفأة أستسلم معماري لأن المرونة مقاطعة قميص التسلق.",
+  "detail": "اضع المقصود الجبر يلائم يرتقع بكثرة طالب. الجاد دورة امن المدفأة يقولون فاجأ. مبنى استطيع مادة حقًا مضيف حذر. مهدئ عاصف شاب يكنس ذلك. اسمنت أي طالب خطأ يبحث مدهش. مهجور منحن أعمى حساس نفسها كثيرة خاشع مشين حر يمثل.",
+  "type": "h",
+  "city": "الثقبة",
+  "dist": "الأحساء",
+  "branchCount": 4,
+  "userid": "khalidnadish",
+  "createdAt": "2024-06-14T13:43:09.000Z",
+  "updatedAt": "2024-06-14T18:42:05.000Z"
 }
-
-
- 
+    "cars": [
+      {
+        "id": "666c48edc819bbb8687fc587",
+        "slug": "",
+        "carid": "6663569eb78028d4f59f1606",
+        "name": "greatwall",
+        "image": "/carlogo/greatwall-logo.svg",
+        "ProviderId": "666c48edc819bbb8687fc586"
+      },
+      {
+        "id": "666c48edc819bbb8687fc588",
+        "slug": "",
+        "carid": "6663569cb78028d4f59f15e9",
+        "name": "haval",
+        "image": "/carlogo/haval-logo.svg",
+        "ProviderId": "666c48edc819bbb8687fc586"
+      },
+      {
+        "id": "666c48edc819bbb8687fc589",
+        "slug": "",
+        "carid": "6663569cb78028d4f59f15ec",
+        "name": "chevrolet",
+        "image": "/carlogo/chevrolet-logo.svg",
+        "ProviderId": "666c48edc819bbb8687fc586"
+      },
+      {
+        "id": "666c48edc819bbb8687fc58a",
+        "slug": "",
+        "carid": "6663569cb78028d4f59f15e5",
+        "name": "honda",
+        "image": "/carlogo/honda-logo.svg",
+        "ProviderId": "666c48edc819bbb8687fc586"
+      }
+    ],
+    "departments":
+    [
+      {
+        "id": "666c48edc819bbb8687fc58b",
+        "slug": "",
+        "departmentId": "6668884ab66f241ffc78ea28",
+        "name": " تربيط وشد",
+        "image": "trbit.svg",
+        "ProviderId": "666c48edc819bbb8687fc586"
+      },
+      {
+        "id": "666c48edc819bbb8687fc58c",
+        "slug": "",
+        "departmentId": "6668884ab66f241ffc78ea23",
+        "name": "شكمانات",
+        "image": "exhaust.svg",
+        "ProviderId": "666c48edc819bbb8687fc586"
+      },
+      {
+        "id": "666c48edc819bbb8687fc58d",
+        "slug": "",
+        "departmentId": "6668884ab66f241ffc78ea25",
+        "name": "تعديل",
+        "image": "",
+        "ProviderId": "666c48edc819bbb8687fc586"
+      },
+      {
+        "id": "666c48edc819bbb8687fc58e",
+        "slug": "",
+        "departmentId": "6668884bb66f241ffc78ea2d",
+        "name": "التكييف والتبريد ",
+        "image": "aircodition.svg",
+        "ProviderId": "666c48edc819bbb8687fc586"
+      },
+      {
+        "id": "666c48edc819bbb8687fc58f",
+        "slug": "",
+        "departmentId": "6668884ab66f241ffc78ea27",
+        "name": "برمجة",
+        "image": "computer.svg",
+        "ProviderId": "666c48edc819bbb8687fc586"
+      }
+    ]
+    service: [
+      {
+        id: '666c48edc819bbb8687fc590',
+        name: 'ا داعي للقلق: سحب سريع وآمن',
+        slug: '',
+        serviceId: '6668884ab66f241ffc78ea1f',
+        image: 'towtruck.svg',
+        ProviderId: '666c48edc819bbb8687fc586'
+      },
+      {
+        id: '666c48edc819bbb8687fc591',
+        name: 'لمعان بعد الصيانة',
+        slug: '',
+        serviceId: '6668884bb66f241ffc78ea2c',
+        image: 'carwash.svg',
+        ProviderId: '666c48edc819bbb8687fc586'
+      },
+      {
+        id: '666c48edc819bbb8687fc592',
+        name: 'خدمات فحص ما قبل الشراء',
+        slug: '',
+        serviceId: '6668884ab66f241ffc78ea1d',
+        image: 'check_car_before_buy.svg',
+        ProviderId: '666c48edc819bbb8687fc586'
+      },
+      {
+        id: '666c48edc819bbb8687fc593',
+        name: 'فارس الطريق',
+        slug: '',
+        serviceId: '6668884ab66f241ffc78ea20',
+        image: 'support_on_road.svg',
+        ProviderId: '666c48edc819bbb8687fc586'
+      },
+      {
+        id: '666c48edc819bbb8687fc594',
+        name: 'كافئ نفسك مع "تجميع نقاط"!',
+        slug: '',
+        serviceId: '6668884ab66f241ffc78ea1c',
+        image: 'loyalty.svg',
+        ProviderId: '666c48edc819bbb8687fc586'
+      }
+    ],
+    images: Array(8) [
+      {
+        id: '666c48edc819bbb8687fc595',
+        image: 'https://avatars.githubusercontent.com/u/98922013',
+        type: 'slider',
+        ProviderId: '666c48edc819bbb8687fc586'
+      },
+      {
+        id: '666c48edc819bbb8687fc596',
+        image: 
+          'https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/14.jpg',
+        type: 'slider',
+        ProviderId: '666c48edc819bbb8687fc586'
+      },
+      {
+        id: '666c48edc819bbb8687fc597',
+        image: 'https://avatars.githubusercontent.com/u/38888617',
+        type: 'slider',
+        ProviderId: '666c48edc819bbb8687fc586'
+      },
+      {
+        id: '666c48edc819bbb8687fc598',
+        image: 
+          'https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/731.jpg',
+        type: 'slider',
+        ProviderId: '666c48edc819bbb8687fc586'
+      },
+      {
+        id: '666c48edc819bbb8687fc599',
+        image: 'https://avatars.githubusercontent.com/u/47018704',
+        type: 'slider',
+        ProviderId: '666c48edc819bbb8687fc586'
+      },
+      {
+        id: '666c48edc819bbb8687fc59a',
+        image: 
+          'https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/303.jpg',
+        type: 'slider',
+        ProviderId: '666c48edc819bbb8687fc586'
+      },
+      {
+        id: '666c48edc819bbb8687fc59b',
+        image: 'https://avatars.githubusercontent.com/u/48466664',
+        type: 'slider',
+        ProviderId: '666c48edc819bbb8687fc586'
+      },
+      {
+        id: '666c48edc819bbb8687fc59c',
+        image: 
+          'https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/779.jpg',
+        type: 'slider',
+        ProviderId: '666c48edc819bbb8687fc586'
+      }
+    ]
+  }

@@ -9,11 +9,10 @@ import { Testmoinal } from '@/app/_pagecomp/provider/sections/Testmoinal'
 import Fotter from '@/app/_pagecomp/provider/sections/Fotter'
 import { CarFixing } from '@/app/_pagecomp/provider/sections/CarFixing'
 import { Detail } from '@/app/_pagecomp/provider/sections/Detail'
-import UserActions from '@/app/_pagecomp/user/useractions/UserActions'
 import { providerData } from '@/app/_pagecomp/provider/db/singleProvider'
-import { RateSection } from '@/app/_pagecomp/provider/sections/RateSection'
 import { HeroSection } from '@/app/_pagecomp/provider/sections/HeroSection'
 import { Department } from '@/app/_pagecomp/provider/sections/Department'
+import GoHome from '@/components/shared/GoHome'
 
 export const dynamic = 'force-dynamic'
 
@@ -22,15 +21,14 @@ async function page({ params }) {
   const session = await getServerSession(options)
   const providerDetail = await providerData(providerId, session?.user?.id)
 
-  const { providerInfo, cars, department, service, rate, Imeges, userActions } =
-    providerDetail
-
+  const { providerInfo, rate, userActions } = providerDetail
+  console.log(providerInfo)
   const thisProvider =
     session?.user?.role === 'provider' &&
     session.user.email === providerInfo.email
 
   return (
-    <div className='container flex flex-col items-center justify-center'>
+    <div className='container mb-20 mt-[50px] flex w-full flex-col items-center justify-center'>
       <div className='flex w-full items-center justify-end'>
         {thisProvider && <ProviderMenu providerid={providerInfo.id} />}
       </div>
@@ -44,6 +42,8 @@ async function page({ params }) {
       <HeroSection
         heroSlogon={providerInfo.heroSlogon}
         logo={providerInfo.logo}
+        providerId={providerInfo.id}
+        slug={providerInfo.slug}
         providerName={providerInfo.providerName}
         type={providerInfo.type}
         city={providerInfo.city}
@@ -52,31 +52,6 @@ async function page({ params }) {
         providerid={providerInfo.providerid}
         session={session}
         providerEmail={providerInfo.email}
-      />
-      <CarFixing providerCarTypes={cars} />
-      <Detail
-        detail={providerInfo.detail}
-        description={providerInfo.description}
-      />
-      <Department
-        department={department}
-        providerId={providerId}
-        providerSlug={providerInfo.slug}
-      />
-      <ImageSlider images={Imeges} />
-      <ExtraServices
-        service={service}
-        providerId={providerId}
-        providerSlug={providerInfo.slug}
-      />
-      <Testmoinal />
-      <Fotter workingHours={providerInfo.workingHours} />
-      {/* <ScrollToTop /> */}
-      <UserActions
-        providerName={providerInfo.providerName}
-        session={session}
-        providerId={providerInfo.id}
-        providerEmail={providerInfo.email}
         userActions={userActions}
         likeCount={providerInfo.likeCount}
         disLikeCount={providerInfo.disLikeCount}
@@ -84,7 +59,30 @@ async function page({ params }) {
         commentCount={providerInfo.commentCount}
         shareCount={providerInfo.shareCount}
         favCount={providerInfo.favCount}
+        rate={providerInfo.starCount}
       />
+      <CarFixing providerCarTypes={providerInfo.cars} />
+      <Detail
+        detail={providerInfo.detail}
+        description={providerInfo.description}
+      />
+      <Department
+        department={providerInfo.department}
+        providerId={providerId}
+        providerSlug={providerInfo.slug}
+      />
+      <ImageSlider sliderImage={providerInfo.images} />
+      <ExtraServices
+        service={providerInfo.service}
+        providerId={providerId}
+        providerSlug={providerInfo.slug}
+      />
+      {/* <Testmoinal /> */}
+      <Fotter workingHours={providerInfo.workingHours} />
+      <ScrollToTop />
+      <div className='fixed bottom-20 left-3  z-50 rounded-full border border-primary bg-primary/50 p-2'>
+        <GoHome />
+      </div>
     </div>
   )
 }

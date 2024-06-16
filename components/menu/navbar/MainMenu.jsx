@@ -23,16 +23,6 @@ import Image from 'next/image'
 const MainMenu = ({ open, setOpen, session }) => {
   return (
     <Sheet open={open} onOpenChange={setOpen}>
-      {/* <SheetTrigger asChild>
-        <Button
-          variant='outline'
-          size='icon'
-          className='relative bg-foreground'
-          onClick={() => setOpen(true)}
-        >
-          <Image src='/logov5.svg' alt='careco' fill />
-        </Button>
-      </SheetTrigger> */}
       <SheetContent className='flex w-full flex-col items-center justify-between '>
         <SheetHeader>
           <HeaderMenu />

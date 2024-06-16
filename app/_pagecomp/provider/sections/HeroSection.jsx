@@ -1,90 +1,83 @@
 import React from 'react'
-import NewMail from '@/app/_pagecomp/admin/mailsystem/NewMail'
-import { SectionTitle } from '@/components/shared/SectionTitle'
-import Text from '@/components/shared/Text'
-import CitySVG from '@/components/svg/CitySVG'
-import Link from 'next/link'
-import { Clock } from '@/more/lib/icons'
-import Image from 'next/image'
-import { AspectRatio } from '@/components/ui/aspect-ratio'
 import Image64 from '@/components/shared/image/Image64'
+import UserActions from '../../user/useractions/UserActions'
+import { providerType, providerTypeIcon } from '@/more/lib/systemlib'
+import { Badge } from '@/components/ui/badge'
+import { ShowStarWithRate } from '../rate/ShowStarWithRate'
 
 export const HeroSection = ({
-  heroSlogon,
   logo,
   providerName,
   city,
   dist,
   branchCount,
   session,
-  providerEmail
-}) => {
-  return (
-    <section className=' relative flex w-full  flex-wrap  items-center justify-between  gap-4 border-b border-r  border-primary bg-secondary p-4 md:flex-nowrap  '>
-      <TextSide
-        heroSlogon={heroSlogon}
-        providerName={providerName}
-        city={city}
-        dist={dist}
-        branchCount={branchCount}
-        session={session}
-        providerEmail={providerEmail}
-      />
-
-      <HeroImage logo={logo} providerName={providerName} />
-    </section>
-  )
-}
-
-export function HeroImage({ logo, providerName }) {
-  return (
-    <Image64
-      url={logo}
-      alt={providerName}
-      containerClass='mt-5 min-w-[300px]  max-h-xs max-w-xs'
-    />
-  )
-}
-
-export function TextSide({
-  providerName,
-  city,
-  branchCount,
+  providerEmail,
   heroSlogon,
-  session,
-  providerEmail
-}) {
+  type,
+  providerId,
+  userActions,
+  likeCount,
+  disLikeCount,
+  viewerCount,
+  commentCount,
+  shareCount,
+  favCount,
+  rate = 99,
+  slug
+}) => {
+  console.log(slug)
   return (
-    <div className='flex w-full max-w-md flex-col items-center justify-center gap-4 md:max-w-xs'>
-      <SectionTitle title={providerName} />
-      <div className='flex w-full items-center gap-2'>
-        <CitySVG className='size-4' />
-        <Text fontSize={'xs'} fontFamily={'tajwal'}>
-          {city}
-        </Text>
-        <Text fontSize={'xs'} fontFamily={'tajwal'}>
-          <span>عدد الفروع</span>
-          {branchCount}
-        </Text>
+    <section className='flex  min-h-[calc(100vh-10.5rem)] w-full flex-col items-center justify-center  border-b border-r   border-primary    '>
+      <div className='flex  w-full items-center justify-center   '>
+        <div className='flex   w-full flex-col items-start justify-between  gap-5 px-3 '>
+          <div className='flex w-full flex-col items-start '>
+            {/* type and city */}
+            <div className='flex-warap flex w-full items-center justify-between px-2'>
+              <Badge className='gap-1' variant='secondary'>
+                {providerTypeIcon(type)}
+                {providerType(type)}
+              </Badge>
+              <Badge className='gap-1' variant='secondary'>
+                {city} - {dist}- الفروع :{branchCount}
+              </Badge>
+            </div>
+            {/* namee and rate */}
+            <div className='flex-warap flex w-full items-center justify-between  px-2'>
+              <h1 className='border-b-4 border-primary px-4 pb-2 font-cairo text-3xl font-bold text-primary'>
+                {providerName}
+              </h1>
+              <ShowStarWithRate rate={rate} slug={slug} />
+            </div>
+          </div>
+
+          <h2 className='flex w-full items-center justify-center font-cairo text-xl font-bold '>
+            {heroSlogon}
+          </h2>
+        </div>
+
+        <div className='hidden  w-full   flex-col items-start justify-center bg-secondary md:flex '>
+          <Image64
+            url={logo}
+            alt={providerName}
+            containerClass=' md:min-w-[250px]  h-full max-w-xs'
+          />
+        </div>
       </div>
 
-      <Text
-        className={'self-center px-1 text-center text-xl'}
-        opacity={'O70'}
-        fontFamily={'tajwal'}
-      >
-        {heroSlogon}
-      </Text>
-
-      <div className='flex w-full items-center justify-end gap-4'>
-        <NewMail session={session} to={providerEmail} urlPrefix={'provider'} />
-        <Link
-          href='#footer'
-          className='flex  items-center justify-center  rounded-md border bg-secondary p-2'
-        >
-          <Clock />
-        </Link>
-      </div>
-    </div>
+      <UserActions
+        providerName={providerName}
+        session={session}
+        providerId={providerId}
+        providerEmail={providerEmail}
+        userActions={userActions}
+        likeCount={likeCount}
+        disLikeCount={disLikeCount}
+        viewerCount={viewerCount}
+        commentCount={commentCount}
+        shareCount={shareCount}
+        favCount={favCount}
+      />
+    </section>
   )
 }
