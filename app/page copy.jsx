@@ -1,7 +1,7 @@
 import { getProviderList } from '@/app/_pagecomp/provider/db/providerList'
 import Bar from './_pagecomp/home/bar/Bar'
 import Loadmore from './_pagecomp/home/Loadmore'
-import ProviderCard from './_pagecomp/home/ProviderCard'
+import ProviderCard from './_pagecomp/home/providercard/ProviderCard'
 import { Suspense } from 'react'
 import LogoSpinnerInline from '@/components/shared/spinner/LogoSpinnerInline'
 

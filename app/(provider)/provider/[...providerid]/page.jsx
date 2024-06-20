@@ -22,7 +22,6 @@ async function page({ params }) {
   const providerDetail = await providerData(providerId, session?.user?.id)
 
   const { providerInfo, rate, userActions } = providerDetail
-  console.log(providerInfo)
   const thisProvider =
     session?.user?.role === 'provider' &&
     session.user.email === providerInfo.email

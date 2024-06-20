@@ -9,8 +9,7 @@ const textVariants = cva(
       fontSize: {
         default: 'text-xs',
         xs: 'text-[.7rem]',
-        small: 'text-xs',
-        medium: 'text-sm',
+        small: 'text-sm',
         large: 'text-lg',
         xl: 'text-xl',
         xl2: 'text-2xl',

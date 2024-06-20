@@ -13,7 +13,6 @@ export const newRate = async data => {
     where: { userId: data.userId, providerId: provider.id }
   })
 
-  console.log(isExisit)
   if (isExisit) {
     return { stuts: false, msg: 'تم تقييم هذا المستخدم من قبل' }
   }
@@ -21,9 +20,7 @@ export const newRate = async data => {
     const newRate = await db.ProviderRating.create({
       data: { ...data, providerId: provider.id }
     })
-    console.log(newRate)
     const reFactoreRate = await reCalculateRate(provider.id)
-    console.log(reFactoreRate)
     return { stuts: true, msg: 'شكرت علي تقييمك' }
   } catch (error) {
     console.log(error)
@@ -95,7 +92,6 @@ export const getRateData = async (slug, rateQuery = 5) => {
 export const reCalculateRate = async providerId => {
   const percentage = await CollectRatine(providerId)
   const per = percentage.percentage
-  console.log(per)
 
   const pr = await db.provider.update({
     where: { id: providerId },
@@ -111,12 +107,10 @@ export const reFixrate = async () => {
     const providerid = providers[i].id
     const percentage = await CollectRatine(providerid)
     const per = percentage.percentage
-    console.log(per)
 
     const pr = await db.provider.update({
       where: { id: providerid },
       data: { starCount: per }
     })
-    console.log(pr)
   }
 }

@@ -18,13 +18,15 @@ import NewMail from '@/app/_pagecomp/admin/mailsystem/NewMail'
 import { usePathname } from 'next/navigation'
 import { ScrollArea } from '../../ui/scroll-area'
 import { ExclamationCircle } from '../../svg/ExclamationCircle'
-import Image from 'next/image'
+
+import AboutSystem from './AboutSystem'
 
 const MainMenu = ({ open, setOpen, session }) => {
   return (
     <Sheet open={open} onOpenChange={setOpen}>
       <SheetContent className='flex w-full flex-col items-center justify-between '>
         <SheetHeader>
+          <AboutSystem />
           <HeaderMenu />
           <Separator />
         </SheetHeader>
@@ -39,6 +41,7 @@ const MainMenu = ({ open, setOpen, session }) => {
                 <div
                   key={menuItem.id}
                   className='flex w-full items-center justify-between'
+                  onClick={() => setOpen(false)}
                 >
                   <Link
                     href={menuItem.href}
@@ -53,7 +56,7 @@ const MainMenu = ({ open, setOpen, session }) => {
                   </Link>
                   <Button
                     variant='ghost'
-                    onClick={() => alert(menuItem.description)}
+                    // onClick={() => alert(menuItem.description)}
                   >
                     <ExclamationCircle className='text-muted-foreground' />
                   </Button>

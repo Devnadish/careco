@@ -26,7 +26,6 @@ export const HeroSection = ({
   rate = 99,
   slug
 }) => {
-  console.log(slug)
   return (
     <section className='flex  min-h-[calc(100vh-10.5rem)] w-full flex-col items-center justify-center  border-b border-r   border-primary    '>
       <div className='flex  w-full items-center justify-center   '>

@@ -35,13 +35,11 @@ const RegisterForm = () => {
       )
         .then(response => response.json())
         .then(data => {
-          console.log(data)
           return data.public_id
         })
         .catch(error => {
           console.error(error)
         })
-      console.log(response)
       return response
     }
   }

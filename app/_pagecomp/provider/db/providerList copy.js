@@ -72,7 +72,6 @@ export const getProviders = async (pageNo, query) => {
     // carCondition = { carFixing: { hasEvery: [carId.id] } }
     carCondition = { carFixing: { hasEvery: ['66266c340077c051cd4ad2f0'] } }
   }
-  console.log(carCondition)
 
   let typeCondition = {}
   if (type) {
@@ -102,7 +101,6 @@ export const getProviders = async (pageNo, query) => {
       sortBy = { starCount: sorttype }
       break
   }
-  console.log(carId)
   const limit = parseInt(process.env.PROVODER_PAGE_LIMIT)
   const skip = (pageNo - 1) * limit
   const providers = await db.provider.findMany({
@@ -123,7 +121,6 @@ export const getProviderList = async (pageNo, query) => {
     pageNo,
     query
   )
-  console.log(providers)
   const DeptAndServices = await db.service.findMany({
     select: { type: true, service: true, logo: true, slug: true }
   })
@@ -132,7 +129,6 @@ export const getProviderList = async (pageNo, query) => {
   const extraServices = DeptAndServices.filter(s => s.type === 'subservice')
 
   const getProviderDetails = async provider => {
-    console.log(provider.id)
     const cars = await db.ProviderCarFixing.findMany({
       where: { providerid: provider.id },
       select: { name: true }
@@ -156,10 +152,7 @@ export const getProviderList = async (pageNo, query) => {
     }
   }
 
-  console.log(providers)
   const newProviders = await Promise.all(providers.map(getProviderDetails))
-
-  console.log({ newProviders })
 
   revalidatePath('/')
 

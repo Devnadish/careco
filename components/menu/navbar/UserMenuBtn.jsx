@@ -8,11 +8,11 @@ const UserMenu = lazy(() => import('@/app/_pagecomp/user/usermenu/UserMenu'))
 const UserMenuBtn = ({ userName, userAvatar, session, newMails }) => {
   const [openUserMenu, setOpenUserMenu] = useState(false)
   return (
-    <>
+    <div className='size-10 rounded-full outline outline-2 outline-offset-1'>
       <Button
         variant='ghost'
         size='icon'
-        className='relative '
+        className='relative rounded-full '
         onClick={() => setOpenUserMenu(true)}
       >
         <Avatar src={userAvatar} alt={userName} />
@@ -27,7 +27,7 @@ const UserMenuBtn = ({ userName, userAvatar, session, newMails }) => {
           />
         </Suspense>
       )}
-    </>
+    </div>
   )
 }
 export default UserMenuBtn

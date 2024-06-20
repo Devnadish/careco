@@ -4,7 +4,7 @@ import { Card, CardContent, CardFooter, CardHeader } from '@/components/ui/card'
 import { providerType, providerTypeIcon } from '@/more/lib/systemlib'
 import { Badge } from '@/components/ui/badge'
 import Text from '@/components/shared/Text'
-import { ScrollArea } from '@/components/ui/scroll-area'
+import { ScrollArea, ScrollBar } from '@/components/ui/scroll-area'
 
 import { Eye, HeartHandshake, MessageCircleMore } from '@/more/lib/icons'
 import { Like } from '@/components/svg/LikeAndDislike'
@@ -14,62 +14,60 @@ import Link from 'next/link'
 import { StarFilled } from '@/components/svg/StarFilled'
 
 function ProviderCard({ provider }) {
-  console.log(provider)
-
   return (
-    <Link
-      href={{
-        pathname: `/provider/${provider?.slug}`
-      }}
-      className=' flex h-full w-[300px]  rounded-md border border-border  shadow-lg hover:border-primary'
-    >
-      <Card className='flex w-full flex-grow flex-col items-center justify-between  rounded-md'>
-        <CardHeader className='relative mb-4 flex w-full  flex-col items-center border-b border-border pb-4 '>
-          <Location
-            city={provider?.city}
-            dist={provider?.dist}
-            typeIcon={providerTypeIcon(provider?.type)}
-            typeName={providerType(provider?.type)}
+    // <Link
+    //   href={{
+    //     pathname: `/provider/${provider?.slug}`
+    //   }}
+    //   className=' flex h-full w-[300px]  rounded-md border border-border  shadow-lg hover:border-primary'
+    // >
+    <Card className='flex-grow'>
+      <CardHeader className='relative mb-4 flex w-full  flex-col items-center border-b border-border pb-4 '>
+        <Location
+          city={provider?.city}
+          dist={provider?.dist}
+          typeIcon={providerTypeIcon(provider?.type)}
+          typeName={providerType(provider?.type)}
+        />
+        <div className='flex w-full items-baseline gap-1 '>
+          <Avatar
+            src={provider?.logo}
+            alt={provider?.providerName}
+            fallBack={'kn'}
           />
-          <div className='flex w-full items-baseline gap-1 '>
-            <Avatar
-              src={provider?.logo}
-              alt={provider?.providerName}
-              fallBack={'kn'}
-            />
-            <p className='font-cairo text-muted-foreground '>
-              {provider?.providerName}
-            </p>
-          </div>
-          <RateAndExtraSevice
-            moreService={provider?.service}
-            // FIXME:RECalculate rate
-            // rate={rate?.percentage}
-            rate={provider?.starCount}
-          />
-        </CardHeader>
+          <p className='font-cairo text-muted-foreground '>
+            {provider?.providerName}
+          </p>
+        </div>
+        <RateAndExtraSevice
+          moreService={provider?.service}
+          // FIXME:RECalculate rate
+          // rate={rate?.percentage}
+          rate={provider?.starCount}
+        />
+      </CardHeader>
 
-        <CardContent className='flex  h-full flex-col items-start justify-between gap-2'>
-          <ProviderDepartments departments={provider?.department} />
-          <CarFix carTypes={provider?.cars} />
-          <Text fontSize='xs' opacity='O70' className='leading-relaxed'>
-            {provider?.heroSlogon}
-          </Text>
-        </CardContent>
+      <CardContent className='flex  h-full flex-col items-start justify-between gap-2'>
+        <ProviderDepartments departments={provider?.department} />
+        <CarFix carTypes={provider?.cars} />
+        <Text fontSize='xs' opacity='O70' className='leading-relaxed'>
+          {provider?.heroSlogon}
+        </Text>
+      </CardContent>
 
-        <CardFooter className='flex w-full justify-between p-0'>
-          <CardBar
-            likeCount={provider?.likeCount}
-            disLikeCount={provider?.disLikeCount}
-            starCount={provider?.starCount}
-            commentCount={provider?.commentCount}
-            favCount={provider?.favCount}
-            viewerCount={provider?.viewerCount}
-            shareCount={provider?.shareCount}
-          />
-        </CardFooter>
-      </Card>
-    </Link>
+      <CardFooter className='flex w-full justify-between p-0'>
+        <CardBar
+          likeCount={provider?.likeCount}
+          disLikeCount={provider?.disLikeCount}
+          starCount={provider?.starCount}
+          commentCount={provider?.commentCount}
+          favCount={provider?.favCount}
+          viewerCount={provider?.viewerCount}
+          shareCount={provider?.shareCount}
+        />
+      </CardFooter>
+    </Card>
+    // </Link>
   )
 }
 
@@ -170,23 +168,35 @@ export const ProviderDepartments = ({ departments }) => {
 
 export const CarFix = ({ carTypes }) => {
   return (
-    <ScrollArea
-      className='h-[100px] w-full rounded-lg border border-border p-1 pl-3 '
-      dir='rtl'
-    >
-      <div className='flex w-full flex-wrap items-center justify-center gap-1 '>
-        {carTypes?.map(({ name }, index) => (
-          <Badge
-            key={index}
-            variant='outline'
-            className='flex flex-grow items-center justify-center border-border'
-          >
-            <Text className='font-montserrat text-sm text-muted-foreground'>
-              {name}
-            </Text>
-          </Badge>
-        ))}
+    <ScrollArea className='w-72 whitespace-nowrap rounded-md ' type='auto'>
+      <div className='flex w-max space-x-4 p-4'>
+        {carTypes?.map(({ name, image }, index) => {
+          return (
+            <div className='overflow-hidden rounded-md'>
+              <Image
+                key={index}
+                // src={`/car/${image}`}
+                src={`${image || 'logo.svg'}`}
+                alt={name}
+                width={36}
+                height={36}
+                // placeholder='blur'
+                className='size-12  object-contain'
+              />
+              {/* <Badge
+                key={index}
+                variant='outline'
+                className='flex flex-grow items-center justify-center border-border'
+              >
+                <Text className='font-montserrat text-sm text-muted-foreground'>
+                  {name}
+                </Text>
+              </Badge> */}
+            </div>
+          )
+        })}
       </div>
+      <ScrollBar orientation='horizontal' />
     </ScrollArea>
   )
 }

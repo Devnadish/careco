@@ -25,7 +25,6 @@ export const getUserActions = async (userid, actionid) => {
       images: true
     }
   })
-  console.log(requiestedProviders)
   // const finalProviders = await ProviderList(requiestedProviders)
 
   return {

@@ -46,7 +46,6 @@ const ImageSlider = sliderImage => {
         <div className='embla__viewport' ref={emblaRef}>
           <div className='embla__container'>
             {images.map((image, index) => {
-              // console.log('image: ', image)
               return (
                 <div
                   className='embla__slide embla__class-names max-w-sm'
@@ -229,7 +228,6 @@ export const DotButton = props => {
 }
 
 const ShowImage = ({ url }) => {
-  console.log(url)
   return (
     <>
       <Image

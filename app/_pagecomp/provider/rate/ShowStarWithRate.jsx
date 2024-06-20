@@ -3,7 +3,6 @@ import Link from 'next/link'
 import { StarFilled } from '@/components/svg/StarFilled'
 
 export const ShowStarWithRate = ({ rate = 99, slug }) => {
-  console.log(slug)
   return (
     <Link
       href={{

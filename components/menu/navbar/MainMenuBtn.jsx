@@ -10,7 +10,12 @@ const MainMenuBtn = ({ session }) => {
   const [open, setOpen] = useState(false)
   return (
     <>
-      <Button variant='ghost' size='icon' onClick={() => setOpen(true)}>
+      <Button
+        variant='outline'
+        size='icon'
+        className='border'
+        onClick={() => setOpen(true)}
+      >
         <Image
           src={logo}
           alt='careco'

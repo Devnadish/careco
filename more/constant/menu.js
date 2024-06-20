@@ -27,7 +27,7 @@ export const menu = [
     id: 1,
     title: 'فزعة',
     icon: <Gift size={15} strokeWidth={1} className='text-foreground' />,
-    href: '/',
+    href: '/mdx/fazah',
     description: 'عنوان فزعة'
   },
   {
@@ -36,18 +36,18 @@ export const menu = [
     icon: (
       <MessagesSquare size={15} strokeWidth={1} className='text-foreground' />
     ),
-    href: '/',
+    href: '/mdx/rooms',
     description: 'عنوان السيارات'
   },
-  {
-    id: 3,
-    title: 'شاور اهل الخبرة',
-    icon: (
-      <MessagesSquare size={15} strokeWidth={1} className='text-foreground' />
-    ),
-    href: '/',
-    description: 'عنوان السيارات'
-  },
+  // {
+  //   id: 3,
+  //   title: 'شاور اهل الخبرة',
+  //   icon: (
+  //     <MessagesSquare size={15} strokeWidth={1} className='text-foreground' />
+  //   ),
+  //   href: '/',
+  //   description: 'عنوان السيارات'
+  // },
   {
     id: 4,
     title: 'مجاني',
@@ -70,7 +70,7 @@ export const menu = [
     icon: (
       <MessagesSquare size={15} strokeWidth={1} className='text-foreground' />
     ),
-    href: '/',
+    href: '/mdx/supporting',
     description: 'عنوان الداعمين'
   }
 ]
@@ -229,13 +229,13 @@ export const menuItemsUser = userId => {
       icon: <Star size={20} strokeWidth={1} className='text-foreground' />,
       text: 'التقييم'
     },
-    {
-      href: `/reaction/${userId}/favorate`,
-      icon: (
-        <HeartHandshake size={20} strokeWidth={1} className='text-foreground' />
-      ),
-      text: 'المفضلة'
-    },
+    // {
+    //   href: `/reaction/${userId}/favorate`,
+    //   icon: (
+    //     <HeartHandshake size={20} strokeWidth={1} className='text-foreground' />
+    //   ),
+    //   text: 'المفضلة'
+    // },
     { href: `/reaction/${userId}/like`, icon: <Like />, text: 'إعجاب' },
     {
       href: `/reaction/${userId}/dislike`,
@@ -259,7 +259,7 @@ export const menuItemsUser = userId => {
       text: 'مراجعة الاستشارات'
     },
     {
-      href: `/mdx/info`,
+      href: `/mdx/comments`,
       icon: (
         <MessageCircleMore
           size={20}

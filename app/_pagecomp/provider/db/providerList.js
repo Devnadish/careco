@@ -181,7 +181,6 @@ const fixSlug = async () => {
 
   for (const department of departments) {
     const newSlug = Slug(department.name)
-    console.log('🚀 ~ fixSlug ~ newSlug:', newSlug)
     await db.PRdepartment.update({
       where: { id: department.id },
       data: { slug: newSlug }
@@ -190,7 +189,6 @@ const fixSlug = async () => {
 
   for (const department of services) {
     const newSlug = Slug(department.name)
-    console.log('🚀 ~ fixSlug ~ newSlug-services:', newSlug)
     await db.PRservice.update({
       where: { id: department.id },
       data: { slug: newSlug }

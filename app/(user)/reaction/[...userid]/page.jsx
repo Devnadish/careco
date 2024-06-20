@@ -4,7 +4,7 @@ import { SectionTitle } from '@/components/shared/SectionTitle'
 import { Dislike, Like } from '@/components/svg/LikeAndDislike'
 import ProviderCard, {
   ProviderReactionCard
-} from '@/app/_pagecomp/home/ProviderCard'
+} from '@/app/_pagecomp/home/providercard/ProviderCard'
 import { StarFilled } from '@/components/svg/StarFilled'
 import { HistoryIcon } from '@/components/svg/History'
 import { HeartHandshake, Trash } from '@/more/lib/icons'

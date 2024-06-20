@@ -25,7 +25,6 @@ function CarToSelect({ open, setOpen }) {
   const [cars, setCars] = useState(carLogos)
 
   const handleCarRoute = () => {
-    console.log(value)
     if (value === '') return
     const queryString = urlQuery('vechile', value)
     const updatedUrl = `${pathName}${queryString ? `?${queryString}` : ''}`
