@@ -7,9 +7,9 @@ import { MoveLeft } from '@/more/lib/icons'
 
 export const ExtraServices = ({ service, providerId, providerSlug }) => {
   return (
-    <section className='flex w-full flex-col items-center justify-center  border-b border-l border-primary bg-secondary/40 p-4'>
+    <section className='relative flex w-full flex-col items-center justify-center  border-b border-l border-primary bg-secondary/40 p-4'>
       <SectionTitle title={'خدمات اضافية'} />
-      <div className='mx-auto flex w-full  flex-wrap  items-center justify-center  gap-4'>
+      <div className='mx-auto mt-4 flex w-full flex-wrap  items-center justify-center  gap-4'>
         {service.map(service => {
           return (
             <div

@@ -27,7 +27,7 @@ async function page({ params }) {
     session.user.email === providerInfo.email
 
   return (
-    <div className='container mb-20 mt-[50px] flex w-full flex-col items-center justify-center'>
+    <div className=' mb-20 flex w-full max-w-xs flex-col items-center justify-center md:max-w-5xl'>
       <div className='flex w-full items-center justify-end'>
         {thisProvider && <ProviderMenu providerid={providerInfo.id} />}
       </div>
@@ -79,7 +79,7 @@ async function page({ params }) {
       {/* <Testmoinal /> */}
       <Fotter workingHours={providerInfo.workingHours} />
       <ScrollToTop />
-      <div className='fixed bottom-20 left-3  z-50 rounded-full border border-primary bg-primary/50 p-2'>
+      <div className='fixed left-0 top-16  z-50 rounded-full border border-primary bg-primary/50 p-2'>
         <GoHome />
       </div>
     </div>

@@ -8,9 +8,9 @@ import { MoveLeft } from '@/more/lib/icons'
 
 export const Department = ({ department, providerId, providerSlug }) => {
   return (
-    <section className='mt-2 flex min-h-[calc(100vh-10.5rem)] w-full  flex-col  items-center justify-between  border-b  border-l border-primary bg-secondary/40  p-4  px-4'>
+    <section className='relative mt-2 flex min-h-[calc(100vh-10.5rem)] w-full  flex-col  items-center justify-center  border-b  border-l border-primary bg-secondary/40  p-4  px-4'>
       <SectionTitle title={'الاقسام الرئسية'} />
-      <div className='mx-auto flex w-full  flex-wrap  items-center justify-center  gap-4'>
+      <div className='mx-auto mt-4 flex w-full flex-wrap  items-center justify-center  gap-4'>
         {department.map(service => {
           return (
             <div

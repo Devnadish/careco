@@ -20,6 +20,7 @@ import Text from '@/components/shared/Text'
 import NewMailBtn from '../../admin/mailsystem/NewMailBtn'
 import Link from 'next/link'
 import { Separator } from '@/components/ui/separator'
+import { ShowStarWithRate } from '../../provider/rate/ShowStarWithRate'
 
 function UserActions({
   session,
@@ -30,7 +31,9 @@ function UserActions({
   commentCount = 0,
   shareCount = 0,
   userActions,
-  providerEmail
+  providerEmail,
+  rate,
+  slug
 }) {
   const [isLikeLoading, setLikeLoading] = useState(false)
   const [isDisLikeLoading, setDisLikeLoading] = useState(false)
@@ -126,11 +129,22 @@ function UserActions({
     setFavItLoading(false)
   }
   return (
-    <div className='flex   w-full flex-col items-end justify-start gap-2     '>
-      <div className='flex w-1/3 items-center justify-center rounded-lg bg-primary/25'>
-        <NewMailBtn session={session} providerEmail={providerEmail} />
+    <div className='flex   w-full flex-col items-center justify-start gap-2     '>
+      <div className='flex w-full flex-col  items-center justify-center  gap-4 border-primary p-2'>
+        <ShowStarWithRate rate={rate} slug={slug} />
+        <div className='flex size-20 items-center justify-center rounded-lg  p-2'>
+          <UserAction
+            label='Fav'
+            count={favCount}
+            isLoading={isFavItLoading}
+            icon={HeartHandshake}
+            isActive={userActions.isFav}
+            onClick={handleFavoriteAction}
+            btnSize='size-16'
+          />
+        </div>
       </div>
-      <div className='flex  w-full  items-center justify-around gap-4   border-l border-t   border-primary p-2'>
+      <div className='flex  w-full  items-center justify-around gap-4        p-2'>
         <UserAction
           label='Like'
           count={likeCount}
@@ -139,17 +153,6 @@ function UserActions({
           isActive={userActions.isLike}
           onClick={handleLikeAction}
         />
-        <Separator orientation='vertical' />
-        <UserAction
-          label='Fav'
-          count={favCount}
-          isLoading={isFavItLoading}
-          icon={HeartHandshake}
-          isActive={userActions.isFav}
-          onClick={handleFavoriteAction}
-        />
-        <Separator orientation='vertical' />
-
         <UserAction
           label='Dislike'
           count={disLikeCount}
@@ -158,10 +161,12 @@ function UserActions({
           isActive={userActions.isDisLike}
           onClick={handleDislikeAction}
         />
-        <Separator orientation='vertical' />
         <Comments commentCount={commentCount} />
-        <Separator orientation='vertical' />
         <Shared shareCount={shareCount} />
+      </div>
+
+      <div className='flex w-1/2 items-center justify-center rounded-lg bg-primary/25'>
+        <NewMailBtn session={session} providerEmail={providerEmail} />
       </div>
     </div>
   )
@@ -174,7 +179,8 @@ function UserAction({
   icon: Icon,
   isActive,
   onClick,
-  label
+  label,
+  btnSize = 'size-12'
 }) {
   const handleClick = () => {
     if (isActive) {
@@ -198,7 +204,7 @@ function UserAction({
     <Button
       variant='ghost'
       onClick={handleClick}
-      className={`size-10 rounded-3xl border border-primary shadow-lg ${isActive ? 'bg-primary text-white' : 'bg-primary/40'}`}
+      className={`${btnSize}  rounded-full border border-primary shadow-lg ${isActive ? 'bg-primary text-white' : 'bg-primary/40'}`}
     >
       {isLoading ? (
         <SubSpinner />
@@ -221,8 +227,8 @@ function UserAction({
 const Comments = ({ commentCount }) => {
   return (
     <Button
-      variant='ghost'
-      className='flex  size-10 flex-col items-center justify-center    p-0'
+      variant='outline'
+      className='flex size-12 flex-col items-center justify-center rounded-full    p-0'
     >
       <MessageCircleMore className='size-4 text-muted-foreground' />
       <span className='text-[.7rem] text-muted-foreground'>{commentCount}</span>
@@ -233,8 +239,8 @@ const Comments = ({ commentCount }) => {
 const Shared = ({ shareCount }) => {
   return (
     <Button
-      variant='ghost'
-      className='flex  size-10 flex-col items-center justify-center    p-0'
+      variant='outline'
+      className='flex size-12 flex-col items-center justify-center rounded-full    p-0'
     >
       <Share2 className={`size-4 text-muted-foreground`} />
       <span className='text-[.7rem] text-muted-foreground'>{shareCount}</span>

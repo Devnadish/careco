@@ -81,7 +81,7 @@ export const WorkingHours = ({ days }) => {
         {Object.entries(days).map(([key, value]) => (
           <div
             key={key}
-            className='flex flex-col justify-center rounded border border-border px-2 text-muted-foreground '
+            className='flex flex-col justify-center rounded border border-foreground/25 px-2 text-muted-foreground '
             dir='rtl'
           >
             <div className='flex w-full items-center justify-between'>

@@ -10,12 +10,13 @@ function NewMailBtn({ session, providerEmail }) {
   return (
     <>
       <Button
-        className='w-full'
+        className='flex h-16 w-full flex-col items-center justify-center'
         variant='ghost'
-        size='icon'
+        // size='icon'
         onClick={() => setOpen(true)}
       >
         <EMail className='size-6 text-foreground  ' />
+        <span className='font-noto text-sm text-foreground'>راسلنا</span>
       </Button>
 
       {open && (

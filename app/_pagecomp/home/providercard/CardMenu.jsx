@@ -11,7 +11,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger
 } from '@/components/ui/dropdown-menu'
-import { MessageCircleMore, Star } from '@/more/lib/icons'
+import { MessageCircleMore, Share2, Star } from '@/more/lib/icons'
 
 function CardMenu() {
   const sty =
@@ -35,6 +35,10 @@ function CardMenu() {
           <DropdownMenuItem className={sty}>
             مشاهدة التقييم
             <Star className='size-4 text-muted-foreground' />
+          </DropdownMenuItem>
+          <DropdownMenuItem className={sty}>
+            ارسال لصديق
+            <Share2 className='size-4 text-muted-foreground' />
           </DropdownMenuItem>
         </DropdownMenuGroup>
 
