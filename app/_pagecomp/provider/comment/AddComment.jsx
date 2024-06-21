@@ -15,7 +15,7 @@ function AddComment({
 }) {
   const addCommentMsg = async formData => {
     const comment = formData.get('comment')
-    const userid = session.user.id
+    const userid = session?.user?.id
 
     if (!comment) return
     let data
@@ -32,9 +32,9 @@ function AddComment({
       className='flex w-full  items-center justify-center gap-2'
     >
       <Avatar
-        src={session.user.image}
-        alt={session.user.name}
-        fallBack={session.user.name}
+        src={session?.user?.image}
+        alt={session?.user?.name}
+        fallBack={session?.user?.name}
         size={7}
       />
       <Input name='comment' placeholder='اضافة تعليق' />

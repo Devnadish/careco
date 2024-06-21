@@ -35,7 +35,7 @@ const MsgForm = ({ to, urlPrefix, session }) => {
       className='flex w-full flex-col items-start gap-3 rounded border border-border bg-secondary/30 p-4'
     >
       <p className='flex items-center gap-2'>
-        مرحبا <strong>{session.user.name}</strong>
+        مرحبا <strong>{session?.user?.name}</strong>
       </p>
 
       <MsgType

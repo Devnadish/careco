@@ -12,7 +12,7 @@ const Footer = ({ session, newMails }) => {
       id='footer'
     >
       {/* <SliderMenu /> */}
-      <ServiceFooter userId={session.user.id} />
+      <ServiceFooter userId={session?.user?.id} />
       <SelectCar />
     </footer>
   )

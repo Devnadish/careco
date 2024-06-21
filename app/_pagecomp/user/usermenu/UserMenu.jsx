@@ -56,7 +56,9 @@ function UserSideMenu({ open, setOpen, session, newMails }) {
   return (
     <Sheet open={open} onOpenChange={setOpen}>
       <SheetContent className='flex h-full w-full flex-col items-center justify-between'>
-        {session.user.isVerified ? null : <AccountInactive session={session} />}
+        {session?.user?.isVerified ? null : (
+          <AccountInactive session={session} />
+        )}
         <SheetHeader className={'w-full'} id='heaer'>
           <UserMenuHeader session={session} newMails={newMails} />
         </SheetHeader>

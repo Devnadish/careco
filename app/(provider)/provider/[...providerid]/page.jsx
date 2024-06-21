@@ -24,7 +24,7 @@ async function page({ params }) {
   const { providerInfo, rate, userActions } = providerDetail
   const thisProvider =
     session?.user?.role === 'provider' &&
-    session.user.email === providerInfo.email
+    session?.user?.email === providerInfo.email
 
   return (
     <div className=' mb-20 flex w-full max-w-xs flex-col items-center justify-center md:max-w-5xl'>
