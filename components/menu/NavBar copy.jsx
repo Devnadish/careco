@@ -150,7 +150,7 @@ const MainMenuBtn = ({ open, setOpen, session }) => {
         className='relative '
         onClick={() => setOpen(true)}
       >
-        <Image src='/logov5.svg' alt='careco' fill />
+        <Image src='/logo6.svg' alt='careco' fill />
       </Button>
     </>
   )

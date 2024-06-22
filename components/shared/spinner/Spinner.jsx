@@ -24,7 +24,7 @@ export const LogoSpinner = () => {
     <div className='fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 transform'>
       <div className='animate-spin-slow relative h-16 w-16 rounded-full  '>
         <Image
-          src='/logov5spinner.svg'
+          src='/logo6spinner.svg'
           alt='careco'
           fill
           className='absolute inset-0'

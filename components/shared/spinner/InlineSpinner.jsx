@@ -4,7 +4,7 @@ export const InlineSpinner = () => {
   return (
     <div className='animate-spin-slow relative size-8 rounded-full  '>
       <Image
-        src='/logov5spinner.svg'
+        src='/logo6spinner.svg'
         alt='careco'
         fill
         className='absolute inset-0'

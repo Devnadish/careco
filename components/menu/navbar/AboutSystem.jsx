@@ -1,7 +1,7 @@
 'use client'
 import React from 'react'
 import Image from 'next/image'
-import logo from '../../../public/logov5.svg'
+import logo from '../../../public/logo6.svg'
 function AboutSystem() {
   return (
     <div

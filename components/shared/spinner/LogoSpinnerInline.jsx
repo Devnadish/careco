@@ -6,7 +6,7 @@ const LogoSpinnerInline = ({ message = 'جاري التحميل' }) => (
     <div className='flex h-52 w-full max-w-sm flex-col items-center justify-center rounded-md border border-primary bg-primary/10 shadow-2xl'>
       <div className='animate-spin-slow relative flex h-12 w-12 items-center justify-center'>
         <Image
-          src='/logov5spinner.svg'
+          src='/logo6spinner.svg'
           alt='careco'
           fill
           className='absolute inset-0'

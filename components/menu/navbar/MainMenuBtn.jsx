@@ -3,7 +3,7 @@ import LogoSpinnerInline from '@/components/shared/spinner/LogoSpinnerInline'
 import { Button } from '@/components/ui/button'
 import Image from 'next/image'
 import React, { useState, lazy, Suspense } from 'react'
-import logo from '../../../public/logov5.svg'
+import logo from '../../../public/logo6.svg'
 const MainMenu = lazy(() => import('@/components/menu/navbar/MainMenu'))
 
 const MainMenuBtn = ({ session }) => {

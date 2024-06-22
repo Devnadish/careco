@@ -16,7 +16,7 @@ function UnderConsraction({ children, pageName }) {
         <span>تحت الانشاء</span>
       </Text>
       <div className='relative flex size-24  md:size-36'>
-        <Image src='/logov5.svg' alt='careco' fill />
+        <Image src='/logo6.svg' alt='careco' fill />
       </div>
       <MyArticle content={children} />
       {children}

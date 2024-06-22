@@ -20,7 +20,7 @@ export const LoginPage = () => {
       {status === 'loading' && <LogoSpinnerInline msg={'مصادقة الحماية'} />}
       {status === 'authenticated' && redirect('/')}
       <div className='relative flex size-24  md:size-24'>
-        <Image src='/logov5.svg' alt='careco' fill />
+        <Image src='/logo6.svg' alt='careco' fill />
       </div>
 
       <div className='flex h-[65%] w-full max-w-sm flex-col items-center justify-around gap-6 rounded-lg border border-border p-3 shadow-lg'>
